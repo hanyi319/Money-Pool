@@ -9,6 +9,7 @@ specifiers:
   pinia: 2.0.16
   prettier: 2.7.1
   sass: 1.49.11
+  scss: 0.2.4
   svgo: 2.8.0
   svgstore: 3.0.1
   typescript: 4.6.3
@@ -25,6 +26,7 @@ dependencies:
   echarts: 5.3.2
   pinia: 2.0.16_hhks2xcoho7x4jrwn5stbz36vy
   sass: 1.49.11
+  scss: 0.2.4
   svgo: 2.8.0
   svgstore: 3.0.1
   vant: 3.4.8_vue@3.2.31
@@ -1484,6 +1486,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /ometa/0.2.2:
+    resolution: {integrity: sha512-LZuoK/yjU3FvrxPjUXUlZ1bavCfBPqauA7fsNdwi+AVhRdyk2IzgP3JRnevvjzQ6fKHdUw8YISshf53FmpHrng==}
+    engines: {node: '>= 0.2.0'}
+    dev: false
+
   /param-case/3.0.4:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
     dependencies:
@@ -1694,6 +1701,13 @@ packages:
       chokidar: 3.5.3
       immutable: 4.1.0
       source-map-js: 1.0.2
+
+  /scss/0.2.4:
+    resolution: {integrity: sha512-4u8V87F+Q/upVhUmhPnB4C1R11xojkRkWjExL2v0CX2EXTg18VrKd+9JWoeyCp2VEMdSpJsyAvVU+rVjogh51A==}
+    engines: {node: '>= 0.2.0'}
+    dependencies:
+      ometa: 0.2.2
+    dev: false
 
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
