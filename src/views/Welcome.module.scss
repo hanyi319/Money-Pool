@@ -2,17 +2,28 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #edeff3;
   > header {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 48px 0 16px 0;
+    font-size: 24px;
+    > .logo {
+      width: 64px;
+    }
+    > h1 {
+      font-weight: bold;
+      background: linear-gradient(to right, #1fd4af 0%, #1ecc94 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
   > main {
     flex-grow: 1;
-  }
-  > footer {
-    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
   }
 }
