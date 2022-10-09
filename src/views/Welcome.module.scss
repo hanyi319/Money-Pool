@@ -1,8 +1,9 @@
 .wrapper {
-  height: 100vh;
+  height: calc(100vh - var(--welcome-nav-height));
   display: flex;
   flex-direction: column;
-  background-color: #edeff3;
+  margin-bottom: var(--welcome-nav-height);
+  background-color: var(--welcome-bg);
   > header {
     flex-shrink: 0;
     display: flex;
@@ -16,7 +17,11 @@
     }
     > h1 {
       font-weight: bold;
-      background: linear-gradient(to right, #1fd4af 0%, #1ecc94 100%);
+      background: linear-gradient(
+        to right,
+        var(--theme-color-start) 0%,
+        var(--theme-color-end) 100%
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
