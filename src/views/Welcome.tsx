@@ -3,8 +3,6 @@ import { RouterView } from "vue-router";
 import s from "./Welcome.module.scss";
 import logo from "../assets/icons/logo.svg";
 
-console.log(logo);
-
 export const Welcome = defineComponent({
   setup: (props, context) => {
     return () => (

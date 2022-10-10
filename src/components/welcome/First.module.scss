@@ -13,11 +13,20 @@
     margin: 16px 16px 0;
     border-radius: 8px;
     background: var(--welcome-card-bg);
-    > .title {
-      font-size: 48px;
-      font-weight: 900;
-      line-height: 130%;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 130%;
+    > .title1 {
       color: var(--welcome-card-text-blue);
+    }
+    > .title2 {
+      color: var(--welcome-card-text-pink);
+    }
+    > .title3 {
+      color: var(--welcome-card-text-yellow);
+    }
+    > .title4 {
+      color: var(--welcome-card-text-red);
     }
     > .content {
       font-size: 24px;

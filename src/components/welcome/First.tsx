@@ -7,15 +7,15 @@ export const First = defineComponent({
     return () => (
       <div class={s.wrapper}>
         <div class={s.card}>
-          <div class={s.title}>开源，节流</div>
-          <div class={s.content}>会挣钱，也要会省钱。</div>
+          <div class={s.title1}>开源节流</div>
+          <div class={s.content}>&nbsp;&nbsp;既会挣钱，也懂省钱。</div>
         </div>
         <div class={s.actions}>
           <RouterLink class={s.fake} to="/start">
-            跳过
+            上一页
           </RouterLink>
           <RouterLink to="/welcome/2">下一页</RouterLink>
-          <RouterLink to="/start">跳过</RouterLink>
+          <RouterLink to="/start">&nbsp;&nbsp;跳过</RouterLink>
         </div>
       </div>
     );
