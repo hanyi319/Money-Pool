@@ -1,22 +1,12 @@
-import s from "./WelcomeLayout.module.scss";
-import { RouterLink } from "vue-router";
-import { WelcomeLayout } from "./WelcomeLayout";
+import s from "./welcome.module.scss";
+import { FunctionalComponent } from "vue";
 
-export const Second = () => {
+export const Second: FunctionalComponent = () => {
   return (
-    <WelcomeLayout>
-      {{
-        title: () => <div class={s.title2}>持之以恒</div>,
-        content: () => <div class={s.content}>&nbsp;&nbsp;每日提醒，矢志不渝。</div>,
-        buttons: () => (
-          <>
-            <RouterLink to="/welcome/1">上一页</RouterLink>
-            <RouterLink to="/welcome/3">下一页</RouterLink>
-            <RouterLink to="/start">&nbsp;&nbsp;跳过</RouterLink>
-          </>
-        ),
-      }}
-    </WelcomeLayout>
+    <div class={s.card}>
+      <div class={s.title2}>持之以恒</div>
+      <div class={s.content}>&nbsp;&nbsp;每日提醒，矢志不渝。</div>
+    </div>
   );
 };
 

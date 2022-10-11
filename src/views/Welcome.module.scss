@@ -1,7 +1,7 @@
 .wrapper {
-  height: calc(100vh - var(--welcome-nav-height));
   display: flex;
   flex-direction: column;
+  height: calc(100vh - var(--welcome-nav-height));
   margin-bottom: var(--welcome-nav-height);
   background-color: var(--welcome-bg);
   > header {
@@ -27,8 +27,30 @@
     }
   }
   > main {
-    flex-grow: 1;
+    position: relative;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    margin: 16px 16px var(--welcome-nav-height);
   }
+  > footer {
+    flex-shrink: 0;
+  }
+}
+
+.slide_fade_enter_active,
+.slide_fade_leave_active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-out;
+}
+
+.slide_fade_enter_from {
+  transform: translateX(100vw);
+}
+.slide_fade_leave_to {
+  transform: translateX(-100vw);
 }

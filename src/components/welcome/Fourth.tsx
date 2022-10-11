@@ -1,24 +1,12 @@
-import s from "./WelcomeLayout.module.scss";
-import { RouterLink } from "vue-router";
-import { WelcomeLayout } from "./WelcomeLayout";
+import s from "./welcome.module.scss";
+import { FunctionalComponent } from "vue";
 
-export const Fourth = () => {
+export const Fourth: FunctionalComponent = () => {
   return (
-    <WelcomeLayout>
-      {{
-        title: () => <div class={s.title4}>有备无患</div>,
-        content: () => <div class={s.content}>&nbsp;&nbsp;数据上云，安全存储。</div>,
-        buttons: () => (
-          <>
-            <RouterLink to="/welcome/3">上一页</RouterLink>
-            <RouterLink to="/start">完成</RouterLink>
-            <RouterLink class={s.fake} to="/start">
-              下一页
-            </RouterLink>
-          </>
-        ),
-      }}
-    </WelcomeLayout>
+    <div class={s.card}>
+      <div class={s.title4}>有备无患</div>
+      <div class={s.content}>&nbsp;&nbsp;数据上云，安全存储。</div>
+    </div>
   );
 };
 
