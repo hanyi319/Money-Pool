@@ -1,0 +1,9 @@
+.button {
+  border: 1px solid var(--button-bg);
+  padding: 8px 16px;
+  height: var(--button-height);
+  font-size: var(--button-font-size);
+  border-radius: var(--button-radius);
+  background: var(--button-bg);
+  color: var(--button-text);
+}
