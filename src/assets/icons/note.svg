@@ -1,0 +1,23 @@
+<svg
+  width="128px"
+  height="128px"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 40 40"
+>
+<g
+  clip-path="url(#icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__clip0)"
+  stroke-width="3"
+>
+  <path d="M13 31.5h18" stroke="#1fd4af" stroke-linecap="round"></path>
+  <path
+    d="M33.135 10.508l-3.333-3.334a.953.953 0 00-1.349 0L8.978 26.65a.953.953 0 00-.279.707l.111 3.222c.017.5.42.903.92.92l3.222.111a.95.95 0 00.707-.279l19.476-19.475a.953.953 0 000-1.348zm-8.377.362l4.682 4.681"
+    stroke="#6D7582"
+  ></path>
+</g>
+<defs>
+  <clipPath id="icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__icon_feature_highlight_notes_svg__clip0">
+    <path fill="#fff" d="M0 0h40v40H0z"></path>
+  </clipPath>
+</defs>
+</svg>

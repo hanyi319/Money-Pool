@@ -1,6 +1,14 @@
 .button {
   width: 100%;
   &_wrapper {
-    padding: 16px 16px;
+    padding: 16px 32px;
+  }
+}
+
+.note {
+  width: 128px;
+  height: 128px;
+  &_wrapper {
+    padding: 120px 0;
   }
 }
