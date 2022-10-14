@@ -1,6 +1,11 @@
 :root {
   --theme-color-start: #1fd4af;
   --theme-color-end: #1ecc94;
+  --theme-color: linear-gradient(
+    to right,
+    var(--theme-color-start) 0%,
+    var(--theme-color-end) 100%
+  );
   --welcome-bg: #edeff3;
   --welcome-card-bg: #fff;
   --welcome-button-hover: #e5e8ed;
@@ -15,16 +20,20 @@
   --z-index-bottom-nav: 8;
   --z-index-overlay: 16;
   --transition-duration: 0.5s;
-  --button-bg: linear-gradient(to right, var(--theme-color-start) 0%, var(--theme-color-end) 100%);
+  --startPage-bg: #edeff3;
+  --button-bg: var(--theme-color);
   --button-text: #fff;
   --button-font-size: 18px;
   --button-radius: 8px;
   --button-height: 48px;
   --float-button-text: #fff;
-  --float-button-bg: var(--button-bg);
-  --navbar-bg: var(--button-bg);
+  --float-button-bg: var(--theme-color);
+  --navbar-bg: var(--theme-color);
   --navbar-text: #fff;
   --top-safe-area-height: 24px;
   --overlay-mask-bg: rgba(0, 0, 0, 0.5);
-  --overlay-bg: #fff;
+  --overlay-bg: #edeff3;
+  --overlay-user-bg: var(--theme-color);
+  --overlay-user-text: #fff;
+  --overlay-item-text: #3b3c3c;
 }

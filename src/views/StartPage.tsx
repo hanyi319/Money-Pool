@@ -15,7 +15,7 @@ export const StartPage = defineComponent({
     };
 
     return () => (
-      <div>
+      <div class={s.start_page}>
         <Navbar>
           {{
             default: () => "清流记账",

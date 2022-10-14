@@ -5,13 +5,13 @@
     width="27"
     height="27"
     rx="13.5"
-    stroke="#4A3BFB"
+    stroke="#1fd4af"
     stroke-width="3"
     stroke-linecap="round"
   ></rect>
   <path
     d="M13.732 17.677H26.31M13.732 22.4H26.31m0-4.723l-4.492-4.492m-3.594 13.708l-4.492-4.492"
-    stroke="#4A3BFB"
+    stroke="#1fd4af"
     stroke-width="3"
     stroke-linecap="round"
     stroke-linejoin="round"

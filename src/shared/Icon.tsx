@@ -10,7 +10,7 @@ export type IconName =
   | "note"
   | "menu"
   | "add"
-  | "statistic"
+  | "statistics"
   | "export"
   | "notify";
 export const Icon = defineComponent({
