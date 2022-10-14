@@ -12,7 +12,8 @@
   --welcome-card-text-pink: #f360f3;
   --welcome-nav-height: 64px;
   --welcome-nav-gap: 8px;
-  --z-index-bottom-nav: 10;
+  --z-index-bottom-nav: 8;
+  --z-index-overlay: 16;
   --transition-duration: 0.5s;
   --button-bg: linear-gradient(to right, var(--theme-color-start) 0%, var(--theme-color-end) 100%);
   --button-text: #fff;
@@ -23,4 +24,7 @@
   --float-button-bg: var(--button-bg);
   --navbar-bg: var(--button-bg);
   --navbar-text: #fff;
+  --top-safe-area-height: 24px;
+  --overlay-mask-bg: rgba(0, 0, 0, 0.5);
+  --overlay-bg: #fff;
 }
