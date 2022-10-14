@@ -1,0 +1,28 @@
+.navbar {
+  background: var(--navbar-bg);
+  color: var(--navbar-text);
+  fill: var(--navbar-text);
+  padding: 40px 16px 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon_wrapper {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // 限制内部的图片宽高
+  > * {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.title_wrapper {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 16px;
+}

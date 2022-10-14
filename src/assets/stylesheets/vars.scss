@@ -14,11 +14,13 @@
   --welcome-nav-gap: 8px;
   --z-index-bottom-nav: 10;
   --transition-duration: 0.5s;
-  --button-bg: linear-gradient(to right, #1fd4af 0%, #1ecc94 100%);
+  --button-bg: linear-gradient(to right, var(--theme-color-start) 0%, var(--theme-color-end) 100%);
   --button-text: #fff;
   --button-font-size: 18px;
   --button-radius: 8px;
   --button-height: 48px;
   --float-button-text: #fff;
   --float-button-bg: var(--button-bg);
+  --navbar-bg: var(--button-bg);
+  --navbar-text: #fff;
 }
