@@ -1,13 +1,13 @@
-import s from "./welcome.module.scss";
-import chart from "../../assets/icons/chart.svg";
 import { FunctionalComponent } from "vue";
+import s from "./welcome.module.scss";
+import { Icon } from "../../shared/Icon";
 
 export const Third: FunctionalComponent = () => {
   return (
     <div class={s.card}>
-      <img src={chart} alt="chart" />
-      <div class={s.title3}>一目了然</div>
-      <div class={s.content}>&nbsp;&nbsp;重要信息，有效呈现。</div>
+      <Icon name="cloud" class={s.icon} />
+      <div class={s.title3}>有备无患</div>
+      <div class={s.content}>&nbsp;&nbsp;数据上云，安全存储。</div>
     </div>
   );
 };

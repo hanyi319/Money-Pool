@@ -1,9 +1,9 @@
 import { defineComponent, ref, Transition, VNode, watchEffect } from "vue";
 import { RouteLocationNormalizedLoaded, RouterView, useRoute, useRouter } from "vue-router";
 import s from "./Welcome.module.scss";
-import logo from "../assets/icons/logo.svg";
 import { useSwipe } from "../hooks/useSwipe";
 import { throttle } from "../shared/throttle";
+import { Icon } from "../shared/Icon";
 
 const pushMapLeft: Record<string, string> = {
   Welcome1: "/welcome/2",
@@ -44,7 +44,7 @@ export const Welcome = defineComponent({
     return () => (
       <div class={s.wrapper}>
         <header>
-          <img class={s.logo} src={logo} />
+          <Icon name="logo" class={s.logo} />
           <h1>清流记账</h1>
         </header>
         <main class={s.main} ref={main}>

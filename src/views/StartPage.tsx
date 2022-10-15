@@ -22,8 +22,8 @@ export const StartPage = defineComponent({
             icon: () => <Icon name="menu" class={s.navIcon} onClick={onClickMenu} />,
           }}
         </Navbar>
-        <Center class={s.note_wrapper}>
-          <Icon name="note" class={s.note} />
+        <Center class={s.icon_wrapper}>
+          <Icon name="note" class={s.icon} />
         </Center>
         <div class={s.button_wrapper}>
           <Button class={s.button}>开始记账</Button>

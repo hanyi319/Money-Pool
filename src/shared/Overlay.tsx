@@ -1,7 +1,7 @@
 import { defineComponent, PropType } from "vue";
 import s from "./Overlay.module.scss";
-import { Icon } from "./Icon";
 import { RouterLink } from "vue-router";
+import { Icon } from "./Icon";
 
 export const Overlay = defineComponent({
   props: {
@@ -27,19 +27,19 @@ export const Overlay = defineComponent({
             <ul class={s.action_list}>
               <li>
                 <RouterLink to="/statistics" class={s.action}>
-                  <Icon name="statistics" class={s.icon} />
+                  <Icon name="chart" class={s.icon} />
                   <span>统计图表</span>
                 </RouterLink>
               </li>
               <li>
                 <RouterLink to="/export" class={s.action}>
-                  <Icon name="export" class={s.icon} />
+                  <Icon name="cloud" class={s.icon} />
                   <span>数据导出</span>
                 </RouterLink>
               </li>
               <li>
                 <RouterLink to="/notify" class={s.action}>
-                  <Icon name="notify" class={s.icon} />
+                  <Icon name="clock" class={s.icon} />
                   <span>记账提醒</span>
                 </RouterLink>
               </li>

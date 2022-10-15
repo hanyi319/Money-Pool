@@ -10,17 +10,21 @@
   font-size: 48px;
   font-weight: 900;
   line-height: 130%;
+  > .icon {
+    width: 128px;
+    height: 128px;
+  }
   > .title1 {
     color: var(--welcome-card-text-green);
   }
   > .title2 {
-    color: var(--welcome-card-text-pink);
-  }
-  > .title3 {
     color: var(--welcome-card-text-yellow);
   }
-  > .title4 {
+  > .title3 {
     color: var(--welcome-card-text-blue);
+  }
+  > .title4 {
+    color: var(--welcome-card-text-pink);
   }
   > .content {
     font-size: 24px;
