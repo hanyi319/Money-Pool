@@ -9,7 +9,8 @@ export type IconName =
   | "note"
   | "menu"
   | "add"
-  | "back";
+  | "back"
+  | "date";
 export const Icon = defineComponent({
   props: {
     name: {

@@ -1,0 +1,18 @@
+.wrapper {
+}
+.date {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  > button {
+    width: 25%;
+    height: 64px;
+    border: 4px solid var(--inputPad-button-border);
+    border-radius: 10px;
+    background: var(--inputPad-button-bg);
+  }
+}
