@@ -2,7 +2,7 @@
   --theme-color-start: #1fd4af;
   --theme-color-end: #1ecc94;
   --theme-color: linear-gradient(
-    to right,
+    to bottom,
     var(--theme-color-start) 0%,
     var(--theme-color-end) 100%
   );
@@ -36,4 +36,5 @@
   --overlay-user-bg: var(--theme-color);
   --overlay-user-text: #fff;
   --overlay-item-text: #3b3c3c;
+  --tabs-indicator-bg: rgba(255, 255, 255, 0.5);
 }
