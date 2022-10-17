@@ -19,8 +19,37 @@ export const InputPad = defineComponent({
       refDate.value = date;
       hideDatetimePicker();
     };
-    const refAmount = ref("");
-    const appendText = (n: number | string) => (refAmount.value += n.toString());
+    const refAmount = ref("0");
+    const appendText = (n: number | string) => {
+      const nString = n.toString();
+      const dotIndex = refAmount.value.indexOf(".");
+      if (refAmount.value.length >= 13) {
+        return;
+      }
+      if (dotIndex >= 0 && refAmount.value.length - dotIndex > 2) {
+        return;
+      }
+      if (nString === ".") {
+        // 输入小数点的情况：
+        // 如果已经存在小数点，则直接返回
+        if (dotIndex >= 0) {
+          return;
+        }
+        // 输入 0 的情况：
+      } else if (nString === "0") {
+        // 如果此时输入金额就是 0，则直接返回
+        if (refAmount.value === "0") {
+          return;
+        }
+        // 输入 1-9 的情况：
+      } else {
+        // 清除默认占位的 0
+        if (refAmount.value === "0") {
+          refAmount.value = "";
+        }
+      }
+      refAmount.value += n.toString();
+    };
     const buttons = [
       {
         text: "1",
@@ -92,7 +121,7 @@ export const InputPad = defineComponent({
       {
         text: "清除",
         onClick: () => {
-          refAmount.value = "";
+          refAmount.value = "0";
         },
       },
       { text: "确认", onClick: () => {} },
