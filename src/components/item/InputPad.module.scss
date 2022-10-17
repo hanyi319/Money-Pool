@@ -4,6 +4,7 @@
   font-weight: bold;
   font-family: monospace;
   padding: 16px;
+  margin-bottom: 4px;
   border: 4px solid var(--inputPad-button-border);
   border-radius: 10px;
   background: var(--inputPad-button-bg);
@@ -20,21 +21,71 @@
     }
   }
   > .amount {
+    height: 32px;
     font-size: 32px;
     color: var(--amount-text);
   }
 }
 
 .buttons {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    "n1 n2 n3 d"
+    "n4 n5 n6 d"
+    "n7 n8 n9 s"
+    "n0 n0 nd s";
+  grid-auto-rows: 64px;
+  grid-auto-columns: 1fr;
   flex-wrap: wrap;
   > button {
-    width: 25%;
-    height: 64px;
     font-size: 24px;
-    font-weight: 500;
-    border: 4px solid var(--inputPad-button-border);
+    font-weight: bold;
+    border: 4px solid var(--inputPad-border);
     border-radius: 10px;
+    color: var(--inputPad-text);
     background: var(--inputPad-button-bg);
+    &:nth-child(1) {
+      grid-area: n1;
+    }
+    &:nth-child(2) {
+      grid-area: n2;
+    }
+    &:nth-child(3) {
+      grid-area: n3;
+    }
+    &:nth-child(4) {
+      grid-area: n4;
+    }
+    &:nth-child(5) {
+      grid-area: n5;
+    }
+    &:nth-child(6) {
+      grid-area: n6;
+    }
+    &:nth-child(7) {
+      grid-area: n7;
+    }
+    &:nth-child(8) {
+      grid-area: n8;
+    }
+    &:nth-child(9) {
+      grid-area: n9;
+    }
+    &:nth-child(10) {
+      grid-area: n0;
+    }
+    &:nth-child(11) {
+      grid-area: nd;
+    }
+    &:nth-child(12) {
+      grid-area: d;
+      color: var(--inputPad-delete-text);
+      background: var(--inputPad-delete-bg);
+    }
+    &:nth-child(13) {
+      grid-area: s;
+      color: var(--inputPad-submit-text);
+      background: var(--inputPad-submit-bg);
+    }
   }
 }

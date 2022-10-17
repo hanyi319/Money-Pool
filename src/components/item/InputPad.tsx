@@ -19,23 +19,83 @@ export const InputPad = defineComponent({
       refDate.value = date;
       hideDatetimePicker();
     };
+    const refAmount = ref("");
+    const appendText = (n: number | string) => (refAmount.value += n.toString());
     const buttons = [
-      { text: "1", onClick: () => {} },
-      { text: "2", onClick: () => {} },
-      { text: "3", onClick: () => {} },
-      { text: "C", onClick: () => {} },
-      { text: "4", onClick: () => {} },
-      { text: "5", onClick: () => {} },
-      { text: "6", onClick: () => {} },
-      { text: "+", onClick: () => {} },
-      { text: "7", onClick: () => {} },
-      { text: "8", onClick: () => {} },
-      { text: "9", onClick: () => {} },
-      { text: "-", onClick: () => {} },
-      { text: ".", onClick: () => {} },
-      { text: "0", onClick: () => {} },
-      { text: "AC", onClick: () => {} },
-      { text: "OK", onClick: () => {} },
+      {
+        text: "1",
+        onClick: () => {
+          appendText(1);
+        },
+      },
+      {
+        text: "2",
+        onClick: () => {
+          appendText(2);
+        },
+      },
+      {
+        text: "3",
+        onClick: () => {
+          appendText(3);
+        },
+      },
+
+      {
+        text: "4",
+        onClick: () => {
+          appendText(4);
+        },
+      },
+      {
+        text: "5",
+        onClick: () => {
+          appendText(5);
+        },
+      },
+      {
+        text: "6",
+        onClick: () => {
+          appendText(6);
+        },
+      },
+      {
+        text: "7",
+        onClick: () => {
+          appendText(7);
+        },
+      },
+      {
+        text: "8",
+        onClick: () => {
+          appendText(8);
+        },
+      },
+      {
+        text: "9",
+        onClick: () => {
+          appendText(9);
+        },
+      },
+      {
+        text: "0",
+        onClick: () => {
+          appendText(0);
+        },
+      },
+      {
+        text: ".",
+        onClick: () => {
+          appendText(".");
+        },
+      },
+      {
+        text: "清除",
+        onClick: () => {
+          refAmount.value = "";
+        },
+      },
+      { text: "确认", onClick: () => {} },
     ];
 
     return () => (
@@ -56,7 +116,7 @@ export const InputPad = defineComponent({
               </Popup>
             </span>
           </span>
-          <span class={s.amount}>1234567890.123</span>
+          <span class={s.amount}>{refAmount.value}</span>
         </div>
         <div class={s.buttons}>
           {buttons.map((button) => (
