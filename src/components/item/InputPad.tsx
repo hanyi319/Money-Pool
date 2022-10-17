@@ -12,7 +12,13 @@ export const InputPad = defineComponent({
   },
   setup: (props, context) => {
     const refDate = ref<Date>(new Date());
-    const refShowPop = ref(false);
+    const refDatetimePickerVisible = ref(false);
+    const showDatetimePicker = () => (refDatetimePickerVisible.value = true);
+    const hideDatetimePicker = () => (refDatetimePickerVisible.value = false);
+    const setDate = (date: Date) => {
+      refDate.value = date;
+      hideDatetimePicker();
+    };
     const buttons = [
       { text: "1", onClick: () => {} },
       { text: "2", onClick: () => {} },
@@ -38,13 +44,14 @@ export const InputPad = defineComponent({
           <span class={s.date}>
             <Icon name="date" class={s.icon} />
             <span>
-              <span onClick={() => (refShowPop.value = true)}>{time(refDate.value).format()}</span>
-              <Popup position="bottom" v-model:show={refShowPop.value}>
+              <span onClick={showDatetimePicker}>{time(refDate.value).format()}</span>
+              <Popup position="bottom" v-model:show={refDatetimePickerVisible.value}>
                 <DatetimePicker
-                  v-model={refDate.value}
+                  value={refDate.value}
                   type="date"
                   title="选择年月日"
-                  onConfirm={() => (refShowPop.value = false)}
+                  onConfirm={setDate}
+                  onCancel={hideDatetimePicker}
                 />
               </Popup>
             </span>
