@@ -8,7 +8,7 @@
   padding: 16px;
   margin: 0 8px;
   border: 4px solid var(--inputPad-button-border);
-  border-radius: 10px;
+  border-radius: var(--button-radius);
   background: var(--inputPad-button-bg);
   > .date {
     display: flex;
@@ -44,7 +44,7 @@
     font-size: 24px;
     font-weight: bold;
     border: 4px solid var(--inputPad-border);
-    border-radius: 10px;
+    border-radius: var(--button-radius);
     color: var(--inputPad-text);
     background: var(--inputPad-button-bg);
     &:nth-child(1) {
