@@ -138,14 +138,14 @@ export const InputPad = defineComponent({
                 <DatetimePicker
                   value={refDate.value}
                   type="date"
-                  title="选择年月日"
+                  title="选择日期"
                   onConfirm={setDate}
                   onCancel={hideDatetimePicker}
                 />
               </Popup>
             </span>
           </span>
-          <span class={s.amount}>{refAmount.value}</span>
+          <span class={s.amount}>￥{refAmount.value}</span>
         </div>
         <div class={s.buttons}>
           {buttons.map((button) => (

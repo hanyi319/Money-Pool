@@ -17,13 +17,7 @@
     }
     > h1 {
       font-weight: bold;
-      background: linear-gradient(
-        to right,
-        var(--theme-color-start) 0%,
-        var(--theme-color-end) 100%
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--theme-color-green);
     }
   }
   > main {

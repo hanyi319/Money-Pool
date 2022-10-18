@@ -8,10 +8,12 @@
     > li {
       flex-grow: 1;
       flex-shrink: 0;
+      font-size: 24px;
       padding: 12px 0;
-      background: var(--theme-color-end);
+      background: var(--theme-color-green);
       &.selected {
         position: relative;
+        font-weight: bold;
         &::after {
           position: absolute;
           content: "";
