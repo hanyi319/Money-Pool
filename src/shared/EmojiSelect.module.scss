@@ -1,12 +1,8 @@
 .emojiList {
   flex-grow: 1;
-  border: 2px solid var(--input-border-color);
   border-radius: var(--input-radius);
-  font-size: 18px;
   font-size: 14px;
-  &.error {
-    border: 2px solid var(--error-color);
-  }
+  background: var(--bg-color-white);
   > nav {
     display: flex;
     flex-wrap: nowrap;

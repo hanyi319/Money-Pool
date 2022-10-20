@@ -10,6 +10,7 @@
   --text-color-black: #44475b;
   --text-color-white: #ffffff;
   --subText-color-black: #7c7e8c;
+  --error-color: var(--theme-color-red);
   --welcome-bg: var(--bg-color-grey);
   --welcome-card-bg: var(--bg-color-white);
   --welcome-button-hover: var(--bg-color-hover);
@@ -54,7 +55,6 @@
   --input-border-color: var(--theme-color-green);
   --input-radius: var(--button-radius);
   --input-shadow: rgba(0, 0, 0, 0.25);
-  --error-color: var(--theme-color-red);
   --emoji-nav-text: var(--subText-color-black);
   --emoji-nav-text-selected: var(--text-color-black);
 }

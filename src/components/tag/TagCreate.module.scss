@@ -20,19 +20,15 @@
   max-width: 100%;
   &.input {
     flex-grow: 1;
-    border: 1px solid var(--input-border-color);
-    border-radius: var(--input-radius);
     font-size: 18px;
+    font-weight: bold;
     font-family: inherit;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 0 16px;
+    background-color: var(--bg-color-white);
     box-shadow: inset 0 0 3px var(--input-shadow);
-    &.error {
-      border: 2px solid var(--error-color);
-    }
   }
-
   &_name {
+    color: var(--text-color-black);
   }
   &_value {
     display: flex;
@@ -43,6 +39,16 @@
     color: var(--error-color);
     font-size: 12px;
   }
+}
+
+.normal {
+  border: 2px solid var(--input-border-color);
+  border-radius: var(--input-radius);
+}
+
+.error {
+  border: 2px solid var(--error-color);
+  border-radius: var(--input-radius);
 }
 
 .button {
