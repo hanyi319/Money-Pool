@@ -1,29 +1,29 @@
 .tabs {
   position: relative;
   &_nav {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    background: var(--theme-color-green);
     color: var(--navbar-text);
-    position: sticky;
-    z-index: 1;
-    top: 0;
     > li {
       flex-grow: 1;
       flex-shrink: 0;
-      font-size: 24px;
+      font-size: 16px;
       padding: 12px 0;
-      background: var(--theme-color-green);
       &.selected {
         position: relative;
         font-weight: bold;
         &::after {
-          position: absolute;
           content: "";
-          display: block;
+          position: absolute;
           bottom: 0;
           left: 0;
+          display: block;
           width: 100%;
           height: 4px;
           background: var(--tabs-indicator-bg);
