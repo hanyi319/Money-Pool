@@ -5,6 +5,7 @@ import { EmojiSelect } from "../../shared/EmojiSelect";
 import { Icon } from "../../shared/Icon";
 import { Rules, validate } from "../../shared/validate";
 import s from "./Tag.module.scss";
+import { TagFrom } from "./TagForm";
 
 // 新建标签页面
 export const TagCreate = defineComponent({
@@ -51,41 +52,7 @@ export const TagCreate = defineComponent({
         {{
           title: () => "新建标签",
           icon: () => <Icon name="back" onClick={() => {}} />,
-          default: () => (
-            <form class={s.form} onSubmit={onSubmit}>
-              <div class={s.formRow}>
-                <label class={s.formLabel}>
-                  <span class={s.formItem_name}>名称：</span>
-                  <div class={s.formItem_value}>
-                    <input
-                      v-model={formData.name}
-                      class={[s.formItem, s.input, errors["name"] ? s.error : s.normal]}
-                    ></input>
-                  </div>
-                  <div class={s.formItem_errorHint}>
-                    <span>{errors["name"] ? errors["name"][0] : "　"}</span>
-                  </div>
-                </label>
-              </div>
-              <div class={s.formRow}>
-                <label class={s.formLabel}>
-                  <span class={s.formItem_name}>图标：{formData.sign}</span>
-                  <div class={[s.formItem_value, errors["sign"] ? s.error : s.normal]}>
-                    <EmojiSelect v-model={formData.sign} />
-                  </div>
-                  <div class={s.formItem_errorHint}>
-                    <span>{errors["sign"] ? errors["sign"][0] : "　"}</span>
-                  </div>
-                </label>
-              </div>
-              <p class={s.tips}>长按标签，即可编辑</p>
-              <div class={s.formRow}>
-                <div class={s.formItem_value}>
-                  <Button class={[s.formItem, s.button]}>确定</Button>
-                </div>
-              </div>
-            </form>
-          ),
+          default: () => <TagFrom />,
         }}
       </MainLayout>
     );
