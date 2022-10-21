@@ -56,10 +56,10 @@ export const TagEdit = defineComponent({
             <>
               <TagFrom />
               <div class={s.actions}>
-                <Button class={s.removeTags} onClick={() => {}}>
+                <Button level="important" class={s.removeTags} onClick={() => {}}>
                   删除标签
                 </Button>
-                <Button class={s.removeTagsAndItems} onClick={() => {}}>
+                <Button level="danger" class={s.removeTagsAndItems} onClick={() => {}}>
                   删除标签和记账
                 </Button>
               </div>

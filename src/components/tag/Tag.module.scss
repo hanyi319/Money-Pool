@@ -59,14 +59,8 @@
   padding: 0 16px 16px 16px;
   display: flex;
   justify-content: space-between;
-  .removeTags {
-    width: calc(50% - 8px);
-    border-color: var(--theme-color-yellow);
-    background-color: var(--theme-color-yellow);
-  }
+  .removeTags,
   .removeTagsAndItems {
     width: calc(50% - 8px);
-    border-color: var(--theme-color-red);
-    background-color: var(--theme-color-red);
   }
 }

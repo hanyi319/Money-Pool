@@ -26,7 +26,9 @@
   --z-index-overlay: 16;
   --transition-duration: 0.5s;
   --mainLayout-bg: var(--bg-color-grey);
-  --button-bg: var(--theme-color-green);
+  --button-bg-normal: var(--theme-color-green);
+  --button-bg-important: var(--theme-color-yellow);
+  --button-bg-danger: var(--theme-color-red);
   --button-text: var(--text-color-white);
   --button-font-size: 18px;
   --button-radius: 10px;
