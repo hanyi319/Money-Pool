@@ -1,5 +1,6 @@
 .form {
   padding: 16px;
+  background-color: var(--bg-color-grey);
 }
 
 .formRow {
@@ -28,6 +29,7 @@
   &_value {
     display: flex;
     margin-top: 4px;
+
     > * {
       flex-grow: 1;
     }
