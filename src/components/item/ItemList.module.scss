@@ -19,3 +19,13 @@
     }
   }
 }
+
+.actions {
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  .ok,
+  .cancel {
+    width: calc(50% - 8px);
+  }
+}

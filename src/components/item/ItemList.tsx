@@ -4,9 +4,10 @@ import { Icon } from "../../shared/Icon";
 import { Tab, Tabs } from "../../shared/Tabs";
 import { Time } from "../../shared/time";
 import { ItemSummary } from "./ItemSummary";
-import s from "./ItemList.module.scss";
 import { Overlay } from "vant";
 import { Form, FormItem } from "../../shared/Form";
+import { Button } from "../../shared/Button";
+import s from "./ItemList.module.scss";
 
 export const ItemList = defineComponent({
   setup: (props, context) => {
@@ -28,6 +29,10 @@ export const ItemList = defineComponent({
       { start: time.firstDayOfYear(), end: time.lastDayOfYear() },
     ];
     const refOverlayVisible = ref(false);
+    const onSubmitCustomTime = (e: Event) => {
+      e.preventDefault();
+      refOverlayVisible.value = false;
+    };
     watchEffect(() => {
       if (refSelected.value === "自定义") {
         refOverlayVisible.value = true;
@@ -67,8 +72,19 @@ export const ItemList = defineComponent({
                 <div class={s.overlay_inner}>
                   <header>请选择时间</header>
                   <main>
-                    <Form>
+                    <Form onSubmit={onSubmitCustomTime}>
                       <FormItem label="开始时间" v-model={customTime.start} type="date" />
+                      <FormItem label="结束时间" v-model={customTime.end} type="date" />
+                      <FormItem>
+                        <div class={s.actions}>
+                          <Button type="button" class={s.cancel}>
+                            取消
+                          </Button>
+                          <Button type="submit" class={s.ok}>
+                            确定
+                          </Button>
+                        </div>
+                      </FormItem>
                     </Form>
                   </main>
                 </div>
