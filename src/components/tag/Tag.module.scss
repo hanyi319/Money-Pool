@@ -4,53 +4,6 @@
   color: var(--subText-color-black);
 }
 
-.form {
-  padding: 16px;
-}
-
-.formRow {
-  margin-top: 8px;
-}
-
-.formLabel {
-}
-
-.formItem {
-  min-height: var(--input-min-height);
-  max-width: 100%;
-  &.input {
-    flex-grow: 1;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: inherit;
-    padding: 0 16px;
-    background-color: var(--bg-color-white);
-    box-shadow: inset 0 0 3px var(--input-shadow);
-  }
-  &_name {
-    color: var(--text-color-black);
-  }
-  &_value {
-    display: flex;
-    margin-top: 4px;
-  }
-  &_errorHint {
-    margin-top: 4px;
-    color: var(--error-color);
-    font-size: 12px;
-  }
-}
-
-.normal {
-  border: 2px solid var(--input-border-color);
-  border-radius: var(--input-radius);
-}
-
-.error {
-  border: 2px solid var(--error-color);
-  border-radius: var(--input-radius);
-}
-
 .button {
   width: 100%;
 }
