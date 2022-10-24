@@ -7,6 +7,9 @@ export const EmojiSelect = defineComponent({
     modelValue: {
       type: String,
     },
+    onUpdateModelValue: {
+      type: Function as PropType<(emoji: string) => void>,
+    },
   },
   setup: (props, context) => {
     const refSelected = ref(0);
@@ -84,8 +87,13 @@ export const EmojiSelect = defineComponent({
     const onClickTab = (index: number) => {
       refSelected.value = index;
     };
+    // 让 EmojiSelect 支持 v-model 和 props 两种事件形式
     const onClickEmoji = (emoji: string) => {
-      context.emit("update:modelValue", emoji);
+      if (props.onUpdateModelValue) {
+        props.onUpdateModelValue(emoji);
+      } else {
+        context.emit("update:modelValue", emoji);
+      }
     };
     const emojis = computed(() => {
       const selectedItem = table[refSelected.value][1];
