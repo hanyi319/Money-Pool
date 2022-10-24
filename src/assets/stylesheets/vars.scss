@@ -29,6 +29,7 @@
   --button-bg-normal: var(--theme-color-green);
   --button-bg-important: var(--theme-color-yellow);
   --button-bg-danger: var(--theme-color-red);
+  --button-border-color: #7c7e8c;
   --button-text: var(--text-color-white);
   --button-font-size: 18px;
   --button-radius: 10px;
@@ -61,4 +62,12 @@
   --emoji-nav-text-selected: var(--text-color-black);
   --tag-bg: var(--bg-color-white);
   --tag-selected: var(--theme-color-green);
+  --total-bg: var(--bg-color-white);
+  --total-text: var(--text-color-black);
+  --total-expenses: var(--theme-color-green);
+  --total-income: var(--theme-color-yellow);
+  --total-netIncome: var(--theme-color-blue);
+  --list-tag-text: var(--text-color-black);
+  --list-amount-text: var(--amount-text);
+  --list-time-text: var(--subText-color-black);
 }
