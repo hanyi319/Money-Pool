@@ -16,6 +16,7 @@
   left: 0;
   width: 16em;
   height: calc(100% - var(--top-safe-area-height));
+  color: var(--text-color-black);
 }
 
 .currentUser {
@@ -39,4 +40,11 @@
     height: 1.2em;
     margin-right: 12px;
   }
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 1px;
 }

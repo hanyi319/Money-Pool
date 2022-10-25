@@ -1,12 +1,12 @@
 import { defineComponent, PropType, reactive, ref, watchEffect } from "vue";
 import { MainLayout } from "../../layouts/MainLayout";
-import { Icon } from "../../shared/Icon";
 import { Tab, Tabs } from "../../shared/Tabs";
 import { Time } from "../../shared/time";
 import { ItemSummary } from "./ItemSummary";
 import { Overlay } from "vant";
 import { Form, FormItem } from "../../shared/Form";
 import { Button } from "../../shared/Button";
+import { OverlayIcon } from "../../shared/Overlay";
 import s from "./ItemList.module.scss";
 
 export const ItemList = defineComponent({
@@ -42,7 +42,7 @@ export const ItemList = defineComponent({
       <MainLayout>
         {{
           title: () => "明细",
-          icon: () => <Icon name="menu" />,
+          icon: () => <OverlayIcon />,
           default: () => (
             <>
               <Tabs
