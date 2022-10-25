@@ -5,8 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
-  background: var(--overlay-mask-bg);
+  z-index: 64;
   &_inner {
     background: var(--bg-color-white);
     width: 80vw;
