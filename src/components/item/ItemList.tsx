@@ -33,6 +33,11 @@ export const ItemList = defineComponent({
       e.preventDefault();
       refOverlayVisible.value = false;
     };
+    const onSelect = (value: string) => {
+      if (value === "自定义") {
+        refOverlayVisible.value = true;
+      }
+    };
     return () => (
       <MainLayout>
         {{
@@ -43,7 +48,7 @@ export const ItemList = defineComponent({
               <Tabs
                 classPrefix={"customTabs"}
                 v-model:selected={refSelected.value}
-                onUpdate:selected={() => (refOverlayVisible.value = true)}
+                onUpdate:selected={onSelect}
               >
                 <Tab name="本月">
                   <ItemSummary
