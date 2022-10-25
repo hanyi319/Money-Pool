@@ -81,7 +81,11 @@ export const ItemList = defineComponent({
                       <FormItem label="结束时间" v-model={customTime.end} type="date" />
                       <FormItem>
                         <div class={s.actions}>
-                          <Button type="button" class={s.cancel}>
+                          <Button
+                            type="button"
+                            onClick={() => (refOverlayVisible.value = false)}
+                            class={s.cancel}
+                          >
                             取消
                           </Button>
                           <Button type="submit" class={s.ok}>
