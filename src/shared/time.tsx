@@ -59,7 +59,13 @@ export class Time {
     let date = new Date(this.date.getTime());
     switch (unit) {
       case "year":
-        date.setFullYear(date.getFullYear() + amount);
+        // 避免新增年份可能出现的日期溢出问题，原理与月份加 1 类似（加 365 天和 366 天的区别）
+        // 比如 2000-2-29，年份加 1 的结果应该是 2001-2-28，但由于该年为闰年（加 366 天而不是 365 天），结果为 2001-3-1，不符合预期
+        const currentDate = date.getDate(); // 假设日期是 2000-2-29，记为 currentDate
+        date.setDate(1); // 将日期置为 2000-2-1
+        date.setFullYear(date.getFullYear() + amount); // 年份加 1，日期为 2001-2-1
+        const targetDate = new Date(date.getFullYear(), date.getMonth() + 1, 0, 0, 0, 0).getDate(); // 设置一个新的日期 targetDate 为 2001 年 3 月 0 日，也就是 2001-2-28
+        date.setDate(Math.min(currentDate, targetDate)); // 比较 currentDate 和 targetDate，取较小值，符合实际情况：2000-2-29 加 1 年为 2001-2-28
       case "month":
         /**
          * 添加一个月的情况需要专门处理
