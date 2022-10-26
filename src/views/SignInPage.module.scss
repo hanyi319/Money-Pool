@@ -1,0 +1,18 @@
+.wrapper {
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 42px 0 16px;
+  > .icon {
+    width: 64px;
+  }
+  > .appName {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--app-name-text);
+  }
+}

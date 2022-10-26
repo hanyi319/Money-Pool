@@ -14,6 +14,8 @@
 .formItem {
   min-height: var(--input-min-height);
   max-width: 100%;
+  border: 2px solid var(--bg-color-white);
+  border-radius: var(--input-radius);
   &.input {
     flex-grow: 1;
     font-size: 18px;
@@ -22,6 +24,14 @@
     padding-left: 16px;
     padding-right: 16px;
     background-color: var(--bg-color-white);
+    caret-color: var(--theme-color-green);
+  }
+  &.validationCodeInput {
+    flex-grow: 0;
+    width: 9em;
+  }
+  &.validationCodeButton {
+    margin-left: 16px;
   }
   &_name {
     color: var(--text-color-black);
@@ -39,11 +49,6 @@
     color: var(--error-color);
     font-size: 12px;
   }
-}
-
-.normal {
-  border: 2px solid var(--bg-color-white);
-  border-radius: var(--input-radius);
 }
 
 .error {

@@ -1,8 +1,8 @@
 import { computed, defineComponent, PropType, ref } from "vue";
 import { EmojiSelect } from "./EmojiSelect";
-import { emojiList } from "./emojiList";
 import { DatetimePicker, Popup } from "vant";
 import { Time } from "./time";
+import { Button } from "./Button";
 import s from "./Form.module.scss";
 
 export const Form = defineComponent({
@@ -25,8 +25,9 @@ export const FormItem = defineComponent({
     label: { type: String },
     modelValue: { type: [String, Number] },
     type: {
-      type: String as PropType<"text" | "emojiSelect" | "date">,
+      type: String as PropType<"text" | "emojiSelect" | "date" | "validationCode">,
     },
+    placeholder: String,
     error: {
       type: String,
     },
@@ -40,8 +41,9 @@ export const FormItem = defineComponent({
           return (
             <input
               value={props.modelValue}
+              placeholder={props.placeholder}
               onInput={(e: any) => context.emit("update:modelValue", e.target.value)}
-              class={[s.formItem, s.input, props.error === "　" ? s.normal : s.error]}
+              class={[s.formItem, s.input, props.error === undefined ? "" : s.error]}
             />
           );
         case "emojiSelect":
@@ -49,7 +51,7 @@ export const FormItem = defineComponent({
             <EmojiSelect
               modelValue={props.modelValue?.toString()}
               onUpdateModelValue={(value) => context.emit("update:modelValue", value)}
-              class={[s.formItem, s.emojiList, props.error === "　" ? s.normal : s.error]}
+              class={[s.formItem, s.emojiList, props.error === undefined ? "" : s.error]}
             />
           );
         case "date":
@@ -61,6 +63,7 @@ export const FormItem = defineComponent({
                 onClick={() => {
                   refDateVisible.value = true;
                 }}
+                placeholder={props.placeholder}
                 class={[s.formItem, s.input, s.normal]}
               />
               <Popup position="bottom" v-model:show={refDateVisible.value}>
@@ -77,6 +80,30 @@ export const FormItem = defineComponent({
               </Popup>
             </>
           );
+        case "validationCode":
+          return (
+            <>
+              <input
+                class={[
+                  s.formItem,
+                  s.input,
+                  props.error === undefined ? "" : s.error,
+                  s.validationCodeInput,
+                ]}
+                placeholder={props.placeholder}
+              />
+              <Button
+                class={[
+                  s.formItem,
+                  s.button,
+                  props.error === undefined ? "" : s.error,
+                  s.validationCodeButton,
+                ]}
+              >
+                发送验证码
+              </Button>
+            </>
+          );
         case undefined:
           return context.slots.default?.();
       }
@@ -87,11 +114,9 @@ export const FormItem = defineComponent({
           <label class={s.formLabel}>
             {props.label && <span class={s.formItem_name}>{props.label}</span>}
             <div class={s.formItem_value}>{content.value}</div>
-            {props.error && (
-              <div class={s.formItem_errorHint}>
-                <span>{props.error}</span>
-              </div>
-            )}
+            <div class={s.formItem_errorHint}>
+              <span>{props.error ?? "　"}</span>
+            </div>
           </label>
         </div>
       );

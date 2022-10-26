@@ -12,10 +12,11 @@
     align-items: center;
     padding: 48px 0 16px 0;
     font-size: 24px;
-    > .logo {
+    > .icon {
       width: 64px;
     }
-    > h1 {
+    > .appName {
+      font-size: 32px;
       font-weight: bold;
       color: var(--theme-color-green);
     }
