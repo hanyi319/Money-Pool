@@ -9,6 +9,7 @@
   --bg-color-hover: #e5e8ed;
   --text-color-black: #44475b;
   --text-color-white: #ffffff;
+  --text-color-muted: #666666;
   --subText-color-black: #7c7e8c;
   --error-color: var(--theme-color-red);
   --app-name-text: var(--theme-color-green);
@@ -73,4 +74,5 @@
   --list-amount-text: var(--amount-text);
   --list-time-text: var(--subText-color-black);
   --dialog-header-text: var(--text-color-white);
+  --bar-bg: #cccccc;
 }

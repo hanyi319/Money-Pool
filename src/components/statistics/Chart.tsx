@@ -1,4 +1,4 @@
-import { defineComponent, PropType, ref, onMounted } from "vue";
+import { defineComponent, PropType, ref, onMounted, reactive, computed } from "vue";
 import * as echarts from "echarts";
 import { FormItem } from "../../shared/Form";
 import s from "./Chart.module.scss";
@@ -18,6 +18,18 @@ export const Chart = defineComponent({
     const category = ref("expenditure");
     const refDiv1 = ref<HTMLDivElement>();
     const refDiv2 = ref<HTMLDivElement>();
+    const data3 = reactive([
+      { tag: { id: 1, name: "房租", sign: "￥" }, amount: 3000 },
+      { tag: { id: 2, name: "吃饭", sign: "￥" }, amount: 1000 },
+      { tag: { id: 3, name: "娱乐", sign: "￥" }, amount: 900 },
+    ]);
+    const betterData3 = computed(() => {
+      const total = data3.reduce((sum, item) => sum + item.amount, 0);
+      return data3.map((item) => ({
+        ...item,
+        percent: Math.round((item.amount / total) * 100) + "%",
+      }));
+    });
     onMounted(() => {
       if (refDiv1.value === undefined) {
         return;
@@ -28,7 +40,6 @@ export const Chart = defineComponent({
       lineChart.setOption({
         title: {
           text: "支出趋势",
-          left: "center",
         },
         grid: [{ left: 0, top: 32, right: 0, bottom: 32 }],
         xAxis: {
@@ -55,7 +66,6 @@ export const Chart = defineComponent({
         grid: [{ left: 0, top: 0, right: 0, bottom: 0 }],
         title: {
           text: "支出构成",
-          left: "center",
         },
         series: [
           {
@@ -93,6 +103,26 @@ export const Chart = defineComponent({
         />
         <div ref={refDiv1} class={s.lineChart}></div>
         <div ref={refDiv2} class={s.pieChart}></div>
+        <div class={s.barChart}>
+          {betterData3.value.map(({ tag, amount, percent }) => {
+            return (
+              <div class={s.topItem}>
+                <div class={s.sign}>{tag.sign}</div>
+                <div class={s.bar_wrapper}>
+                  <div class={s.bar_text}>
+                    <span>
+                      {tag.name} - {percent}
+                    </span>
+                    <span>￥{amount}</span>
+                  </div>
+                  <div class={s.bar}>
+                    <div class={s.bar_inner}></div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   },
