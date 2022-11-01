@@ -33,6 +33,23 @@
   &.validationCodeButton {
     margin-left: 16px;
   }
+  &.select {
+    padding: 0 8px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: var(--input-radius);
+    color: var(--text-color-white);
+    outline: none;
+    &.expenditure {
+      border: 1px solid var(--theme-color-green);
+      background-color: var(--theme-color-green);
+    }
+    &.income {
+      border: 1px solid var(--theme-color-yellow);
+      background-color: var(--theme-color-yellow);
+    }
+  }
   &_name {
     color: var(--text-color-black);
   }
