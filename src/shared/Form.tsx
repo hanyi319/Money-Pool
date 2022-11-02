@@ -32,6 +32,7 @@ export const FormItem = defineComponent({
       type: String,
     },
     options: Array as PropType<Array<{ value: string; text: string }>>,
+    onClick: Function as PropType<() => void>,
   },
   emits: ["update:modelValue"],
   setup: (props, context) => {
@@ -100,6 +101,7 @@ export const FormItem = defineComponent({
                   props.error === undefined ? "" : s.error,
                   s.validationCodeButton,
                 ]}
+                onClick={props.onClick}
               >
                 发送验证码
               </Button>
