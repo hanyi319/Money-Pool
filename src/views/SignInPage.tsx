@@ -3,8 +3,9 @@ import { MainLayout } from "../layouts/MainLayout";
 import { Button } from "../shared/Button";
 import { Form, FormItem } from "../shared/Form";
 import { Icon } from "../shared/Icon";
-import s from "./SignInPage.module.scss";
 import { validate } from "../shared/validate";
+import s from "./SignInPage.module.scss";
+import axios from "axios";
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -28,8 +29,9 @@ export const SignInPage = defineComponent({
         ])
       );
     };
-    const onClickSendValidationCode = () => {
-      console.log("ok");
+    const onClickSendValidationCode = async () => {
+      const response = await axios.post("/api/v1/validation_codes", { email: formData.email });
+      console.log(response);
     };
     return () => (
       <MainLayout>
