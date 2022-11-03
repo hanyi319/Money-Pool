@@ -16,4 +16,8 @@
     border: 1px solid var(--button-bg-danger);
     background: var(--button-bg-danger);
   }
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

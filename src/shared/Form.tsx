@@ -33,10 +33,32 @@ export const FormItem = defineComponent({
     },
     options: Array as PropType<Array<{ value: string; text: string }>>,
     onClick: Function as PropType<() => void>,
+    countFrom: {
+      type: Number,
+      default: 60,
+    },
   },
   emits: ["update:modelValue"],
   setup: (props, context) => {
     const refDateVisible = ref(false);
+
+    // 发送验证码后的 60 秒倒计时
+    const timer = ref<number>(); // timer 是一个定时器
+    const count = ref<number>(props.countFrom); // 默认等待 60 秒
+    const isCounting = computed(() => !!timer.value); // 根据是否设置了定时器计算出是否处于倒计时状态
+    const onClickSendValidationCode = () => {
+      props.onClick?.(); // 先执行绑定在 Button 组件上的请求验证码的点击事件，再设置定时器
+      timer.value = setInterval(() => {
+        count.value -= 1;
+        if (count.value === 0) {
+          clearInterval(timer.value); // 需要注意移除定时器，否则会影响到倒计时状态的判断
+          timer.value = undefined;
+          count.value = props.countFrom;
+        }
+      }, 1000);
+    };
+
+    // 根据表单类型展示不同内容
     const content = computed(() => {
       switch (props.type) {
         case "text":
@@ -95,15 +117,16 @@ export const FormItem = defineComponent({
                 placeholder={props.placeholder}
               />
               <Button
+                disabled={isCounting.value}
+                onClick={onClickSendValidationCode}
                 class={[
                   s.formItem,
                   s.button,
                   props.error === undefined ? "" : s.error,
                   s.validationCodeButton,
                 ]}
-                onClick={props.onClick}
               >
-                发送验证码
+                {isCounting.value ? `${count.value}秒后可重新发送` : "发送验证码"}
               </Button>
             </>
           );
