@@ -4,6 +4,7 @@ import { DatetimePicker, Popup } from "vant";
 import { Time } from "./time";
 import { Button } from "./Button";
 import s from "./Form.module.scss";
+import { getFriendlyError } from "./getFriendlyError";
 
 export const Form = defineComponent({
   props: {
@@ -164,7 +165,7 @@ export const FormItem = defineComponent({
             {props.label && <span class={s.formItem_name}>{props.label}</span>}
             <div class={s.formItem_value}>{content.value}</div>
             <div class={s.formItem_errorHint}>
-              <span>{props.error ?? "　"}</span>
+              <span>{props.error ? getFriendlyError(props.error) : "　"}</span>
             </div>
           </label>
         </div>
