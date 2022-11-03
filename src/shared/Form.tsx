@@ -42,12 +42,11 @@ export const FormItem = defineComponent({
   setup: (props, context) => {
     const refDateVisible = ref(false);
 
-    // 发送验证码后的 60 秒倒计时
+    // 发送验证码后禁用按钮，并显示 60 秒倒计时
     const timer = ref<number>(); // timer 是一个定时器
     const count = ref<number>(props.countFrom); // 默认等待 60 秒
     const isCounting = computed(() => !!timer.value); // 根据是否设置了定时器计算出是否处于倒计时状态
-    const onClickSendValidationCode = () => {
-      props.onClick?.(); // 先执行绑定在 Button 组件上的请求验证码的点击事件，再设置定时器
+    const startCount = () => {
       timer.value = setInterval(() => {
         count.value -= 1;
         if (count.value === 0) {
@@ -57,6 +56,12 @@ export const FormItem = defineComponent({
         }
       }, 1000);
     };
+    /**
+     * 通过 context.expose() 暴露给父组件进行调用，父组件再通过 ref 引用
+     * 实际的写法是 context.expose({ startCount: startCount })
+     * 前面的 startCount 是 key，后面的 startCount 是 value，也就是函数名
+     */
+    context.expose({ startCount });
 
     // 根据表单类型展示不同内容
     const content = computed(() => {
@@ -118,7 +123,7 @@ export const FormItem = defineComponent({
               />
               <Button
                 disabled={isCounting.value}
-                onClick={onClickSendValidationCode}
+                onClick={props.onClick}
                 class={[
                   s.formItem,
                   s.button,
