@@ -7,6 +7,7 @@ import { validate } from "../shared/validate";
 import s from "./SignInPage.module.scss";
 import axios from "axios";
 import { http } from "../shared/Http";
+import { useBool } from "../hooks/useBool";
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -19,6 +20,7 @@ export const SignInPage = defineComponent({
       code: [],
     });
     const refValidationCode = ref<any>();
+    const { ref: refDisabled, toggle, on: disabled, off: enable } = useBool(false);
     const onSubmit = (e: Event) => {
       e.preventDefault(); // 阻止默认事件，也就是提交后自动刷新页面
       Object.assign(errors, { email: [], code: [] });
@@ -38,9 +40,11 @@ export const SignInPage = defineComponent({
       throw error;
     };
     const onClickSendValidationCode = async () => {
+      disabled();
       const response = await http
         .post("/validation_codes", { email: formData.email })
-        .catch(onError);
+        .catch(onError)
+        .finally(enable);
       // 成功
       refValidationCode.value.startCount();
     };
@@ -69,6 +73,7 @@ export const SignInPage = defineComponent({
                   placeholder="请输入六位数字"
                   ref={refValidationCode}
                   countFrom={60}
+                  disabled={refDisabled.value}
                   onClick={onClickSendValidationCode}
                   v-model={formData.code}
                   error={errors.code?.[0]}
