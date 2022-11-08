@@ -9,9 +9,12 @@ import axios from "axios";
 import { http } from "../shared/Http";
 import { useBool } from "../hooks/useBool";
 import { history } from "../shared/history";
+import { useRoute, useRouter } from "vue-router";
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
+    const router = useRouter(); // 路由器
+    const route = useRoute(); // 路由信息
     const formData = reactive({
       email: "",
       code: "",
@@ -36,7 +39,10 @@ export const SignInPage = defineComponent({
       if (!hasError(errors)) {
         const response = await http.post<{ jwt: string }>("/session", formData);
         localStorage.setItem("jwt", response.data.jwt);
-        history.push("/");
+        // router.push("/sign_in?return_to=" + encodeURIComponent(route.fullPath));
+        const returnTo = route.query.return_to?.toString();
+        // const returnTo = localStorage.getItem("returnTo");
+        router.push(returnTo || "/");
       }
     };
     const onError = (error: any) => {
