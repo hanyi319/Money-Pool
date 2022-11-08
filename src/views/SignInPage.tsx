@@ -3,7 +3,7 @@ import { MainLayout } from "../layouts/MainLayout";
 import { Button } from "../shared/Button";
 import { Form, FormItem } from "../shared/Form";
 import { Icon } from "../shared/Icon";
-import { validate } from "../shared/validate";
+import { validate, hasError } from "../shared/validate";
 import s from "./SignInPage.module.scss";
 import axios from "axios";
 import { http } from "../shared/Http";
@@ -21,7 +21,7 @@ export const SignInPage = defineComponent({
     });
     const refValidationCode = ref<any>();
     const { ref: refDisabled, toggle, on: disabled, off: enable } = useBool(false);
-    const onSubmit = (e: Event) => {
+    const onSubmit = async (e: Event) => {
       e.preventDefault(); // 阻止默认事件，也就是提交后自动刷新页面
       Object.assign(errors, { email: [], code: [] });
       Object.assign(
@@ -32,6 +32,9 @@ export const SignInPage = defineComponent({
           { key: "code", type: "required", message: "未填写验证码" },
         ])
       );
+      if (!hasError(errors)) {
+        const response = await http.post("/session", formData);
+      }
     };
     const onError = (error: any) => {
       if (error.response.status === 422) {
@@ -79,7 +82,7 @@ export const SignInPage = defineComponent({
                   error={errors.code?.[0]}
                 />
                 <FormItem style={{ paddingTop: "48px" }}>
-                  <Button>登录</Button>
+                  <Button type="submit">登录</Button>
                 </FormItem>
               </Form>
             </div>

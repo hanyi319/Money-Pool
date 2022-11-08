@@ -16,6 +16,17 @@ function isEmpty(value: null | undefined | string | number | FData) {
   return value === null || value === undefined || value === "";
 }
 
+export function hasError(errors: Record<string, string[]>) {
+  let result = false;
+  for (let key in errors) {
+    if (errors[key].length > 0) {
+      result = true;
+      break;
+    }
+  }
+  return result;
+}
+
 export type { FData, Rule, Rules };
 
 // T 表示泛型，用来代指 FData，将 FData 与 Rule 的 key 关联起来
