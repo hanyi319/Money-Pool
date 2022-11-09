@@ -45,6 +45,14 @@ export class Http {
 
 export const http = new Http("/api/v1");
 
+http.instance.interceptors.request.use((config) => {
+  const jwt = localStorage.getItem("jwt");
+  if (jwt) {
+    config.headers!.Authorization = `Bearer ${jwt}`;
+  }
+  return config;
+});
+
 http.instance.interceptors.response.use(
   (response) => {
     console.log("response");
