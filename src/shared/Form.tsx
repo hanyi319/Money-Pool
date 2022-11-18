@@ -47,14 +47,15 @@ export const FormItem = defineComponent({
     // 发送验证码后禁用按钮，并显示 60 秒倒计时
     const timer = ref<number>(); // timer 是一个定时器
     const count = ref<number>(props.countFrom); // 默认等待 60 秒
-    const isCounting = computed(() => !!timer.value); // 根据是否设置了定时器计算出是否处于倒计时状态
+    const isCounting = computed(() => !!timer.value);
+    // 根据是否设置了定时器计算出是否处于倒计时状态，并且用到了 JS 双感叹号的用法
     const startCount = () => {
       timer.value = setInterval(() => {
         count.value -= 1;
         if (count.value === 0) {
           clearInterval(timer.value); // 需要注意移除定时器，否则会影响到倒计时状态的判断
-          timer.value = undefined;
-          count.value = props.countFrom;
+          timer.value = undefined; // 还需要将 timer 置空，因为 isCounting 就是根据 timer 是否为空计算出的布尔值
+          count.value = props.countFrom; // 并且倒计时也需要重新归位，比如默认值 60 秒
         }
       }, 1000);
     };

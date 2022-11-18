@@ -55,11 +55,12 @@ http.instance.interceptors.request.use((config) => {
 
 http.instance.interceptors.response.use(
   (response) => {
-    mock(response);
-    return response;
+    mock(response); // 首先尝试 mock 响应，如果成功就返回假数据，否则就原样返回
+    return response; // mock 失败会返回 false，然后又返回 response，有两个返回值？
   },
   (error) => {
     if (mock(error.response)) {
+      // 如果是错误也尝试 mock，如果成功就返回假数据，否则就 throw
       return error.response;
     } else {
       throw error;

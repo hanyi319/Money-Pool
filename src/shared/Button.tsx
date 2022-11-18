@@ -5,7 +5,7 @@ export const Button = defineComponent({
   props: {
     type: {
       type: String as PropType<"submit" | "button">,
-      default: "button",
+      default: "button", // 不设置默认值的话，可能会引发由于是页面中第一个按钮导致的 submit 相关的 bug
     },
     level: {
       type: String as PropType<"normal" | "important" | "danger">,
