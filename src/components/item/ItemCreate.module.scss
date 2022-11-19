@@ -65,6 +65,20 @@
   }
 }
 
+.more {
+  padding: 16px;
+  text-align: center;
+  font-weight: bold;
+  .loadMore {
+    border: none;
+    background-color: var(--bg-color-grey);
+    color: var(--text-color-black);
+  }
+  .noMore {
+    color: var(--subText-color-black);
+  }
+}
+
 .inputPad_wrapper {
   flex-grow: 0;
   flex-shrink: 0;
