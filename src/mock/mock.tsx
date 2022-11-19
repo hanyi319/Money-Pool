@@ -5,6 +5,7 @@ type Mock = (config: AxiosRequestConfig) => [number, any];
 
 faker.setLocale("zh_CN");
 
+// 构造登录数据
 export const mockSession: Mock = (config) => {
   return [
     200,
@@ -14,6 +15,7 @@ export const mockSession: Mock = (config) => {
   ];
 };
 
+// 构造标签数据
 export const mockTagIndex: Mock = (config) => {
   const { kind, page } = config.params; // 从请求的配置参数解构出收支类别、当前页数
   const per_page = 25; // 每页只展示 25 个标签
@@ -47,7 +49,9 @@ export const mockTagIndex: Mock = (config) => {
     return [200, createBody(25)]; // 支出标签的第 1 页
   } else if (kind === "expenses" && page === 2) {
     return [200, createBody(1)]; // 支出标签的第 2 页
+  } else if (kind === "income" && (!page || page === 1)) {
+    return [200, createBody(25)]; // 收入标签的第 1 页
   } else {
-    return [200, { resources: createTag(20) }];
+    return [200, createBody(1)]; // 收入标签的第 2 页
   }
 };
