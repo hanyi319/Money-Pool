@@ -1,0 +1,69 @@
+.tags_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 16px;
+
+  .tag {
+    position: relative;
+    width: 20vw;
+    height: calc(20vw * 1.14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sign {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 12vw;
+      height: 12vw;
+      border: 1px solid var(--tag-bg);
+      border-radius: 50%;
+      background: var(--tag-bg);
+    }
+
+    .name {
+      font-size: 12px;
+      margin-top: 4px;
+      color: var(--text-color-black);
+    }
+
+    &.selected {
+      .sign {
+        border: 2px solid var(--tag-selected);
+      }
+    }
+  }
+}
+
+.icon_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12vw;
+  height: 12vw;
+  border: 2px solid var(--tag-selected);
+  border-radius: 50%;
+  background: var(--theme-color-green);
+
+  .createTag {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.more {
+  padding: 16px;
+  text-align: center;
+  font-weight: bold;
+
+  .loadMore {
+    border: none;
+    background-color: var(--bg-color-grey);
+    color: var(--text-color-black);
+  }
+
+  .noMore {
+    color: var(--subText-color-black);
+  }
+}
