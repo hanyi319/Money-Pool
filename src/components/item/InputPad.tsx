@@ -6,20 +6,27 @@ import s from "./InputPad.module.scss";
 
 export const InputPad = defineComponent({
   props: {
-    name: {
-      type: String as PropType<string>,
-    },
+    happenAt: String,
+    amount: Number,
   },
   setup: (props, context) => {
-    const refDate = ref<Date>(new Date());
     const refDatetimePickerVisible = ref(false);
     const showDatetimePicker = () => (refDatetimePickerVisible.value = true);
     const hideDatetimePicker = () => (refDatetimePickerVisible.value = false);
     const setDate = (date: Date) => {
-      refDate.value = date;
+      context.emit("update:happenAt", date.toISOString());
       hideDatetimePicker();
     };
-    const refAmount = ref("0");
+    /**
+     * 由于并不想随时存储用户当前输入金额（有可能还未输入完毕），而是只在提交时才记录
+     * 所以还需要一个 refAmount 作为中间值暂存当前的输入
+     * 但是外部传进来的 amount 是 number 类型，而 refAmount 却是 string 类型
+     * 所以需要做类型转换
+     * 比如外部传入 9910，除以 100 并转为字符串后得到 "99.1"，提交时再转为浮点数并乘以 100，得到 9910
+     * 至于为什么要乘 100，是因为小数点后支持两位数，这样就避免了不转换成字符串，小数点后边的 0 会被 number “吃掉” 的问题
+     * 由于限制了输入金额为 13 位（包括小数点），所以暂不用考虑 JS 的精度问题
+     */
+    const refAmount = ref(props.amount ? (props.amount / 100).toString() : "0"); // 如果外部没有传值，默认就为 0
     const appendText = (n: number | string) => {
       const nString = n.toString();
       const dotIndex = refAmount.value.indexOf(".");
@@ -124,19 +131,21 @@ export const InputPad = defineComponent({
           refAmount.value = "0";
         },
       },
-      { text: "确认", onClick: () => {} },
+      {
+        text: "确认",
+        onClick: () => context.emit("update:amount", parseFloat(refAmount.value) * 100),
+      },
     ];
-
     return () => (
       <>
         <div class={s.details}>
           <span class={s.date}>
             <Icon name="date" class={s.icon} />
             <span>
-              <span onClick={showDatetimePicker}>{new Time(refDate.value).format()}</span>
+              <span onClick={showDatetimePicker}>{new Time(props.happenAt).format()}</span>
               <Popup position="bottom" v-model:show={refDatetimePickerVisible.value}>
                 <DatetimePicker
-                  value={refDate.value}
+                  value={props.happenAt}
                   type="date"
                   title="选择日期"
                   onConfirm={setDate}

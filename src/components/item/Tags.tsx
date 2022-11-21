@@ -10,7 +10,9 @@ export const Tags = defineComponent({
     kind: {
       type: String as PropType<string>,
     },
+    selected: Number,
   },
+  emits: ["update:selected"],
   setup: (props, context) => {
     /**
      * 使用 useTags 结构出：
@@ -26,6 +28,9 @@ export const Tags = defineComponent({
         _mock: "tagIndex",
       });
     });
+    const onSelect = (tag: Tag) => {
+      context.emit("update:selected", tag.id);
+    };
     return () => (
       <>
         <div class={s.tags_wrapper}>
@@ -36,7 +41,10 @@ export const Tags = defineComponent({
             <div class={s.name}>新增</div>
           </div>
           {tags.value.map((tag) => (
-            <div class={[s.tag, s.selected]}>
+            <div
+              class={[s.tag, props.selected === tag.id ? s.selected : ""]}
+              onClick={() => onSelect(tag)}
+            >
               <div class={s.sign}>{tag.sign}</div>
               <div class={s.name}>{tag.name}</div>
             </div>

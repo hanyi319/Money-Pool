@@ -15,16 +15,21 @@ export const mockSession: Mock = (config) => {
   ];
 };
 
+/**
+ * 为了避免选择标签时，支出标签和收入标签的 id 相同导致的 bug
+ * 所以需要将 id 作为一个全局变量
+ */
+let id = 0;
+const createId = () => {
+  id += 1;
+  return id;
+};
+
 // 构造标签数据
 export const mockTagIndex: Mock = (config) => {
   const { kind, page } = config.params; // 从请求的配置参数解构出收支类别、当前页数
   const per_page = 25; // 每页只展示 25 个标签
   const count = 26; // 为了测试加载更多标签功能，构造 26 个标签数据，也就是需要两页展示全部标签
-  let id = 0;
-  const createId = () => {
-    id += 1;
-    return id;
-  };
   // 创建一个与「加载更多标签」相关的对象
   const createPager = (page = 1) => ({
     page, // 当前展示标签的页数，默认为第 1 页

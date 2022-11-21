@@ -14,6 +14,9 @@ export const ItemCreate = defineComponent({
   },
   setup: (props, context) => {
     const refKind = ref("支出"); // 交易类别，默认为「支出」
+    const refTagId = ref<number>(); // 交易标签，不设置默认值
+    const refHappenAt = ref<string>(new Date().toISOString()); // 交易时间，默认为当前时间，并且需要做 ISO 8601 格式化
+    const refAmount = ref<number>(0); // 交易金额，默认为0
     return () => (
       <MainLayout class={s.layout}>
         {{
@@ -24,14 +27,15 @@ export const ItemCreate = defineComponent({
               <div class={s.wrapper}>
                 <Tabs v-model:selected={refKind.value} class={s.tabs}>
                   <Tab name="支出">
-                    <Tags kind="expenses" />
+                    <Tags kind="expenses" v-model:selected={refTagId.value} />
                   </Tab>
                   <Tab name="收入">
-                    <Tags kind="income" />
+                    <Tags kind="income" v-model:selected={refTagId.value} />
                   </Tab>
                 </Tabs>
+                <div>{refAmount.value}</div>
                 <div class={s.inputPad_wrapper}>
-                  <InputPad />
+                  <InputPad v-model:happenAt={refHappenAt.value} v-model:amount={refAmount.value} />
                 </div>
               </div>
             </>

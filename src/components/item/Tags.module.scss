@@ -30,7 +30,8 @@
 
     &.selected {
       .sign {
-        border: 2px solid var(--tag-selected);
+        border: 2px solid var(--tag-selected-border);
+        background-color: var(--tag-selected-bg);
       }
     }
   }
@@ -42,7 +43,7 @@
   align-items: center;
   width: 12vw;
   height: 12vw;
-  border: 2px solid var(--tag-selected);
+  border: 2px solid var(--tag-selected-border);
   border-radius: 50%;
   background: var(--theme-color-green);
 

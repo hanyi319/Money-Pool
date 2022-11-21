@@ -84,7 +84,7 @@ export const SignInPage = defineComponent({
                 <FormItem
                   label="验证码"
                   type="validationCode"
-                  placeholder="请输入六位数字"
+                  placeholder="输入验证码"
                   ref={refValidationCode}
                   countFrom={60}
                   disabled={refDisabled.value}
