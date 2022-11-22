@@ -8,6 +8,9 @@ export const InputPad = defineComponent({
   props: {
     happenAt: String,
     amount: Number,
+    onSubmit: {
+      type: Function as PropType<() => void>,
+    },
   },
   setup: (props, context) => {
     const refDatetimePickerVisible = ref(false);
@@ -133,7 +136,10 @@ export const InputPad = defineComponent({
       },
       {
         text: "确认",
-        onClick: () => context.emit("update:amount", parseFloat(refAmount.value) * 100),
+        onClick: () => {
+          context.emit("update:amount", parseFloat(refAmount.value) * 100);
+          props.onSubmit?.();
+        },
       },
     ];
     return () => (
