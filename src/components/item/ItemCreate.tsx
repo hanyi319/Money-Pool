@@ -1,14 +1,14 @@
-import { defineComponent, PropType, ref, reactive } from "vue";
+import { defineComponent, PropType, reactive } from "vue";
 import { MainLayout } from "../../layouts/MainLayout";
-import { Icon } from "../../shared/Icon";
 import { Tabs, Tab } from "../../shared/Tabs";
 import { Tags } from "./Tags";
 import { InputPad } from "./InputPad";
-import s from "./ItemCreate.module.scss";
 import { useRouter } from "vue-router";
 import { AxiosError } from "axios";
 import { Dialog } from "vant";
 import { http } from "../../shared/Http";
+import { BackIcon } from "../../shared/BackIcon";
+import s from "./ItemCreate.module.scss";
 
 export const ItemCreate = defineComponent({
   props: {
@@ -43,7 +43,7 @@ export const ItemCreate = defineComponent({
       <MainLayout class={s.layout}>
         {{
           title: () => "记账",
-          icon: () => <Icon name="back" class={s.navIcon} />,
+          icon: () => <BackIcon />,
           default: () => (
             <>
               <div class={s.wrapper}>
@@ -55,7 +55,6 @@ export const ItemCreate = defineComponent({
                     <Tags kind="income" v-model:selected={formData.tags_id[0]} />
                   </Tab>
                 </Tabs>
-
                 <div class={s.inputPad_wrapper}>
                   <InputPad
                     v-model:happenAt={formData.happen_at}
