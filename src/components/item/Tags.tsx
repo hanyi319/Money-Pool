@@ -1,4 +1,4 @@
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 import { http } from "../../shared/Http";
 import { Icon } from "../../shared/Icon";
 import { Button } from "../../shared/Button";
@@ -32,9 +32,45 @@ export const Tags = defineComponent({
     const onSelect = (tag: Tag) => {
       context.emit("update:selected", tag.id);
     };
+    /**
+     * 触发长按效果:
+     * 设置一个定时器，当用户触摸标签就标记为当前标签并开始计时
+     * 如果长按超过一定时间，就跳转到编辑标签页面
+     * 如果手指移开或者触摸位置移出了当前标签范围，就取消定时器
+     */
+    const timer = ref<number>(); // 定时器
+    const currentTag = ref<HTMLDivElement>(); // 当前标签
+    // 长按跳转页面
+    const onLongPress = () => {
+      console.log("长按");
+    };
+    const onTouchStart = (e: TouchEvent) => {
+      // 标记当前标签
+      currentTag.value = e.currentTarget as HTMLDivElement;
+      // 设置定时器为 0.5s
+      timer.value = setTimeout(() => {
+        onLongPress();
+      }, 500);
+    };
+    // 手指移开就取消定时器
+    const onTouchEnd = (e: TouchEvent) => {
+      clearTimeout(timer.value);
+    };
+    // 判断触摸范围
+    const onTouchMove = (e: TouchEvent) => {
+      // 当前触摸位置所指向的元素
+      const pointedElement = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+      // 如果该元素不是当前标签或者不在当前标签的范围内，就取消定时器
+      if (
+        currentTag.value !== pointedElement &&
+        currentTag.value?.contains(pointedElement) === false
+      ) {
+        clearTimeout(timer.value);
+      }
+    };
     return () => (
       <>
-        <div class={s.tags_wrapper}>
+        <div class={s.tags_wrapper} onTouchmove={onTouchMove}>
           <RouterLink to={`/tags/create?kind=${props.kind}`} class={s.tag}>
             <div class={s.icon_wrapper}>
               <Icon name="add" class={s.createTag} />
@@ -45,6 +81,8 @@ export const Tags = defineComponent({
             <div
               class={[s.tag, props.selected === tag.id ? s.selected : ""]}
               onClick={() => onSelect(tag)}
+              onTouchstart={onTouchStart}
+              onTouchend={onTouchEnd}
             >
               <div class={s.sign}>{tag.sign}</div>
               <div class={s.name}>{tag.name}</div>
