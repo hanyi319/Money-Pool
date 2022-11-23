@@ -61,6 +61,18 @@ export const mockTagIndex: Mock = (config) => {
   }
 };
 
+// 构造编辑标签数据
+export const mockTagShow: Mock = (config) => {
+  const createTag = (attrs?: any) => ({
+    id: createId(),
+    name: faker.lorem.word(),
+    sign: faker.internet.emoji(),
+    kind: "expenses",
+    ...attrs,
+  });
+  return [200, { resource: createTag() }];
+};
+
 // 构造记账数据
 export const mockItemCreate: Mock = (config) => {
   return [
