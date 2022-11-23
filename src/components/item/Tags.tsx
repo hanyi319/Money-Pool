@@ -3,7 +3,7 @@ import { http } from "../../shared/Http";
 import { Icon } from "../../shared/Icon";
 import { Button } from "../../shared/Button";
 import { useTags } from "../../shared/useTags";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import s from "./Tags.module.scss";
 
 export const Tags = defineComponent({
@@ -38,18 +38,21 @@ export const Tags = defineComponent({
      * 如果长按超过一定时间，就跳转到编辑标签页面
      * 如果手指移开或者触摸位置移出了当前标签范围，就取消定时器
      */
+    const router = useRouter();
     const timer = ref<number>(); // 定时器
     const currentTag = ref<HTMLDivElement>(); // 当前标签
     // 长按跳转页面
-    const onLongPress = () => {
-      console.log("长按");
+    const onLongPress = (tagId: Tag["id"]) => {
+      router.push(
+        `/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`
+      );
     };
-    const onTouchStart = (e: TouchEvent) => {
+    const onTouchStart = (e: TouchEvent, tag: Tag) => {
       // 标记当前标签
       currentTag.value = e.currentTarget as HTMLDivElement;
       // 设置定时器为 0.5s
       timer.value = setTimeout(() => {
-        onLongPress();
+        onLongPress(tag.id);
       }, 500);
     };
     // 手指移开就取消定时器
@@ -81,7 +84,7 @@ export const Tags = defineComponent({
             <div
               class={[s.tag, props.selected === tag.id ? s.selected : ""]}
               onClick={() => onSelect(tag)}
-              onTouchstart={onTouchStart}
+              onTouchstart={(e) => onTouchStart(e, tag)}
               onTouchend={onTouchEnd}
             >
               <div class={s.sign}>{tag.sign}</div>
