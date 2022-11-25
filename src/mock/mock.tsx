@@ -104,3 +104,37 @@ export const mockItemCreate: Mock = (config) => {
     },
   ];
 };
+
+// 构造明细数据
+export const mockItemIndex: Mock = (config) => {
+  const { kind, page } = config.params; // 从请求的配置参数解构出收支类别、当前页数
+  const per_page = 25; // 每页只展示 25 个标签
+  const count = 26; // 为了测试加载更多标签功能，构造 26 个标签数据，也就是需要两页展示全部标签
+  // 创建一个与「加载更多记账」相关的对象
+  const createPager = (page = 1) => ({
+    page, // 当前展示标签的页数，默认为第 1 页
+    per_page, // 每页能展示的标签个数
+    count, // 常用标签列表的总个数
+  });
+  // 创建一个包含所有记账（长度为 n，默认为 1）的数组
+  const createItem = (n = 1, attrs?: any) =>
+    Array.from({ length: n }).map(() => ({
+      id: createId(),
+      user_id: createId(),
+      amount: Math.floor(Math.random() * 10000),
+      tags_id: [createId()],
+      happen_at: faker.date.past().toISOString(),
+      kind: config.params.kind,
+    }));
+  const createBody = (n = 1, attrs?: any) => ({
+    resources: createItem(n),
+    pager: createPager(page),
+  });
+  if (!page || page === 1) {
+    return [200, createBody(25)]; // 明细列表的第 1 页
+  } else if (page === 2) {
+    return [200, createBody(1)]; // 明细列表的第 2 页
+  } else {
+    return [200, {}];
+  }
+};

@@ -9,6 +9,8 @@
   border-radius: var(--button-radius);
   background: var(--total-bg);
   color: var(--total-text);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
   > li {
     display: flex;
     flex-direction: column;
@@ -22,7 +24,7 @@
       color: var(--total-income);
     }
     &:nth-child(3) {
-      color: var(--total-netIncome);
+      color: var(--total-income);
     }
   }
 }
@@ -59,6 +61,7 @@
         color: var(--list-tag-text);
       }
       .amount {
+        font-weight: bold;
         color: var(--list-amount-text);
       }
     }
@@ -70,6 +73,17 @@
 }
 
 .more {
-  padding-top: 32px;
+  padding: 16px;
   text-align: center;
+  font-weight: bold;
+
+  .loadMore {
+    border: none;
+    background-color: var(--bg-color-grey);
+    color: var(--text-color-black);
+  }
+
+  .noMore {
+    color: var(--subText-color-black);
+  }
 }
