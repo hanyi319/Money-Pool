@@ -11,11 +11,11 @@ const demo = defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
-      required: true,
+      required: false,
     },
     endDate: {
       type: String as PropType<string>,
-      required: true,
+      required: false,
     },
   },
 });
@@ -29,10 +29,10 @@ export const TimeTabsLayout = defineComponent({
   setup: (props, context) => {
     const refSelected = ref("本月");
     const time = new Time();
-    const customTime = reactive({
-      start: new Time().format(),
-      end: new Time().format(),
-    });
+    const customTime = reactive<{
+      start?: string;
+      end?: string;
+    }>({});
     const timeList = [
       {
         start: time.firstDayOfMonth(),
@@ -53,7 +53,7 @@ export const TimeTabsLayout = defineComponent({
       refOverlayVisible.value = false;
     };
     const onSelect = (value: string) => {
-      if (value === "自定义时间") {
+      if (value === "自定义") {
         refOverlayVisible.value = true;
       }
     };
@@ -87,7 +87,7 @@ export const TimeTabsLayout = defineComponent({
                     endDate={timeList[2].end.format()}
                   />
                 </Tab>
-                <Tab name="自定义时间">
+                <Tab name="自定义">
                   <props.component startDate={customTime.start} endDate={customTime.end} />
                 </Tab>
               </Tabs>

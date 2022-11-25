@@ -8,11 +8,11 @@ export const ItemSummary = defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
-      required: true,
+      required: false,
     },
     endDate: {
       type: String as PropType<string>,
-      required: true,
+      required: false,
     },
   },
   setup: (props, context) => {
@@ -21,6 +21,10 @@ export const ItemSummary = defineComponent({
     const page = ref(0); // 当前展示标签的页数，默认为 0（也符合未加载时的状态）
     // 加载明细
     const fetchItems = async () => {
+      // 自定义时间默认为空，不发请求
+      if (!props.startDate || !props.endDate) {
+        return;
+      }
       const response = await http.get<Resources<Item>>("/items", {
         happen_after: props.startDate,
         happen_before: props.endDate,
