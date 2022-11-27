@@ -3,6 +3,7 @@ import { Button } from "../../shared/Button";
 import { FloatButton } from "../../shared/FloatButton";
 import { http } from "../../shared/Http";
 import { Money } from "../../shared/Money";
+import { Datetime } from "../../shared/Datetime";
 import s from "./ItemSummary.module.scss";
 
 export const ItemSummary = defineComponent({
@@ -85,7 +86,9 @@ export const ItemSummary = defineComponent({
                         ￥<Money value={item.amount} />
                       </span>
                     </div>
-                    <div class={s.time}>{item.happen_at}</div>
+                    <div class={s.time}>
+                      <Datetime value={item.happen_at} />
+                    </div>
                   </div>
                 </li>
               ))}
