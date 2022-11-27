@@ -1,11 +1,12 @@
-/* 引入字体 */
-@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+/* 使用 Google Fonts API 引入字体 */
+@import url("https://fonts.googleapis.com/css?family=Noto Sans Simplified Chinese");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  // 使用 Noto Sans Simplified Chinese 字体，无衬线
+  font-family: "Noto Sans Simplified Chinese", sans-serif;
   /* 消除点击或长按后的蓝色背景框 */
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
