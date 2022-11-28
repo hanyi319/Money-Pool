@@ -116,6 +116,13 @@ export const mockItemIndex: Mock = (config) => {
     per_page, // 每页能展示的标签个数
     count, // 常用标签列表的总个数
   });
+  const createTag = (attrs?: any) => ({
+    id: createId(),
+    name: faker.lorem.word(),
+    sign: faker.internet.emoji(),
+    kind: "expenses",
+    ...attrs,
+  });
   // 创建一个包含所有记账（长度为 n，默认为 1）的数组
   const createItem = (n = 1, attrs?: any) =>
     Array.from({ length: n }).map(() => ({
@@ -123,6 +130,7 @@ export const mockItemIndex: Mock = (config) => {
       user_id: createId(),
       amount: Math.floor(Math.random() * 10000),
       tags_id: [createId()],
+      tags: [createTag()],
       happen_at: faker.date.past().toISOString(),
       kind: config.params.kind,
     }));
