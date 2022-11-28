@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, PropType, reactive, ref } from "vue";
+import { defineComponent, onMounted, PropType, reactive, ref, watch } from "vue";
 import { Button } from "../../shared/Button";
 import { FloatButton } from "../../shared/FloatButton";
 import { http } from "../../shared/Http";
@@ -21,6 +21,12 @@ export const ItemSummary = defineComponent({
     const items = ref<Item[]>([]); // 明细列表，默认为空数组
     const hasMore = ref(false); // 是否要加载更多明细，默认为不加载
     const page = ref(0); // 当前展示标签的页数，默认为 0（也符合未加载时的状态）
+    // 盈亏情况，包含对应时间段的支出、收入和结余
+    const itemsBalance = reactive({
+      expenses: 0,
+      income: 0,
+      balance: 0,
+    });
     // 加载明细
     const fetchItems = async () => {
       // 自定义时间默认为空，不发请求
@@ -54,13 +60,8 @@ export const ItemSummary = defineComponent({
        * 也就是第二次加载标签时，page.value 传入请求函数并且 +1 为 2，这样才能加载下一页的明细
        */
     };
-    onMounted(fetchItems);
-    const itemsBalance = reactive({
-      expenses: 0,
-      income: 0,
-      balance: 0,
-    });
-    onMounted(async () => {
+    // 加载盈亏
+    const fetchItemsBalance = async () => {
       if (!props.startDate || !props.endDate) {
         return;
       }
@@ -71,33 +72,52 @@ export const ItemSummary = defineComponent({
         _mock: "itemIndexBalance",
       });
       Object.assign(itemsBalance, response.data);
-    });
+    };
+    onMounted(fetchItems);
+    onMounted(fetchItemsBalance);
+    /**
+     * 自定义时间
+     * 监听开始时间和结束时间其中任意一个的变化
+     * 重新加载明细和盈亏
+     */
+    watch(
+      () => [props.startDate, props.endDate],
+      () => {
+        items.value = [];
+        hasMore.value = false;
+        page.value = 0;
+        fetchItems();
+      }
+    );
+    watch(
+      () => [props.startDate, props.endDate],
+      () => {
+        Object.assign(itemsBalance, { expenses: 0, income: 0, balance: 0 });
+        fetchItemsBalance();
+      }
+    );
     return () => (
       <div class={s.wrapper}>
         {items.value ? (
           <>
             <ul class={s.total}>
-              <li class={s.expenses}>
-                <span>支出</span>
-                <span class={s.expensesSign}>
+              <li>
+                <span class={s.expenses}>
                   <Money value={itemsBalance.expenses} />
                 </span>
+                <span>支出</span>
               </li>
-              <li class={s.income}>
-                <span>收入</span>
-                <span class={s.incomeSign}>
+              <li>
+                <span class={s.income}>
                   <Money value={itemsBalance.income} />
                 </span>
+                <span>收入</span>
               </li>
-              <li class={itemsBalance.expenses > itemsBalance.income ? s.expenses : s.income}>
-                <span>结余</span>
-                <span
-                  class={
-                    itemsBalance.expenses > itemsBalance.income ? s.expensesSign : s.incomeSign
-                  }
-                >
+              <li>
+                <span class={itemsBalance.expenses > itemsBalance.income ? s.expenses : s.income}>
                   <Money value={itemsBalance.balance} />
                 </span>
+                <span>结余</span>
               </li>
             </ul>
             <ol class={s.list}>
