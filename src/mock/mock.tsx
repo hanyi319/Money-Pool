@@ -129,6 +129,11 @@ export const mockItemIndex: Mock = (config) => {
   const createBody = (n = 1, attrs?: any) => ({
     resources: createItem(n),
     pager: createPager(page),
+    summary: {
+      income: 9900,
+      expenses: 9900,
+      balance: 0,
+    },
   });
   if (!page || page === 1) {
     return [200, createBody(25)]; // 明细列表的第 1 页
@@ -137,4 +142,16 @@ export const mockItemIndex: Mock = (config) => {
   } else {
     return [200, {}];
   }
+};
+
+// 构造总支出、收入、净收入数据
+export const mockItemIndexBalance: Mock = (config) => {
+  return [
+    200,
+    {
+      expenses: 9900,
+      income: 9900,
+      balance: 0,
+    },
+  ];
 };
