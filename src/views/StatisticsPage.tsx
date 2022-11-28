@@ -4,6 +4,6 @@ import { Chart } from "../components/statistics/Chart";
 
 export const StatisticsPage = defineComponent({
   setup: (props, context) => {
-    return () => <TimeTabsLayout component={Chart} />;
+    return () => <TimeTabsLayout component={Chart} reRenderOnSwitchTab={true} />;
   },
 });
