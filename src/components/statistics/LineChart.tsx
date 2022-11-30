@@ -54,7 +54,9 @@ export const LineChart = defineComponent({
   setup: (props, context) => {
     const refDiv1 = ref<HTMLDivElement>();
     const refDiv2 = ref<HTMLDivElement>();
-    const refChart = ref<echarts.ECharts>();
+    // 避免使用 ref 导致提示框 tooltip 不显示的 bug
+    // const refChart = ref<echarts.ECharts>();
+    let chart: echarts.ECharts | undefined = undefined;
     onMounted(() => {
       if (refDiv2.value === undefined) {
         return;
@@ -62,9 +64,9 @@ export const LineChart = defineComponent({
       // 折线图默认滚动到最右处显示
       refDiv1.value!.scrollLeft = refDiv1.value!.scrollWidth;
       // 基于准备好的 DOM 节点，初始化 ECharts 实例
-      refChart.value = echarts.init(refDiv2.value);
+      chart = echarts.init(refDiv2.value);
       // 绘制折线图
-      refChart.value.setOption({
+      chart.setOption({
         ...echartsOption,
         series: [
           {
@@ -104,7 +106,7 @@ export const LineChart = defineComponent({
     watch(
       () => props.data,
       () => {
-        refChart.value?.setOption({
+        chart?.setOption({
           series: [
             {
               data: props.data,
