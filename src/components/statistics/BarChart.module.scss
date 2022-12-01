@@ -1,0 +1,79 @@
+.titleWrapper {
+  width: calc(100% + 32px);
+  height: 48px;
+  margin-left: -16px;
+  margin-top: 16px;
+  background-color: var(--bg-color-white);
+  position: relative;
+
+  .title {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-color-black);
+  }
+}
+
+.barChartWrapper {
+  width: calc(100% + 32px);
+  margin-left: -16px;
+  margin-bottom: -16px;
+  background-color: var(--bg-color-white);
+
+  .barChart {
+    padding: 16px;
+
+    .topItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+
+      .sign {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border: 2px solid var(--theme-color-green);
+        border-radius: 50%;
+        background: var(--bg-color-grey);
+      }
+
+      .bar_wrapper {
+        margin-left: 8px;
+        flex-grow: 1;
+        flex-shrink: 1;
+
+        .bar_text {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: var(--text-color-black);
+        }
+
+        .bar {
+          position: relative;
+          height: 8px;
+          border-radius: 4px;
+          margin-top: 4px;
+          background: var(--bar-bg);
+          overflow: hidden;
+
+          .bar_inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0px;
+            background-color: var(--theme-color-green);
+          }
+        }
+      }
+    }
+  }
+}

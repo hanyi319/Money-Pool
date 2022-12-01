@@ -2,7 +2,7 @@ import { computed, defineComponent, onMounted, PropType, ref } from "vue";
 import { FormItem } from "../../shared/Form";
 import { LineChart } from "./LineChart";
 import { PieChart } from "./PieChart";
-import { Bars } from "./Bars";
+import { BarChart } from "./BarChart";
 import { http } from "../../shared/Http";
 import { Time } from "../../shared/time";
 import s from "./Chart.module.scss";
@@ -107,6 +107,16 @@ export const Chart = defineComponent({
       });
       data2.value = response.data.groups;
     });
+
+    // 设置条形图
+    const betterData3 = computed<{ tag: Tag; amount: number; percent: number }[]>(() => {
+      const total = data2.value.reduce((sum, item) => sum + item.amount, 0);
+      return data2.value.map((item) => ({
+        ...item,
+        percent: Math.round((item.amount / total) * 100),
+      }));
+    });
+
     return () => (
       <div class={s.wrapper}>
         <FormItem
@@ -120,7 +130,7 @@ export const Chart = defineComponent({
         />
         <LineChart data={betterData1.value} />
         <PieChart data={betterData2.value} />
-        <Bars />
+        <BarChart data={betterData3.value} />
       </div>
     );
   },
