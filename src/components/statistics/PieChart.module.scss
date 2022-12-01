@@ -1,3 +1,29 @@
-.pieChart {
-  height: 100vw;
+.titleWrapper {
+  width: calc(100% + 32px);
+  height: 48px;
+  margin-left: -16px;
+  margin-top: 16px;
+  background-color: var(--bg-color-white);
+  position: relative;
+
+  .title {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-color-black);
+  }
+}
+
+.pieChartWrapper {
+  width: calc(100% + 32px);
+  margin-left: -16px;
+  background-color: var(--bg-color-white);
+
+  .pieChart {
+    height: 35vh;
+    max-height: 300px;
+    background-color: var(--bg-color-white);
+  }
 }

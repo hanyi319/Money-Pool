@@ -7,8 +7,13 @@ import { http } from "../../shared/Http";
 import { Time } from "../../shared/time";
 import s from "./Chart.module.scss";
 
+// 折线图数据类型
 type Data1Item = { happen_at: string; amount: number };
 type Data1 = Data1Item[];
+
+// 饼图数据类型
+type Data2Item = { tag_id: number; tag: Tag; amount: number };
+type Data2 = Data2Item[];
 
 // 一天的毫秒数
 const DAY = 24 * 3600 * 1000;
@@ -27,6 +32,8 @@ export const Chart = defineComponent({
   setup: (props, context) => {
     // 交易类别，默认为支出
     const kind = ref("expenditure");
+
+    // 设置折线图
     /**
      * 将后端接口请求到的数据转换成适合 ECharts 图表的数据
      * 原数组 data1 是一个对象的数组：[{…}, {…}, …]
@@ -76,9 +83,29 @@ export const Chart = defineComponent({
         happen_after: props.startDate,
         happen_before: props.endDate,
         kind: kind.value,
+        group_by: "happen_at",
         _mock: "itemSummary",
       });
       data1.value = response.data.groups;
+    });
+
+    // 设置饼图
+    const data2 = ref<Data2>([]);
+    const betterData2 = computed<{ name: string; value: number }[]>(() =>
+      data2.value.map((item) => ({
+        name: item.tag.name,
+        value: item.amount,
+      }))
+    );
+    onMounted(async () => {
+      const response = await http.get<{ groups: Data2; summary: number }>("/items/summary", {
+        happen_after: props.startDate,
+        happen_before: props.endDate,
+        kind: kind.value,
+        group_by: "tag_id",
+        _mock: "itemSummary",
+      });
+      data2.value = response.data.groups;
     });
     return () => (
       <div class={s.wrapper}>
@@ -92,7 +119,7 @@ export const Chart = defineComponent({
           v-model={kind.value}
         />
         <LineChart data={betterData1.value} />
-        <PieChart />
+        <PieChart data={betterData2.value} />
         <Bars />
       </div>
     );
