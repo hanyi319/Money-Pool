@@ -38,8 +38,6 @@ export const Chart = defineComponent({
       if (!props.startDate || !props.endDate) {
         return [];
       }
-      // 转换后的新数组，默认为空数组
-      const array = [];
       // 计算时间间隔（毫秒）
       const diff = new Date(props.endDate).getTime() - new Date(props.startDate).getTime();
       /**
@@ -49,30 +47,29 @@ export const Chart = defineComponent({
        * 1月1日零点至1月31日零点，时间间隔是 30 天，还需要加 1
        */
       const n = diff / DAY + 1;
-      // 标记原数组已经遍历到了哪一项
-      let data1Index = 0;
-      for (let i = 0; i < n; i++) {
+      /**
+       * 构造数组也可以使用：
+       * new Array(n).fill(0)
+       * 之所以要加上 fill(0) 是因为 Array(n) 构造的数组没有 key，只有 length
+       * 另外这里其实是 map(currentValue, index)，使用 _ 表示 currentValue 这个参数只是用来占位
+       */
+      return Array.from({ length: n }).map((_, i) => {
         /**
          * 需要将标准时间转换为北京时间（东八区）
          * 每次遍历就加 1 天
          * 并获取时间戳用以进行对比
          */
         const time = new Time(props.startDate + "T00:00:00.000+0800").add(i, "day").getTimestamp();
+        // 获取原数组的第一项用以进行对比，并且通过不断弹出进行更新
+        const item = data1.value[0];
         /**
-         * 如果原数组有当日的记账数据，就用对应的金额填补，并将标记加 1，指向下一条记账数据
-         * 如果当日没有记账数据，金额就填 0
+         * 如果原数组有当日的记账数据，就将其弹出数组，并用对应的金额填补新数组
+         * 如果当日没有记账数据，新数组对应的金额就填 0
          */
-        if (
-          data1.value[data1Index] &&
-          new Date(data1.value[data1Index].happen_at).getTime() === time
-        ) {
-          array.push([new Date(time).toISOString(), data1.value[data1Index].amount]);
-          data1Index += 1;
-        } else {
-          array.push([new Date(time).toISOString(), 0]);
-        }
-      }
-      return array as [string, number][];
+        const amount =
+          item && new Date(item.happen_at).getTime() === time ? data1.value.shift()!.amount : 0;
+        return [new Date(time).toISOString(), amount];
+      });
     });
     onMounted(async () => {
       const response = await http.get<{ groups: Data1; summary: number }>("/items/summary", {
