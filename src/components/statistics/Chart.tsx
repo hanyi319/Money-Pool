@@ -1,4 +1,4 @@
-import { computed, defineComponent, onMounted, PropType, ref } from "vue";
+import { computed, defineComponent, onMounted, PropType, ref, watch } from "vue";
 import { FormItem } from "../../shared/Form";
 import { LineChart } from "./LineChart";
 import { PieChart } from "./PieChart";
@@ -31,7 +31,7 @@ export const Chart = defineComponent({
   },
   setup: (props, context) => {
     // 交易类别，默认为支出
-    const kind = ref("expenditure");
+    const kind = ref("expenses");
 
     // 设置折线图
     /**
@@ -78,7 +78,7 @@ export const Chart = defineComponent({
         return [new Date(time).toISOString(), amount];
       });
     });
-    onMounted(async () => {
+    const fetchData1 = async () => {
       const response = await http.get<{ groups: Data1; summary: number }>("/items/summary", {
         happen_after: props.startDate,
         happen_before: props.endDate,
@@ -87,7 +87,9 @@ export const Chart = defineComponent({
         _mock: "itemSummary",
       });
       data1.value = response.data.groups;
-    });
+    };
+    onMounted(fetchData1);
+    watch(() => kind.value, fetchData1);
 
     // 设置饼图
     const data2 = ref<Data2>([]);
@@ -97,7 +99,7 @@ export const Chart = defineComponent({
         value: item.amount,
       }))
     );
-    onMounted(async () => {
+    const fetchData2 = async () => {
       const response = await http.get<{ groups: Data2; summary: number }>("/items/summary", {
         happen_after: props.startDate,
         happen_before: props.endDate,
@@ -106,7 +108,9 @@ export const Chart = defineComponent({
         _mock: "itemSummary",
       });
       data2.value = response.data.groups;
-    });
+    };
+    onMounted(fetchData2);
+    watch(() => kind.value, fetchData2);
 
     // 设置条形图
     const betterData3 = computed<{ tag: Tag; amount: number; percent: number }[]>(() => {
@@ -124,15 +128,15 @@ export const Chart = defineComponent({
             label="交易类别"
             type="select"
             options={[
-              { value: "expenditure", text: "支出" },
+              { value: "expenses", text: "支出" },
               { value: "income", text: "收入" },
             ]}
             v-model={kind.value}
           />
         </div>
-        <LineChart data={betterData1.value} />
-        <PieChart data={betterData2.value} />
-        <BarChart data={betterData3.value} />
+        <LineChart data={betterData1.value} kind={kind.value} />
+        <PieChart data={betterData2.value} kind={kind.value} />
+        <BarChart data={betterData3.value} kind={kind.value} />
       </>
     );
   },

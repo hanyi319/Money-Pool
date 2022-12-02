@@ -54,6 +54,9 @@ export const LineChart = defineComponent({
       type: Array as PropType<[string, number][]>,
       required: true,
     },
+    kind: {
+      type: String as PropType<string>,
+    },
   },
   setup: (props, context) => {
     const refDiv1 = ref<HTMLDivElement>();
@@ -77,7 +80,7 @@ export const LineChart = defineComponent({
             data: props.data,
             type: "line",
             smooth: true,
-            itemStyle: { color: "#00d09c" },
+            itemStyle: { color: "#ff585d" },
             areaStyle: {
               color: {
                 /**
@@ -93,11 +96,11 @@ export const LineChart = defineComponent({
                 colorStops: [
                   {
                     offset: 0,
-                    color: "#00d09c", // 0% 处的颜色
+                    color: "#ff585d", // 0% 处的颜色
                   },
                   {
                     offset: 1,
-                    color: "#fff", // 100% 处的颜色
+                    color: "#ffffff", // 100% 处的颜色
                   },
                 ],
                 global: false, // 缺省为 false
@@ -119,10 +122,60 @@ export const LineChart = defineComponent({
         });
       }
     );
+    watch(
+      () => props.kind,
+      () => {
+        if (props.kind === "expenses") {
+          chart?.setOption({
+            series: [
+              {
+                itemStyle: { color: "#ff585d" },
+                areaStyle: {
+                  color: {
+                    colorStops: [
+                      {
+                        offset: 0,
+                        color: "#ff585d", // 0% 处的颜色
+                      },
+                      {
+                        offset: 1,
+                        color: "#ffffff", // 100% 处的颜色
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          });
+        } else {
+          chart?.setOption({
+            series: [
+              {
+                itemStyle: { color: "#00d09c" },
+                areaStyle: {
+                  color: {
+                    colorStops: [
+                      {
+                        offset: 0,
+                        color: "#00d09c", // 0% 处的颜色
+                      },
+                      {
+                        offset: 1,
+                        color: "#ffffff", // 100% 处的颜色
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          });
+        }
+      }
+    );
     return () => (
       <>
         <div class={s.titleWrapper}>
-          <span class={s.title}>支出趋势</span>
+          <span class={s.title}>{props.kind === "expenses" ? "支出趋势" : "收入趋势"}</span>
         </div>
         <div ref={refDiv1} class={s.lineChartWrapper}>
           <div

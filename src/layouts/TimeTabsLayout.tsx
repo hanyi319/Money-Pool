@@ -32,7 +32,7 @@ export const TimeTabsLayout = defineComponent({
     },
   },
   setup: (props, context) => {
-    const refSelected = ref("本月");
+    const refSelected = ref("本周");
     const time = new Time();
     // 通过声明一个临时变量来暂存日期，从而避免每次修改时都会发送请求
     const tempTime = reactive({

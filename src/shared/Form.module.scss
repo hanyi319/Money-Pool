@@ -41,13 +41,13 @@
     border-radius: var(--input-radius);
     color: var(--text-color-white);
     outline: none;
-    &.expenditure {
-      border: 1px solid var(--theme-color-green);
-      background-color: var(--theme-color-green);
+    &.expenses {
+      border: 1px solid var(--theme-color-red);
+      background-color: var(--theme-color-red);
     }
     &.income {
-      border: 1px solid var(--theme-color-yellow);
-      background-color: var(--theme-color-yellow);
+      border: 1px solid var(--theme-color-green);
+      background-color: var(--theme-color-green);
     }
   }
   &_name {

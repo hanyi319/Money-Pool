@@ -7,12 +7,15 @@ export const BarChart = defineComponent({
     data: {
       type: Array as PropType<{ tag: Tag; amount: number; percent: number }[]>,
     },
+    kind: {
+      type: String as PropType<string>,
+    },
   },
   setup: (props, context) => {
     return () => (
       <>
         <div class={s.titleWrapper}>
-          <span class={s.title}>支出对比</span>
+          <span class={s.title}>{props.kind === "expenses" ? "支出对比" : "收入对比"}</span>
         </div>
         <div class={s.barChartWrapper}>
           <div class={s.barChart}>
@@ -31,7 +34,13 @@ export const BarChart = defineComponent({
                         </span>
                       </div>
                       <div class={s.bar}>
-                        <div class={s.bar_inner} style={{ width: `${percent}%` }}></div>
+                        <div
+                          class={[
+                            s.bar_inner,
+                            props.kind === "expenses" ? s.expensesBar : s.incomeBar,
+                          ]}
+                          style={{ width: `${percent}%` }}
+                        ></div>
                       </div>
                     </div>
                   </div>

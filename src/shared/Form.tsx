@@ -146,7 +146,7 @@ export const FormItem = defineComponent({
               class={[
                 s.formItem,
                 s.select,
-                props.modelValue === "expenditure" ? s.expenditure : s.income,
+                props.modelValue === "expenses" ? s.expenses : s.income,
               ]}
               value={props.modelValue}
               onChange={(e: any) => {

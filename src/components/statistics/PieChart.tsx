@@ -46,6 +46,9 @@ export const PieChart = defineComponent({
     data: {
       type: Array as PropType<{ name: string; value: number }[]>,
     },
+    kind: {
+      type: String as PropType<string>,
+    },
   },
   setup: (props, context) => {
     const refDiv = ref<HTMLDivElement>();
@@ -72,7 +75,7 @@ export const PieChart = defineComponent({
     return () => (
       <>
         <div class={s.titleWrapper}>
-          <span class={s.title}>支出构成</span>
+          <span class={s.title}>{props.kind === "expenses" ? "支出构成" : "收入构成"}</span>
         </div>
         <div class={s.pieChartWrapper}>
           <div ref={refDiv} class={s.pieChart}></div>
