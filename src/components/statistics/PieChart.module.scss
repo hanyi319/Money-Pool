@@ -1,7 +1,5 @@
 .titleWrapper {
-  width: calc(100% + 32px);
   height: 48px;
-  margin-left: -16px;
   margin-top: 16px;
   background-color: var(--bg-color-white);
   position: relative;
@@ -17,8 +15,6 @@
 }
 
 .pieChartWrapper {
-  width: calc(100% + 32px);
-  margin-left: -16px;
   background-color: var(--bg-color-white);
 
   .pieChart {

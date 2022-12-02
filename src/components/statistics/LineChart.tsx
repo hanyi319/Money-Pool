@@ -5,7 +5,7 @@ import { getMoney } from "../../shared/Money";
 import s from "./LineChart.module.scss";
 
 // ECharts 配置项
-const echartsOption = {
+const defaultOption = {
   // 提示框
   tooltip: {
     show: true,
@@ -19,13 +19,17 @@ const echartsOption = {
   grid: [{ left: 50, top: 30, right: 16, bottom: 30 }],
   // 横坐标轴
   xAxis: {
-    type: "time",
+    type: "category",
     boundaryGap: ["1%", "1%"], // 左右边界间隙
     axisLabel: {
       formatter: (value: string) => new Time(new Date(value)).format("MM-DD"),
+      interval: 0,
     },
     axisTick: {
       alignWithLabel: true,
+    },
+    axisPointer: {
+      snap: true,
     },
   },
   // 纵坐标轴
@@ -67,7 +71,7 @@ export const LineChart = defineComponent({
       chart = echarts.init(refDiv2.value);
       // 绘制折线图
       chart.setOption({
-        ...echartsOption,
+        ...defaultOption,
         series: [
           {
             data: props.data,

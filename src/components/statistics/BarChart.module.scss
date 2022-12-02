@@ -1,7 +1,5 @@
 .titleWrapper {
-  width: calc(100% + 32px);
   height: 48px;
-  margin-left: -16px;
   margin-top: 16px;
   background-color: var(--bg-color-white);
   position: relative;
@@ -17,9 +15,6 @@
 }
 
 .barChartWrapper {
-  width: calc(100% + 32px);
-  margin-left: -16px;
-  margin-bottom: -16px;
   background-color: var(--bg-color-white);
 
   .barChart {
@@ -58,10 +53,10 @@
 
         .bar {
           position: relative;
-          height: 8px;
+          height: 10px;
           border-radius: 4px;
           margin-top: 4px;
-          background: var(--bar-bg);
+          background: var(--bg-color-grey);
           overflow: hidden;
 
           .bar_inner {
@@ -70,7 +65,7 @@
             left: 0;
             height: 100%;
             width: 0px;
-            background-color: var(--theme-color-green);
+            background-image: linear-gradient(to right, #77e0c8 0%, #00d09c 100%);
           }
         }
       }
