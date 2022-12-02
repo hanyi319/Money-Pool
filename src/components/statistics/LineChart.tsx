@@ -16,7 +16,7 @@ const defaultOption = {
     },
   },
   // 边距
-  grid: [{ left: 50, top: 30, right: 16, bottom: 30 }],
+  grid: [{ left: 16, top: 30, right: 16, bottom: 30 }],
   // 横坐标轴
   xAxis: {
     type: "category",
@@ -43,7 +43,7 @@ const defaultOption = {
       },
     },
     axisLabel: {
-      show: true,
+      show: false,
     },
   },
 };
@@ -125,7 +125,10 @@ export const LineChart = defineComponent({
           <span class={s.title}>支出趋势</span>
         </div>
         <div ref={refDiv1} class={s.lineChartWrapper}>
-          <div ref={refDiv2} class={s.lineChart}></div>
+          <div
+            ref={refDiv2}
+            class={props.data.length > 7 ? s.lineChartMonth : s.lineChartWeek}
+          ></div>
         </div>
       </>
     );

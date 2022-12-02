@@ -45,16 +45,16 @@ export const TimeTabsLayout = defineComponent({
     }>({});
     const timeList = [
       {
+        start: time.firstDayOfWeek(),
+        end: time.lastDayOfWeek(),
+      },
+      {
         start: time.firstDayOfMonth(),
         end: time.lastDayOfMonth(),
       },
       {
         start: time.add(-1, "month").firstDayOfMonth(),
         end: time.add(-1, "month").lastDayOfMonth(),
-      },
-      {
-        start: time.firstDayOfYear(),
-        end: time.lastDayOfYear(),
       },
     ];
     const refOverlayVisible = ref(false);
@@ -81,19 +81,19 @@ export const TimeTabsLayout = defineComponent({
                 onUpdate:selected={onSelect}
                 reRenderOnSelect={props.reRenderOnSwitchTab}
               >
-                <Tab name="本月">
+                <Tab name="本周">
                   <props.component
                     startDate={timeList[0].start.format()}
                     endDate={timeList[0].end.format()}
                   />
                 </Tab>
-                <Tab name="上月">
+                <Tab name="本月">
                   <props.component
                     startDate={timeList[1].start.format()}
                     endDate={timeList[1].end.format()}
                   />
                 </Tab>
-                <Tab name="今年">
+                <Tab name="上月">
                   <props.component
                     startDate={timeList[2].start.format()}
                     endDate={timeList[2].end.format()}

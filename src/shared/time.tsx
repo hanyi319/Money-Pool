@@ -45,11 +45,47 @@ export class Time {
       .replace(/ss/, second.toString().padStart(2, "0"))
       .replace(/sss/, msecond.toString().padStart(3, "0"));
   }
+  firstDayOfWeek() {
+    /**
+     * getDate() 返回指定日期为一个月中的哪一天（1-31）
+     * getDay() 返回指定日期中一周的第几天（0 表示星期日）
+     * 比如12月1日这一周的第一天：
+     * 1-4+1=-2
+     * 在12月零点往前推2天，就是11月28日
+     */
+    return new Time(
+      new Date(
+        this.date.getFullYear(),
+        this.date.getMonth(),
+        this.date.getDate() - this.date.getDay() + 1,
+        0,
+        0,
+        0
+      )
+    );
+  }
   firstDayOfMonth() {
     return new Time(new Date(this.date.getFullYear(), this.date.getMonth(), 1, 0, 0, 0));
   }
   firstDayOfYear() {
     return new Time(new Date(this.date.getFullYear(), 0, 1, 0, 0, 0));
+  }
+  lastDayOfWeek() {
+    /**
+     * 比如12月1日这一周的最后一天：
+     * 1+(6-4+1)=4
+     * 在12月零点往后推4天，就是12月4日
+     */
+    return new Time(
+      new Date(
+        this.date.getFullYear(),
+        this.date.getMonth(),
+        this.date.getDate() + (6 - this.date.getDay() + 1),
+        0,
+        0,
+        0
+      )
+    );
   }
   lastDayOfMonth() {
     return new Time(new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0, 0, 0, 0));
