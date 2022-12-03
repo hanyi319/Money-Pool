@@ -1,4 +1,4 @@
-# 清流记账 Money-Stream
+# 点滴记账 Money-Stream
 
 ## 如何开发
 

@@ -80,7 +80,7 @@ export const SignInPage = defineComponent({
             <div class={s.wrapper}>
               <div class={s.logo}>
                 <Icon name="logo" class={s.icon} />
-                <h1 class={s.appName}>清流记账</h1>
+                <h1 class={s.appName}>点滴记账</h1>
               </div>
               <Form onSubmit={onSubmit}>
                 <FormItem

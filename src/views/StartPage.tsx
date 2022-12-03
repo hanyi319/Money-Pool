@@ -13,7 +13,7 @@ export const StartPage = defineComponent({
     return () => (
       <MainLayout>
         {{
-          title: () => "清流记账",
+          title: () => "点滴记账",
           icon: () => <OverlayIcon />,
           default: () => (
             <>

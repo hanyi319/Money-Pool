@@ -45,7 +45,7 @@ export const Welcome = defineComponent({
       <div class={s.wrapper}>
         <header>
           <Icon name="logo" class={s.icon} />
-          <h1 class={s.appName}>清流记账</h1>
+          <h1 class={s.appName}>点滴记账</h1>
         </header>
         <main class={s.main} ref={main}>
           <RouterView name="main">
