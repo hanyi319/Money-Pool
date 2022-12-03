@@ -8,7 +8,7 @@ export const SkipFeatures = defineComponent({
     };
     return () => (
       <span onClick={onClick}>
-        <RouterLink to="/start">&nbsp;&nbsp;跳过</RouterLink>
+        <RouterLink to="/items">&nbsp;&nbsp;跳过</RouterLink>
       </span>
     );
   },

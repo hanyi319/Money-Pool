@@ -91,3 +91,18 @@
     color: var(--subText-color-black);
   }
 }
+
+.button {
+  width: 100%;
+  &_wrapper {
+    padding: 16px 32px;
+  }
+}
+
+.icon {
+  width: 128px;
+  height: 128px;
+  &_wrapper {
+    padding: 120px 0;
+  }
+}

@@ -16,7 +16,7 @@ fetchMe();
 router.beforeEach(async (to, from) => {
   if (
     to.path === "/" ||
-    to.path === "/start" ||
+    to.path === "/items" ||
     to.path.startsWith("/welcome") ||
     to.path.startsWith("/sign_in")
   ) {
@@ -29,29 +29,6 @@ router.beforeEach(async (to, from) => {
     return path;
   }
 });
-
-// const whiteList: Record<string, "exact" | "startsWith"> = {
-//   "/": "exact",
-//   "/start": "exact",
-//   "/welcome": "startsWith",
-//   "/sign_in": "startsWith",
-// };
-
-// router.beforeEach((to, from) => {
-//   for (const key in whiteList) {
-//     const value = whiteList[key];
-//     if (value === "exact" && to.path === key) {
-//       return true;
-//     }
-//     if (value === "startsWith" && to.path.startsWith(key)) {
-//       return true;
-//     }
-//   }
-//   return mePromise!.then(
-//     () => true,
-//     () => "/sign_in?return_to=" + to.path
-//   );
-// });
 
 const app = createApp(App);
 app.use(router);

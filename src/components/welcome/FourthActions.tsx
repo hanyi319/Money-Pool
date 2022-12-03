@@ -7,7 +7,7 @@ export const FourthActions: FunctionalComponent = () => {
   return (
     <div class={s.actions}>
       <RouterLink to="/welcome/3">上一页</RouterLink>
-      <RouterLink to="/start">完成</RouterLink>
+      <RouterLink to="/items">完成</RouterLink>
       <SkipFeatures class={s.fake} />
     </div>
   );
