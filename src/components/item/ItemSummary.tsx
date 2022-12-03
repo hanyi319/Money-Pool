@@ -42,6 +42,7 @@ export const ItemSummary = defineComponent({
         },
         {
           _mock: "itemIndex",
+          _autoLoading: true,
         }
       );
       // 从请求成功得到的响应解构出明细数据、当前页数
