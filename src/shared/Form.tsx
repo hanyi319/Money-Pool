@@ -24,7 +24,7 @@ export const Form = defineComponent({
 export const FormItem = defineComponent({
   props: {
     label: { type: String },
-    modelValue: { type: [String, Number] },
+    modelValue: { type: [String, Number, Date] },
     type: {
       type: String as PropType<"text" | "emojiSelect" | "date" | "validationCode" | "select">,
     },
@@ -100,7 +100,7 @@ export const FormItem = defineComponent({
               />
               <Popup position="bottom" v-model:show={refDateVisible.value}>
                 <DatetimePicker
-                  value={props.modelValue}
+                  modelValue={props.modelValue ? new Date(props.modelValue) : new Date()}
                   type="date"
                   title="选择日期"
                   onConfirm={(date: Date) => {
