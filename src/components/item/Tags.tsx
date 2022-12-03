@@ -23,11 +23,16 @@ export const Tags = defineComponent({
      * 交易类别、当前展示标签的页数、调用哪种 mock 函数
      */
     const { tags, hasMore, fetchTags } = useTags((page) => {
-      return http.get<Resources<Tag>>("/tags", {
-        kind: props.kind,
-        page: page + 1, // 注意需要 +1，比如第一次请求时，page 为 0，需要在这里 +1 才能加载第 1 页的标签
-        _mock: "tagIndex",
-      });
+      return http.get<Resources<Tag>>(
+        "/tags",
+        {
+          kind: props.kind,
+          page: page + 1, // 注意需要 +1，比如第一次请求时，page 为 0，需要在这里 +1 才能加载第 1 页的标签
+        },
+        {
+          _mock: "tagIndex",
+        }
+      );
     });
     const onSelect = (tag: Tag) => {
       context.emit("update:selected", tag.id);

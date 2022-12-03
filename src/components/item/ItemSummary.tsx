@@ -33,12 +33,17 @@ export const ItemSummary = defineComponent({
       if (!props.startDate || !props.endDate) {
         return;
       }
-      const response = await http.get<Resources<Item>>("/items", {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        page: page.value + 1,
-        _mock: "itemIndex",
-      });
+      const response = await http.get<Resources<Item>>(
+        "/items",
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          page: page.value + 1,
+        },
+        {
+          _mock: "itemIndex",
+        }
+      );
       // 从请求成功得到的响应解构出明细数据、当前页数
       const { resources, pager } = response.data;
       // 将请求到的明细数据 push 进明细数组
@@ -65,12 +70,17 @@ export const ItemSummary = defineComponent({
       if (!props.startDate || !props.endDate) {
         return;
       }
-      const response = await http.get("/items/balance", {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        page: page.value + 1,
-        _mock: "itemIndexBalance",
-      });
+      const response = await http.get(
+        "/items/balance",
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          page: page.value + 1,
+        },
+        {
+          _mock: "itemIndexBalance",
+        }
+      );
       Object.assign(itemsBalance, response.data);
     };
     onMounted(fetchItems);

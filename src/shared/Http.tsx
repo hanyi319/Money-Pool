@@ -45,7 +45,7 @@ const mock = (response: AxiosResponse) => {
   ) {
     return false;
   }
-  switch (response.config?.params?._mock) {
+  switch (response.config?._mock) {
     case "session":
       [response.status, response.data] = mockSession(response.config);
       return true;
