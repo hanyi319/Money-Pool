@@ -6,6 +6,7 @@ import s from "./InputPad.module.scss";
 
 export const InputPad = defineComponent({
   props: {
+    kind: String,
     happenAt: String,
     amount: Number,
     onSubmit: {
@@ -129,7 +130,13 @@ export const InputPad = defineComponent({
         },
       },
       {
-        text: "清除",
+        text: "delete",
+        onClick: () => {
+          refAmount.value = refAmount.value.substring(0, refAmount.value.length - 1);
+        },
+      },
+      {
+        text: "C",
         onClick: () => {
           refAmount.value = "0";
         },
@@ -160,11 +167,15 @@ export const InputPad = defineComponent({
               </Popup>
             </span>
           </span>
-          <span class={s.amount}>￥{refAmount.value}</span>
+          <span class={[s.amount, props.kind === "支出" ? s.expenses : s.income]}>
+            ￥{refAmount.value}
+          </span>
         </div>
         <div class={s.buttons}>
           {buttons.map((button) => (
-            <button onClick={button.onClick}>{button.text}</button>
+            <button onClick={button.onClick}>
+              {button.text !== "delete" ? button.text : <Icon name="delete" class={s.delete} />}
+            </button>
           ))}
         </div>
       </>

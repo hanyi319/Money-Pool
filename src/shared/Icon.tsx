@@ -3,14 +3,17 @@ import { defineComponent, PropType } from "vue";
 export type IconName =
   | "logo"
   | "trade"
-  | "clock"
   | "chart"
   | "cloud"
+  | "clock"
+  | "date"
   | "note"
+  | "item"
   | "menu"
-  | "add"
   | "back"
-  | "date";
+  | "add"
+  | "delete";
+
 export const Icon = defineComponent({
   props: {
     name: {

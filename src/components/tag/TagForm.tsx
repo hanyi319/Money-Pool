@@ -95,9 +95,6 @@ export const TagFrom = defineComponent({
           error={errors["sign"]?.[0]}
         />
         <FormItem>
-          <p class={s.tips}>长按标签，即可编辑</p>
-        </FormItem>
-        <FormItem>
           <Button type="submit" class={s.button}>
             确定
           </Button>

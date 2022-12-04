@@ -2,30 +2,40 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  font-weight: bold;
-  font-family: monospace;
-  height: 128px;
-  padding: 16px;
   margin: 0 8px;
+  padding: 16px;
   border: 4px solid var(--inputPad-button-border);
   border-radius: var(--button-radius);
+  height: 128px;
+  font-weight: bold;
+  font-family: monospace;
   background: var(--inputPad-button-bg);
+
   > .date {
     display: flex;
     justify-content: start;
     align-items: center;
     font-size: 16px;
     color: var(--date-text);
-    .icon {
+
+    > .icon {
+      margin: 0 6px 0 4px;
       width: 24px;
       height: 24px;
-      margin: 0 6px 0 4px;
     }
   }
+
   > .amount {
     height: 32px;
     font-size: 32px;
-    color: var(--amount-text);
+  }
+
+  > .expenses {
+    color: var(--amount-expenses-text);
+  }
+
+  > .income {
+    color: var(--amount-income-text);
   }
 }
 
@@ -33,13 +43,14 @@
   display: grid;
   grid-template-areas:
     "n1 n2 n3 d"
-    "n4 n5 n6 d"
+    "n4 n5 n6 c"
     "n7 n8 n9 s"
     "n0 n0 nd s";
   grid-auto-rows: 64px;
   grid-auto-columns: 1fr;
   flex-wrap: wrap;
   margin: 4px;
+
   > button {
     font-size: 24px;
     font-weight: bold;
@@ -47,6 +58,7 @@
     border-radius: var(--button-radius);
     color: var(--inputPad-text);
     background: var(--inputPad-button-bg);
+
     &:nth-child(1) {
       grid-area: n1;
     }
@@ -84,11 +96,23 @@
       grid-area: d;
       color: var(--inputPad-delete-text);
       background: var(--inputPad-delete-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     &:nth-child(13) {
+      grid-area: c;
+      color: var(--inputPad-delete-text);
+      background: var(--inputPad-delete-bg);
+    }
+    &:nth-child(14) {
       grid-area: s;
       color: var(--inputPad-submit-text);
       background: var(--inputPad-submit-bg);
     }
   }
+}
+
+.delete {
+  height: 35px;
 }

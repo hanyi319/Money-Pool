@@ -2,31 +2,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
   background: var(--overlay-mask-bg);
 
   &_inner {
-    background: var(--bg);
     width: 80vw;
+    background: var(--bg-color-grey);
 
-    > header {
-      background: var(--theme-color-green);
-      padding: 12px 16px;
-      color: var(--dialog-header-text);
-    }
-  }
-}
+    .actions {
+      display: flex;
+      justify-content: space-between;
 
-.actions {
-  text-align: right;
+      > .actionCancel,
+      .actionSubmit {
+        width: calc(50% - 8px);
+      }
 
-  button {
-    border: none;
-    background: transparent;
-    padding: 8px 16px;
-
-    & + & {
-      margin-left: 16px;
+      > .actionCancel {
+        border: none;
+        color: var(--text-color-black);
+        background: var(--bg-color-white);
+      }
     }
   }
 }

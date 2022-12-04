@@ -1,108 +1,118 @@
 .wrapper {
-}
+  padding: 16px;
 
-.total {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 0;
-  margin: 16px;
-  border-radius: var(--button-radius);
-  background: var(--total-bg);
-  color: var(--total-text);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  > li {
+  > .total {
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 16px;
-    font-weight: bold;
-    color: var(--text-color-black);
+    justify-content: space-evenly;
+    margin-bottom: 16px;
+    border-radius: var(--button-radius);
+    color: var(--total-text);
+    background: var(--total-bg);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+
+    > li {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: 16px;
+      font-weight: bold;
+      color: var(--text-color-black);
+    }
   }
+
+  > .list {
+    > li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--button-border-color);
+      padding: 12px 0;
+
+      > .sign {
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 8px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--tag-bg);
+      }
+
+      > .text {
+        margin-right: 4px;
+        margin-left: 4px;
+        flex-grow: 1;
+        flex-shrink: 1;
+
+        > .tagAndAmount {
+          display: flex;
+          justify-content: space-between;
+
+          > .tag {
+            color: var(--list-tag-text);
+          }
+
+          > .amount {
+            font-weight: bold;
+          }
+        }
+
+        > .time {
+          margin-top: 4px;
+          color: var(--list-time-text);
+        }
+      }
+    }
+  }
+
   .expenses {
-    color: var(--total-expenses);
+    color: var(--theme-color-red);
   }
   .expenses::before {
     content: "-";
   }
+
   .income {
-    color: var(--total-income);
+    color: var(--theme-color-green);
   }
   .income::before {
     content: "+";
   }
-}
 
-.list {
-  > li {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    border-bottom: 1px solid var(--button-border-color);
-    padding: 12px 16px;
-  }
-  .sign {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 0;
-    flex-shrink: 0;
-    margin: 0 8px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--tag-bg);
-  }
-  .text {
-    margin-right: 4px;
-    margin-left: 4px;
-    flex-grow: 1;
-    flex-shrink: 1;
-    .tagAndAmount {
-      display: flex;
-      justify-content: space-between;
-      .tag {
-        color: var(--list-tag-text);
-      }
-      .amount {
-        font-weight: bold;
-        color: var(--list-amount-text);
-      }
+  > .more {
+    padding: 16px;
+    text-align: center;
+    font-weight: bold;
+
+    > .loadMore {
+      border: none;
+      color: var(--text-color-black);
+      background: var(--bg-color-grey);
     }
-    .time {
-      color: var(--list-time-text);
-      margin-top: 4px;
+
+    > .noMore {
+      color: var(--text-color-muted);
     }
-  }
-}
-
-.more {
-  padding: 16px;
-  text-align: center;
-  font-weight: bold;
-
-  .loadMore {
-    border: none;
-    background-color: var(--bg-color-grey);
-    color: var(--text-color-black);
-  }
-
-  .noMore {
-    color: var(--subText-color-black);
-  }
-}
-
-.button {
-  width: 100%;
-  &_wrapper {
-    padding: 16px 32px;
   }
 }
 
 .icon {
   width: 128px;
   height: 128px;
+
   &_wrapper {
     padding: 120px 0;
+  }
+}
+
+.button {
+  width: 100%;
+
+  &_wrapper {
+    padding: 16px 32px;
   }
 }

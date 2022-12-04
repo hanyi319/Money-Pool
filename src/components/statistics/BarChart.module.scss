@@ -1,7 +1,7 @@
 .titleWrapper {
   height: 48px;
   margin-top: 16px;
-  background-color: var(--bg-color-white);
+  background: var(--bg-color-white);
   position: relative;
 
   .title {
@@ -15,7 +15,7 @@
 }
 
 .barChartWrapper {
-  background-color: var(--bg-color-white);
+  background: var(--bg-color-white);
 
   .barChart {
     padding: 16px;

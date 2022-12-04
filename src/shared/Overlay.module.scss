@@ -1,9 +1,9 @@
 .icon {
   position: relative;
   top: 1px;
+  margin-right: 8px;
   width: 30px;
   height: 30px;
-  margin-right: 12px;
 }
 
 .mask {
@@ -26,28 +26,47 @@
   background: var(--overlay-bg);
   z-index: var(--z-index-overlay);
 
-  .currentUser {
-    padding: 32px 16px;
-    color: var(--overlay-user-text);
-    background: var(--overlay-user-bg);
+  > .currentUserWrapper {
+    background: var(--bg-color-grey);
 
-    .email {
-      width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    > .currentUser {
+      margin: 16px;
+      padding: 16px;
+      border-radius: var(--button-radius);
+      color: var(--overlay-user-text);
+      background: var(--overlay-user-bg);
+
+      .email {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .subtext {
+        color: var(--text-color-muted);
+      }
     }
   }
 }
 
-.action {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  padding: 12px 16px;
+.action_list {
+  background: var(--bg-color-grey);
 
-  &_list {
-    padding-top: 16px;
-    font-size: 24px;
-    color: var(--overlay-item-text);
+  > li {
+    margin: 16px;
+
+    > .action {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: var(--button-radius);
+      background: var(--bg-color-white);
+
+      > span {
+        font-size: 24px;
+        color: var(--overlay-item-text);
+      }
+    }
   }
 }

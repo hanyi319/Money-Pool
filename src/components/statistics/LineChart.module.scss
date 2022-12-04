@@ -1,6 +1,6 @@
 .titleWrapper {
   height: 48px;
-  background-color: var(--bg-color-white);
+  background: var(--bg-color-white);
   position: relative;
 
   .title {
@@ -14,7 +14,7 @@
 }
 
 .lineChartWrapper {
-  background-color: var(--bg-color-white);
+  background: var(--bg-color-white);
   overflow: auto;
 
   &::-webkit-scrollbar {

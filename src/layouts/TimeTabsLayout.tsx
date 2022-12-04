@@ -6,6 +6,7 @@ import { Tab, Tabs } from "../shared/Tabs";
 import { Form, FormItem } from "../shared/Form";
 import { Time } from "../shared/time";
 import s from "./TimeTabsLayout.module.scss";
+import { Button } from "../shared/Button";
 
 const demo = defineComponent({
   props: {
@@ -105,21 +106,24 @@ export const TimeTabsLayout = defineComponent({
               </Tabs>
               <Overlay show={refOverlayVisible.value} class={s.overlay}>
                 <div class={s.overlay_inner}>
-                  <header>请选择时间</header>
-                  <main>
-                    <Form onSubmit={onSubmitCustomTime}>
-                      <FormItem label="开始时间" v-model={tempTime.start} type="date" />
-                      <FormItem label="结束时间" v-model={tempTime.end} type="date" />
-                      <FormItem>
-                        <div class={s.actions}>
-                          <button type="button" onClick={() => (refOverlayVisible.value = false)}>
-                            取消
-                          </button>
-                          <button type="submit">确认</button>
-                        </div>
-                      </FormItem>
-                    </Form>
-                  </main>
+                  <Form onSubmit={onSubmitCustomTime}>
+                    <FormItem label="开始时间" v-model={tempTime.start} type="date" />
+                    <FormItem label="结束时间" v-model={tempTime.end} type="date" />
+                    <FormItem>
+                      <div class={s.actions}>
+                        <Button
+                          type="button"
+                          onClick={() => (refOverlayVisible.value = false)}
+                          class={s.actionCancel}
+                        >
+                          取消
+                        </Button>
+                        <Button type="submit" class={s.actionSubmit}>
+                          确认
+                        </Button>
+                      </div>
+                    </FormItem>
+                  </Form>
                 </div>
               </Overlay>
             </>

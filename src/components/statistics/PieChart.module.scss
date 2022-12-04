@@ -1,7 +1,7 @@
 .titleWrapper {
   height: 48px;
   margin-top: 16px;
-  background-color: var(--bg-color-white);
+  background: var(--bg-color-white);
   position: relative;
 
   .title {
@@ -15,11 +15,11 @@
 }
 
 .pieChartWrapper {
-  background-color: var(--bg-color-white);
+  background: var(--bg-color-white);
 
   .pieChart {
     height: 35vh;
     max-height: 300px;
-    background-color: var(--bg-color-white);
+    background: var(--bg-color-white);
   }
 }

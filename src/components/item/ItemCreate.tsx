@@ -7,7 +7,7 @@ import { useRouter } from "vue-router";
 import { AxiosError } from "axios";
 import { Dialog } from "vant";
 import { http } from "../../shared/Http";
-import { BackIcon } from "../../shared/BackIcon";
+import { OverlayIcon } from "../../shared/Overlay";
 import s from "./ItemCreate.module.scss";
 
 export const ItemCreate = defineComponent({
@@ -42,8 +42,8 @@ export const ItemCreate = defineComponent({
     return () => (
       <MainLayout class={s.layout}>
         {{
-          title: () => "记账",
-          icon: () => <BackIcon />,
+          title: () => "点滴记账",
+          icon: () => <OverlayIcon />,
           default: () => (
             <>
               <div class={s.wrapper}>
@@ -57,6 +57,7 @@ export const ItemCreate = defineComponent({
                 </Tabs>
                 <div class={s.inputPad_wrapper}>
                   <InputPad
+                    v-model:kind={formData.kind}
                     v-model:happenAt={formData.happen_at}
                     v-model:amount={formData.amount}
                     onSubmit={onSubmit}

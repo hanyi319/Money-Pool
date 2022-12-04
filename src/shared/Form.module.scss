@@ -1,6 +1,6 @@
 .form {
   padding: 16px;
-  background-color: var(--bg-color-grey);
+  background: var(--bg-color-grey);
 }
 
 .formRow {
@@ -16,6 +16,7 @@
   max-width: 100%;
   border: 2px solid var(--bg-color-white);
   border-radius: var(--input-radius);
+
   &.input {
     flex-grow: 1;
     font-size: 18px;
@@ -23,16 +24,19 @@
     font-family: inherit;
     padding-left: 16px;
     padding-right: 16px;
-    background-color: var(--bg-color-white);
-    caret-color: var(--theme-color-green);
+    background: var(--bg-color-white);
+    caret-color: var(--theme-color-blue);
   }
+
   &.validationCodeInput {
     flex-grow: 0;
     width: 7em;
   }
+
   &.validationCodeButton {
     margin-left: 16px;
   }
+
   &.select {
     padding: 0 8px;
     font-size: 20px;
@@ -41,18 +45,22 @@
     border-radius: var(--input-radius);
     color: var(--text-color-white);
     outline: none;
+
     &.expenses {
       border: 1px solid var(--theme-color-red);
-      background-color: var(--theme-color-red);
+      background: var(--theme-color-red);
     }
+
     &.income {
       border: 1px solid var(--theme-color-green);
-      background-color: var(--theme-color-green);
+      background: var(--theme-color-green);
     }
   }
+
   &_name {
     color: var(--text-color-black);
   }
+
   &_value {
     display: flex;
     margin-top: 4px;
@@ -61,6 +69,7 @@
       flex-grow: 1;
     }
   }
+
   &_errorHint {
     margin-top: 4px;
     color: var(--error-color);

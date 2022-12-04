@@ -1,12 +1,15 @@
 import { FunctionalComponent } from "vue";
-import s from "./welcome.module.scss";
 import { Icon } from "../../shared/Icon";
+import s from "./welcome.module.scss";
 
 export const Second: FunctionalComponent = () => {
   return (
     <div class={s.card}>
       <Icon name="chart" class={s.icon} />
-      <div class={s.title2}>一目了然</div>
+      <div>
+        <span class={s.title_green}>一目</span>
+        <span class={s.title_blue}>了然</span>
+      </div>
       <div class={s.content}>&nbsp;&nbsp;重要信息，有效呈现。</div>
     </div>
   );

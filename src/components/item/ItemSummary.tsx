@@ -42,6 +42,7 @@ export const ItemSummary = defineComponent({
           happen_after: props.startDate,
           happen_before: props.endDate,
           page: page.value + 1,
+          kind: "expenses",
         },
         {
           _mock: "itemIndex",
@@ -143,8 +144,8 @@ export const ItemSummary = defineComponent({
                   <div class={s.text}>
                     <div class={s.tagAndAmount}>
                       <span class={s.tag}>{item.tags![0].name}</span>
-                      <span class={s.amount}>
-                        ￥<Money value={item.amount} />
+                      <span class={[s.amount, item.kind === "expenses" ? s.expenses : s.income]}>
+                        <Money value={item.amount} />
                       </span>
                     </div>
                     <div class={s.time}>
