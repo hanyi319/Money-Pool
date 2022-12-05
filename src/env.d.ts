@@ -14,17 +14,17 @@ type Tag = {
   user_id: number;
   name: string;
   sign: string;
-  kind: expenses | income;
+  kind: "expenses" | "income";
 };
 
 type Item = {
   id: number;
   user_id: number;
   amount: number;
-  tags_id: number[];
+  tag_ids: number[];
   tags?: Tag[];
   happen_at: string;
-  kind: expenses | income;
+  kind: "expenses" | "income";
 };
 
 type User = {
@@ -48,3 +48,5 @@ type Resources<T = any> = {
 type ResourceError = {
   errors: Record<string, string[]>;
 };
+
+type FormErrors<T> = { [K in keyof typeof T]: string[] };

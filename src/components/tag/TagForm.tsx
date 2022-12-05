@@ -20,11 +20,11 @@ export const TagFrom = defineComponent({
       id: undefined, // 标签 id，如果是新增标签就默认为空，如果是编辑标签，就需要外部传值
       name: "", // 标签名
       sign: "", // 符号
-      kind: route.query.kind!.toString(), // 使用隐藏字段来标记当前新增标签类别（支出 / 收入）
+      kind: route.query.kind!.toString() as "expenses" | "income", // 使用隐藏字段来标记当前新增标签类别（支出 / 收入）
     });
 
     // 错误信息（其中 key 必须属于表单数据的 key）
-    const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({});
+    const errors = reactive<FormErrors<typeof formData>>({});
 
     // 新增标签
     const onSubmit = async (e: Event) => {

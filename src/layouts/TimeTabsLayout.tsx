@@ -5,8 +5,8 @@ import { MainLayout } from "./MainLayout";
 import { Tab, Tabs } from "../shared/Tabs";
 import { Form, FormItem } from "../shared/Form";
 import { Time } from "../shared/time";
-import s from "./TimeTabsLayout.module.scss";
 import { Button } from "../shared/Button";
+import s from "./TimeTabsLayout.module.scss";
 
 const demo = defineComponent({
   props: {
@@ -82,25 +82,25 @@ export const TimeTabsLayout = defineComponent({
                 onUpdate:selected={onSelect}
                 reRenderOnSelect={props.reRenderOnSwitchTab}
               >
-                <Tab name="本周">
+                <Tab value="本周" name="本周">
                   <props.component
                     startDate={timeList[0].start.format()}
                     endDate={timeList[0].end.format()}
                   />
                 </Tab>
-                <Tab name="本月">
+                <Tab value="本月" name="本月">
                   <props.component
                     startDate={timeList[1].start.format()}
                     endDate={timeList[1].end.format()}
                   />
                 </Tab>
-                <Tab name="上月">
+                <Tab value="上月" name="上月">
                   <props.component
                     startDate={timeList[2].start.format()}
                     endDate={timeList[2].end.format()}
                   />
                 </Tab>
-                <Tab name="自定义">
+                <Tab value="自定义" name="自定义">
                   <props.component startDate={customTime.start} endDate={customTime.end} />
                 </Tab>
               </Tabs>
