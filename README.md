@@ -1,12 +1,46 @@
-# 点滴记账 Money-Stream
+# 如何开发
 
-## 如何开发
+## 克隆项目
 
-## 如何打包
+点击复制 Clone 的地址，并 cd 到保存该本地仓库的路径，运行以下命令：
 
-## 编码规范
+```
+git@github.com:hanyi319/Money-Pool.git
+```
 
-### ref 默认值
+## 安装依赖
+
+cd 到本地仓库所在的目录中，运行以下命令：
+
+安装 pnpm
+
+```
+npm install -g pnpm
+```
+
+安装相关依赖
+
+```
+pnpm i
+```
+
+## 本地预览
+
+```
+pnpm run dev
+```
+
+或
+
+```
+pnpm run dev --port=3001
+```
+
+# 如何打包
+
+# 编码规范
+
+## ref 默认值
 
 不推荐使用
 
