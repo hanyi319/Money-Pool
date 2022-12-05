@@ -60,7 +60,7 @@ export const validate = <T extends FData>(formData: T, rules: Rules<T>) => {
         }
         break;
       case "notEqual":
-        if (!isEmpty(value) || value === rule.value) {
+        if (!isEmpty(value) && value === rule.value) {
           errors[key] = errors[key] ?? [];
           errors[key]?.push(message);
         }
