@@ -129,34 +129,43 @@ export const ItemSummary = defineComponent({
                 <span>收入</span>
               </li>
               <li>
-                <span class={itemsBalance.expenses > itemsBalance.income ? s.expenses : s.income}>
+                <span
+                  class={
+                    itemsBalance.expenses > itemsBalance.income
+                      ? s.expensesBalance
+                      : s.incomeBalance
+                  }
+                >
                   <Money value={itemsBalance.balance} />
                 </span>
                 <span>结余</span>
               </li>
             </ul>
-            <ol class={s.list}>
-              {items.value.map((item) => (
-                <li>
-                  <div class={s.sign}>
-                    <span>{item.tags && item.tags.length > 0 ? item.tags[0].sign : "💰"}</span>
-                  </div>
-                  <div class={s.text}>
-                    <div class={s.tagAndAmount}>
-                      <span class={s.tag}>
-                        {item.tags && item.tags.length > 0 ? item.tags[0].name : "未分类"}
-                      </span>
-                      <span class={[s.amount, item.kind === "expenses" ? s.expenses : s.income]}>
-                        <Money value={item.amount} />
-                      </span>
+            <div class={s.listWrapper}>
+              <div class={s.export}></div>
+              <ol class={s.list}>
+                {items.value.map((item) => (
+                  <li>
+                    <div class={s.sign}>
+                      <span>{item.tags && item.tags.length > 0 ? item.tags[0].sign : "💰"}</span>
                     </div>
-                    <div class={s.time}>
-                      <Datetime value={item.happen_at} />
+                    <div class={s.text}>
+                      <div class={s.tagAndAmount}>
+                        <span class={s.tag}>
+                          {item.tags && item.tags.length > 0 ? item.tags[0].name : "未分类"}
+                        </span>
+                        <span class={[s.amount, item.kind === "expenses" ? s.expenses : s.income]}>
+                          <Money value={item.amount} />
+                        </span>
+                      </div>
+                      <div class={s.time}>
+                        <Datetime value={item.happen_at} />
+                      </div>
                     </div>
-                  </div>
-                </li>
-              ))}
-            </ol>
+                  </li>
+                ))}
+              </ol>
+            </div>
             <div class={s.more}>
               {hasMore.value ? (
                 <Button onClick={fetchItems} class={s.loadMore}>

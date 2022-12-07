@@ -30,12 +30,12 @@
     font-size: 32px;
   }
 
-  > .expenses {
-    color: var(--amount-expenses-text);
+  > .expensesAmount {
+    color: var(--theme-color-red);
   }
 
-  > .income {
-    color: var(--amount-income-text);
+  > .incomeAmount {
+    color: var(--theme-color-green);
   }
 }
 
@@ -57,62 +57,83 @@
     border: 4px solid var(--inputPad-border);
     border-radius: var(--button-radius);
     color: var(--inputPad-text);
-    background: var(--inputPad-button-bg);
 
     &:nth-child(1) {
       grid-area: n1;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(2) {
       grid-area: n2;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(3) {
       grid-area: n3;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(4) {
       grid-area: n4;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(5) {
       grid-area: n5;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(6) {
       grid-area: n6;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(7) {
       grid-area: n7;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(8) {
       grid-area: n8;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(9) {
       grid-area: n9;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(10) {
       grid-area: n0;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(11) {
       grid-area: nd;
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(12) {
       grid-area: d;
-      color: var(--inputPad-delete-text);
-      background: var(--inputPad-delete-bg);
+      background: var(--inputPad-button-bg);
       display: flex;
       justify-content: center;
       align-items: center;
     }
     &:nth-child(13) {
       grid-area: c;
-      color: var(--inputPad-delete-text);
-      background: var(--inputPad-delete-bg);
+      background: var(--inputPad-button-bg);
     }
     &:nth-child(14) {
       grid-area: s;
-      color: var(--inputPad-submit-text);
-      background: var(--inputPad-submit-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
-}
 
-.delete {
-  height: 35px;
+  .delete {
+    height: 35px;
+  }
+
+  .ok {
+    height: 50px;
+  }
+
+  .expensesButton {
+    background: var(--theme-color-red);
+  }
+
+  .incomeButton {
+    background: var(--theme-color-green);
+  }
 }

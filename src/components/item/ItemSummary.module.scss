@@ -18,53 +18,83 @@
       padding: 16px;
       font-weight: bold;
       color: var(--text-color-black);
+
+      > .expensesBalance {
+        color: var(--theme-color-red);
+      }
+
+      > .incomeBalance {
+        color: var(--theme-color-green);
+      }
     }
   }
 
-  > .list {
-    > li {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1px solid var(--button-border-color);
-      padding: 12px 0;
+  > .listWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-      > .sign {
-        flex-grow: 0;
-        flex-shrink: 0;
+    > .export {
+      width: 100%;
+      height: 10px;
+      border-radius: var(--button-radius);
+      background: var(--text-color-black);
+    }
+
+    > .list {
+      background: var(--bg-color-white);
+      margin-top: -5px;
+      width: calc(100% - 16px);
+      border-radius: 0 0 var(--button-radius) var(--button-radius);
+
+      > li {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 8px;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: var(--tag-bg);
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 12px 8px;
+
+        > .sign {
+          flex-grow: 0;
+          flex-shrink: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 8px;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: var(--bg-color-grey);
+        }
+
+        > .text {
+          margin-right: 4px;
+          margin-left: 4px;
+          flex-grow: 1;
+          flex-shrink: 1;
+
+          > .tagAndAmount {
+            display: flex;
+            justify-content: space-between;
+
+            > .tag {
+              color: var(--list-tag-text);
+            }
+
+            > .amount {
+              font-weight: bold;
+            }
+          }
+
+          > .time {
+            margin-top: 4px;
+            color: var(--list-time-text);
+          }
+        }
       }
 
-      > .text {
-        margin-right: 4px;
-        margin-left: 4px;
-        flex-grow: 1;
-        flex-shrink: 1;
-
-        > .tagAndAmount {
-          display: flex;
-          justify-content: space-between;
-
-          > .tag {
-            color: var(--list-tag-text);
-          }
-
-          > .amount {
-            font-weight: bold;
-          }
-        }
-
-        > .time {
-          margin-top: 4px;
-          color: var(--list-time-text);
-        }
+      > li:not(:last-child) {
+        border-bottom: 1px dashed var(--button-border-color);
       }
     }
   }

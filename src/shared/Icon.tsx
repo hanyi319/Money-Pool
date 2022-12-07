@@ -12,7 +12,8 @@ export type IconName =
   | "menu"
   | "back"
   | "add"
-  | "delete";
+  | "delete"
+  | "ok";
 
 export const Icon = defineComponent({
   props: {

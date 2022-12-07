@@ -130,7 +130,7 @@ export const InputPad = defineComponent({
         },
       },
       {
-        text: "delete",
+        icon: <Icon name="delete" class={s.delete} />,
         onClick: () => {
           refAmount.value = refAmount.value.substring(0, refAmount.value.length - 1);
         },
@@ -142,7 +142,7 @@ export const InputPad = defineComponent({
         },
       },
       {
-        text: "确认",
+        icon: <Icon name="ok" class={s.ok} />,
         onClick: () => {
           context.emit("update:amount", parseFloat(refAmount.value) * 100);
           props.onSubmit?.();
@@ -167,14 +167,17 @@ export const InputPad = defineComponent({
               </Popup>
             </span>
           </span>
-          <span class={[s.amount, props.kind === "支出" ? s.expenses : s.income]}>
+          <span class={[s.amount, props.kind === "expenses" ? s.expensesAmount : s.incomeAmount]}>
             ￥{refAmount.value}
           </span>
         </div>
         <div class={s.buttons}>
           {buttons.map((button) => (
-            <button onClick={button.onClick}>
-              {button.text !== "delete" ? button.text : <Icon name="delete" class={s.delete} />}
+            <button
+              onClick={button.onClick}
+              class={props.kind === "expenses" ? s.expensesButton : s.incomeButton}
+            >
+              {button.text || button.icon}
             </button>
           ))}
         </div>
