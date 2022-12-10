@@ -4,14 +4,23 @@ import { createRouter } from "vue-router";
 import { routes } from "./config/routes";
 import { history } from "./shared/history";
 import "@svgstore";
-import { fetchMe, mePromise } from "./shared/me";
+import { createPinia } from "pinia";
+import { useMeStore } from "./stores/useMeStore";
 
 const router = createRouter({
   history,
   routes,
 });
 
-fetchMe();
+const pinia = createPinia();
+const app = createApp(App);
+app.use(router);
+app.use(pinia);
+app.mount("#app");
+
+// 注意需要在配置 Pinia 之后，再使用
+const meStore = useMeStore();
+meStore.fetchMe();
 
 router.beforeEach(async (to, from) => {
   if (
@@ -22,14 +31,10 @@ router.beforeEach(async (to, from) => {
   ) {
     return true;
   } else {
-    const path = await mePromise!.then(
+    const path = await meStore.mePromise!.then(
       () => true,
       () => "/sign_in?return_to=" + to.path
     );
     return path;
   }
 });
-
-const app = createApp(App);
-app.use(router);
-app.mount("#app");

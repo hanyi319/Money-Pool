@@ -1,20 +1,18 @@
-import { defineComponent, PropType, reactive, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { MainLayout } from "../layouts/MainLayout";
 import { Button } from "../shared/Button";
 import { Form, FormItem } from "../shared/Form";
 import { Icon } from "../shared/Icon";
 import { validate, hasError } from "../shared/validate";
-import s from "./SignInPage.module.scss";
-import axios from "axios";
 import { http } from "../shared/Http";
 import { useBool } from "../hooks/useBool";
-import { history } from "../shared/history";
 import { useRoute, useRouter } from "vue-router";
-import { refreshMe } from "../shared/me";
-import { BackIcon } from "../shared/BackIcon";
+import { useMeStore } from "../stores/useMeStore";
+import s from "./SignInPage.module.scss";
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
+    const meStore = useMeStore(); // 状态管理
     const router = useRouter(); // 路由器
     const route = useRoute(); // 路由信息
     const formData = reactive({
@@ -46,7 +44,7 @@ export const SignInPage = defineComponent({
         // router.push("/sign_in?return_to=" + encodeURIComponent(route.fullPath));
         const returnTo = route.query.return_to?.toString();
         // const returnTo = localStorage.getItem("returnTo");
-        refreshMe();
+        meStore.refreshMe();
         router.push(returnTo || "/");
       }
     };
