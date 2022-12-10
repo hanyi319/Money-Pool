@@ -4,10 +4,12 @@ import { FloatButton } from "../../shared/FloatButton";
 import { http } from "../../shared/Http";
 import { Money } from "../../shared/Money";
 import { Datetime } from "../../shared/Datetime";
-import s from "./ItemSummary.module.scss";
 import { Center } from "../../shared/Center";
 import { Icon } from "../../shared/Icon";
 import { RouterLink } from "vue-router";
+import { useMeStore } from "../../stores/useMeStore";
+import { useAfterMe } from "../../hooks/useAfterMe";
+import s from "./ItemSummary.module.scss";
 
 export const ItemSummary = defineComponent({
   props: {
@@ -20,7 +22,7 @@ export const ItemSummary = defineComponent({
       required: false,
     },
   },
-  setup: (props, context) => {
+  setup: (props) => {
     const items = ref<Item[]>([]); // 明细列表，默认为空数组
     const hasMore = ref(false); // 是否要加载更多明细，默认为不加载
     const page = ref(0); // 当前展示标签的页数，默认为 0（也符合未加载时的状态）
@@ -88,8 +90,9 @@ export const ItemSummary = defineComponent({
       );
       Object.assign(itemsBalance, response.data);
     };
-    onMounted(fetchItems);
-    onMounted(fetchItemsBalance);
+    // 只有当用户登录时，才去加载对应时间段的记账数据
+    useAfterMe(fetchItems);
+    useAfterMe(fetchItemsBalance);
     /**
      * 自定义时间
      * 监听开始时间和结束时间其中任意一个的变化
