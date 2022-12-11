@@ -45,19 +45,41 @@ export class Time {
       .replace(/ss/, second.toString().padStart(2, "0"))
       .replace(/sss/, msecond.toString().padStart(3, "0"));
   }
+  getRaw() {
+    return this.date;
+  }
+  getTimestamp() {
+    return this.date.getTime();
+  }
   firstDayOfWeek() {
     /**
      * getDate() 返回指定日期为一个月中的哪一天（1-31）
      * getDay() 返回指定日期中一周的第几天（0 表示星期日）
-     * 比如12月1日这一周的第一天：
-     * 1-4+1=-2
-     * 在12月零点往前推2天，就是11月28日
+     * 这个减法可以直接通过日历直观体验
+     * 默认以星期日作为一周开始日
+     * 这里为了强行用星期一作为一周开始日，暂且用很丑的写法替代
      */
+    let weekDay = this.date.getDay();
+    weekDay === 0 ? (weekDay = 7) : weekDay;
     return new Time(
       new Date(
         this.date.getFullYear(),
         this.date.getMonth(),
-        this.date.getDate() - this.date.getDay() + 1,
+        this.date.getDate() - weekDay + 1,
+        0,
+        0,
+        0
+      )
+    );
+  }
+  lastDayOfWeek() {
+    let weekDay = this.date.getDay();
+    weekDay === 0 ? (weekDay = 7) : weekDay;
+    return new Time(
+      new Date(
+        this.date.getFullYear(),
+        this.date.getMonth(),
+        this.date.getDate() - weekDay + 1 + 7,
         0,
         0,
         0
@@ -67,37 +89,14 @@ export class Time {
   firstDayOfMonth() {
     return new Time(new Date(this.date.getFullYear(), this.date.getMonth(), 1, 0, 0, 0));
   }
-  firstDayOfYear() {
-    return new Time(new Date(this.date.getFullYear(), 0, 1, 0, 0, 0));
-  }
-  lastDayOfWeek() {
-    /**
-     * 比如12月1日这一周的最后一天：
-     * 1+(6-4+1)=4
-     * 在12月零点往后推4天，就是12月4日
-     */
-    return new Time(
-      new Date(
-        this.date.getFullYear(),
-        this.date.getMonth(),
-        this.date.getDate() + (6 - this.date.getDay() + 1),
-        0,
-        0,
-        0
-      )
-    );
-  }
   lastDayOfMonth() {
     return new Time(new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0, 0, 0, 0));
   }
+  firstDayOfYear() {
+    return new Time(new Date(this.date.getFullYear(), 0, 1, 0, 0, 0));
+  }
   lastDayOfYear() {
     return new Time(new Date(this.date.getFullYear() + 1, 0, 0, 0, 0, 0));
-  }
-  getRaw() {
-    return this.date;
-  }
-  getTimestamp() {
-    return this.date.getTime();
   }
   add(
     amount: number,
