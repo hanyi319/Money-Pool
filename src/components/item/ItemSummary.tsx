@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, PropType, reactive, ref, watch } from "vue";
+import { defineComponent, PropType, reactive, watch } from "vue";
 import { Button } from "../../shared/Button";
 import { FloatButton } from "../../shared/FloatButton";
 import { http } from "../../shared/Http";
@@ -7,8 +7,8 @@ import { Datetime } from "../../shared/Datetime";
 import { Center } from "../../shared/Center";
 import { Icon } from "../../shared/Icon";
 import { RouterLink } from "vue-router";
-import { useMeStore } from "../../stores/useMeStore";
 import { useAfterMe } from "../../hooks/useAfterMe";
+import { useItemStore } from "../../stores/useItemStore";
 import s from "./ItemSummary.module.scss";
 
 export const ItemSummary = defineComponent({
@@ -23,55 +23,16 @@ export const ItemSummary = defineComponent({
     },
   },
   setup: (props) => {
-    const items = ref<Item[]>([]); // 明细列表，默认为空数组
-    const hasMore = ref(false); // 是否要加载更多明细，默认为不加载
-    const page = ref(0); // 当前展示标签的页数，默认为 0（也符合未加载时的状态）
+    if (!props.startDate || !props.endDate) {
+      return () => <div>请先选择时间范围</div>;
+    }
+    const itemStore = useItemStore(["items", props.startDate, props.endDate]);
     // 盈亏情况，包含对应时间段的支出、收入和结余
     const itemsBalance = reactive({
       expenses: 0,
       income: 0,
       balance: 0,
     });
-    // 加载明细
-    const fetchItems = async () => {
-      // 自定义时间默认为空，不发请求
-      if (!props.startDate || !props.endDate) {
-        return;
-      }
-      const response = await http.get<Resources<Item>>(
-        "/items",
-        {
-          happen_after: props.startDate,
-          happen_before: props.endDate,
-          page: page.value + 1,
-          kind: "expenses",
-        },
-        {
-          _mock: "itemIndex",
-          _autoLoading: true,
-        }
-      );
-      // 从请求成功得到的响应解构出明细数据、当前页数
-      const { resources, pager } = response.data;
-      // 将请求到的明细数据 push 进明细数组
-      items.value?.push(...resources);
-      /**
-       * 因为第 1 次请求成功后 page = 1，所以默认只创建 25 个明细，也就是只有 1 页
-       * 比如总共要展示 26 个明细，因为最开始是第 1 页
-       * 所以就是 (1 - 1) * 25 + 25 < 26，为 true，所以可以继续加载更多明细
-       */
-      hasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count;
-      // 当前页数需要 +1
-      page.value += 1;
-      /**
-       * 注意这里的 page.value 并不等同于 pager.page
-       * 它们只是数值需要保持相同，比如在第一次请求成功后，都为 1
-       * page 是之前定义的 ref（所以需要取 value 值），pager.page 则是从响应结果里解构出来的（类型为 number）
-       * 整个变化可以理解为 page.value 默认为 0，第一次加载明细时传入请求函数并且 +1，之后从响应中作为 pager.page 解构出来
-       * 此时 pager.page = 1，但这里的 page.value 仍然为 0，所以需要再次进行 +1 操作
-       * 也就是第二次加载标签时，page.value 传入请求函数并且 +1 为 2，这样才能加载下一页的明细
-       */
-    };
     // 加载盈亏
     const fetchItemsBalance = async () => {
       if (!props.startDate || !props.endDate) {
@@ -82,7 +43,6 @@ export const ItemSummary = defineComponent({
         {
           happen_after: props.startDate,
           happen_before: props.endDate,
-          page: page.value + 1,
         },
         {
           _mock: "itemIndexBalance",
@@ -91,7 +51,7 @@ export const ItemSummary = defineComponent({
       Object.assign(itemsBalance, response.data);
     };
     // 只有当用户登录时，才去加载对应时间段的记账数据
-    useAfterMe(fetchItems);
+    useAfterMe(() => itemStore.fetchItems(props.startDate, props.endDate));
     useAfterMe(fetchItemsBalance);
     /**
      * 自定义时间
@@ -101,10 +61,8 @@ export const ItemSummary = defineComponent({
     watch(
       () => [props.startDate, props.endDate],
       () => {
-        items.value = [];
-        hasMore.value = false;
-        page.value = 0;
-        fetchItems();
+        itemStore.reset();
+        itemStore.fetchItems();
       }
     );
     watch(
@@ -116,7 +74,7 @@ export const ItemSummary = defineComponent({
     );
     return () => (
       <div class={s.wrapper}>
-        {items.value && items.value.length > 0 ? (
+        {itemStore.items && itemStore.items.length > 0 ? (
           <>
             <ul class={s.total}>
               <li>
@@ -147,7 +105,7 @@ export const ItemSummary = defineComponent({
             <div class={s.listWrapper}>
               <div class={s.export}></div>
               <ol class={s.list}>
-                {items.value.map((item) => (
+                {itemStore.items.map((item) => (
                   <li>
                     <div class={s.sign}>
                       <span>{item.tags && item.tags.length > 0 ? item.tags[0].sign : "💰"}</span>
@@ -170,8 +128,11 @@ export const ItemSummary = defineComponent({
               </ol>
             </div>
             <div class={s.more}>
-              {hasMore.value ? (
-                <Button onClick={fetchItems} class={s.loadMore}>
+              {itemStore.hasMore ? (
+                <Button
+                  onClick={() => itemStore.fetchItems(props.startDate, props.endDate)}
+                  class={s.loadMore}
+                >
                   加载更多
                 </Button>
               ) : (
