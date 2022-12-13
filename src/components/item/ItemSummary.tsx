@@ -27,49 +27,21 @@ export const ItemSummary = defineComponent({
       return () => <div>请先选择时间范围</div>;
     }
     const itemStore = useItemStore(["items", props.startDate, props.endDate]);
-    // 盈亏情况，包含对应时间段的支出、收入和结余
-    const itemsBalance = reactive({
-      expenses: 0,
-      income: 0,
-      balance: 0,
-    });
-    // 加载盈亏
-    const fetchItemsBalance = async () => {
-      if (!props.startDate || !props.endDate) {
-        return;
-      }
-      const response = await http.get(
-        "/items/balance",
-        {
-          happen_after: props.startDate,
-          happen_before: props.endDate,
-        },
-        {
-          _mock: "itemIndexBalance",
-        }
-      );
-      Object.assign(itemsBalance, response.data);
-    };
+
     // 只有当用户登录时，才去加载对应时间段的记账数据
-    useAfterMe(() => itemStore.fetchItems(props.startDate, props.endDate));
-    useAfterMe(fetchItemsBalance);
+    useAfterMe(() => itemStore.fetchFirstPage(props.startDate, props.endDate));
+    useAfterMe(() => itemStore.fetchItemsBalance(props.startDate, props.endDate));
+
     /**
-     * 自定义时间
-     * 监听开始时间和结束时间其中任意一个的变化
-     * 重新加载明细和盈亏
+     * 监听起止时间其中任意一个的变化
+     * 重新加载收支总览和明细
      */
     watch(
       () => [props.startDate, props.endDate],
       () => {
-        itemStore.reset();
-        itemStore.fetchItems();
-      }
-    );
-    watch(
-      () => [props.startDate, props.endDate],
-      () => {
-        Object.assign(itemsBalance, { expenses: 0, income: 0, balance: 0 });
-        fetchItemsBalance();
+        itemStore.$reset();
+        itemStore.fetchFirstPage(props.startDate, props.endDate);
+        itemStore.fetchItemsBalance(props.startDate, props.endDate);
       }
     );
     return () => (
@@ -79,25 +51,25 @@ export const ItemSummary = defineComponent({
             <ul class={s.total}>
               <li>
                 <span class={s.expenses}>
-                  <Money value={itemsBalance.expenses} />
+                  <Money value={itemStore.itemsBalance.expenses} />
                 </span>
                 <span>支出</span>
               </li>
               <li>
                 <span class={s.income}>
-                  <Money value={itemsBalance.income} />
+                  <Money value={itemStore.itemsBalance.income} />
                 </span>
                 <span>收入</span>
               </li>
               <li>
                 <span
                   class={
-                    itemsBalance.expenses > itemsBalance.income
+                    itemStore.itemsBalance.expenses > itemStore.itemsBalance.income
                       ? s.expensesBalance
                       : s.incomeBalance
                   }
                 >
-                  <Money value={itemsBalance.balance} />
+                  <Money value={itemStore.itemsBalance.balance} />
                 </span>
                 <span>结余</span>
               </li>
@@ -130,7 +102,7 @@ export const ItemSummary = defineComponent({
             <div class={s.more}>
               {itemStore.hasMore ? (
                 <Button
-                  onClick={() => itemStore.fetchItems(props.startDate, props.endDate)}
+                  onClick={() => itemStore.fetchNextPage(props.startDate, props.endDate)}
                   class={s.loadMore}
                 >
                   加载更多

@@ -20,11 +20,21 @@
       color: var(--text-color-black);
 
       > .expensesBalance {
+        font-size: 18px;
         color: var(--theme-color-red);
       }
 
+      > .expensesBalance::before {
+        content: "-";
+      }
+
       > .incomeBalance {
+        font-size: 18px;
         color: var(--theme-color-green);
+      }
+
+      > .incomeBalance::before {
+        content: "+";
       }
     }
   }
@@ -47,6 +57,7 @@
       margin-top: -5px;
       width: calc(100% - 16px);
       border-radius: 0 0 var(--button-radius) var(--button-radius);
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 
       > li {
         display: flex;
@@ -100,6 +111,7 @@
   }
 
   .expenses {
+    font-size: 18px;
     color: var(--theme-color-red);
   }
   .expenses::before {
@@ -107,6 +119,7 @@
   }
 
   .income {
+    font-size: 18px;
     color: var(--theme-color-green);
   }
   .income::before {

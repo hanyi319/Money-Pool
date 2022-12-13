@@ -27,6 +27,12 @@ type Item = {
   kind: "expenses" | "income";
 };
 
+type ItemsBalance = {
+  expenses: number;
+  income: number;
+  balance: number;
+};
+
 type User = {
   id: number;
   email: string;
