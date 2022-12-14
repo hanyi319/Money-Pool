@@ -79,10 +79,10 @@ export class Time {
       new Date(
         this.date.getFullYear(),
         this.date.getMonth(),
-        this.date.getDate() - weekDay + 1 + 7,
-        0,
-        0,
-        0
+        this.date.getDate() - weekDay + 1 + 6,
+        23,
+        59,
+        59
       )
     );
   }
