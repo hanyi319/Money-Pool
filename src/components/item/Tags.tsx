@@ -49,9 +49,7 @@ export const Tags = defineComponent({
     const currentTag = ref<HTMLDivElement>(); // 当前标签
     // 长按跳转页面
     const onLongPress = (tagId: Tag["id"]) => {
-      router.push(
-        `/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`
-      );
+      router.push(`/tags/${tagId}/edit?kind=${props.kind}`);
     };
     const onTouchStart = (e: TouchEvent, tag: Tag) => {
       // 标记当前标签
