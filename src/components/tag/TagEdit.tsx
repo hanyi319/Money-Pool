@@ -1,12 +1,12 @@
 import { defineComponent } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { http } from "../../shared/Http";
 import { MainLayout } from "../../layouts/MainLayout";
 import { BackIcon } from "../../shared/BackIcon";
 import { TagFrom } from "./TagForm";
 import { Button } from "../../shared/Button";
-import s from "./Tag.module.scss";
 import { Dialog } from "vant";
-import { http } from "../../shared/Http";
+import s from "./Tag.module.scss";
 
 // 编辑标签页面
 export const TagEdit = defineComponent({
@@ -45,18 +45,13 @@ export const TagEdit = defineComponent({
           default: () => (
             <>
               <TagFrom id={numberId} />
-              <div class={s.actions}>
-                <Button level="important" class={s.removeTags} onClick={() => onDelete()}>
-                  删除标签
-                </Button>
-                <Button
-                  level="danger"
-                  class={s.removeTagsAndItems}
-                  onClick={() => onDelete({ withItems: true })}
-                >
-                  删除标签和记账
-                </Button>
-              </div>
+              <Button
+                level="danger"
+                class={s.removeTagsAndItems}
+                onClick={() => onDelete({ withItems: true })}
+              >
+                删除标签和对应记账数据
+              </Button>
             </>
           ),
         }}
