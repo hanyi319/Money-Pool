@@ -73,9 +73,9 @@ export const useItemStore = (id: string | string[]) =>
          * 如果是加载下一页，那么就将响应结果 push 进明细数组
          */
         if (firstPage) {
-          this.items = resources;
+          this.items = resources.reverse();
         } else {
-          this.items?.push(...resources);
+          this.items?.push(...resources.reverse());
         }
         /**
          * 因为第 1 次请求成功后 page = 1，所以默认只创建 25 个明细，也就是只有 1 页

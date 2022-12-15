@@ -24,10 +24,6 @@
         color: var(--theme-color-red);
       }
 
-      > .expensesBalance::before {
-        content: "-";
-      }
-
       > .incomeBalance {
         font-size: 18px;
         color: var(--theme-color-green);

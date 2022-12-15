@@ -1,7 +1,6 @@
-import { defineComponent, PropType, reactive, watch } from "vue";
+import { defineComponent, PropType, watch } from "vue";
 import { Button } from "../../shared/Button";
 import { FloatButton } from "../../shared/FloatButton";
-import { http } from "../../shared/Http";
 import { Money } from "../../shared/Money";
 import { Datetime } from "../../shared/Datetime";
 import { Center } from "../../shared/Center";
