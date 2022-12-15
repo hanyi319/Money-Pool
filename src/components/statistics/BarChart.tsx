@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType, reactive } from "vue";
+import { defineComponent, PropType } from "vue";
 import { Money } from "../../shared/Money";
 import s from "./BarChart.module.scss";
 
@@ -47,7 +47,7 @@ export const BarChart = defineComponent({
                 );
               })
             ) : (
-              <div>没有数据</div>
+              <div class={s.tips}>没有数据</div>
             )}
           </div>
         </div>

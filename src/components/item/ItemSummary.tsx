@@ -24,7 +24,14 @@ export const ItemSummary = defineComponent({
   },
   setup: (props) => {
     if (!props.startDate || !props.endDate) {
-      return () => <div>请先选择时间范围</div>;
+      return () => (
+        <>
+          <Center class={s.icon_wrapper}>
+            <Icon name="clock" class={s.icon} />
+          </Center>
+          <div class={s.customize_tips}>请先选择时间范围</div>
+        </>
+      );
     }
     const itemStore = useItemStore(["items", props.startDate, props.endDate]);
 

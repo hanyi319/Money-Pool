@@ -40,8 +40,12 @@ export const InputPad = defineComponent({
       if (dotIndex >= 0 && refAmount.value.length - dotIndex > 2) {
         return;
       }
+      // 输入小数点的情况：
       if (nString === ".") {
-        // 输入小数点的情况：
+        // 如果此时输入金额为 0，就在后面添上小数点
+        if (refAmount.value === "0") {
+          refAmount.value = "0";
+        }
         // 如果已经存在小数点，则直接返回
         if (dotIndex >= 0) {
           return;
@@ -168,7 +172,7 @@ export const InputPad = defineComponent({
             </span>
           </span>
           <span class={[s.amount, props.kind === "expenses" ? s.expensesAmount : s.incomeAmount]}>
-            ￥{refAmount.value}
+            ￥{refAmount.value === "" ? "0" : refAmount.value}
           </span>
         </div>
         <div class={s.buttons}>

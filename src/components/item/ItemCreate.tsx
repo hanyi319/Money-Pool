@@ -33,6 +33,10 @@ export const ItemCreate = defineComponent({
     });
     const onError = (error: AxiosError<ResourceError>) => {
       if (error.response?.status === 422) {
+        if (error.response.data.errors.tag_ids.indexOf("必填") >= 0) {
+          error.response.data.errors.tag_ids[error.response.data.errors.tag_ids.indexOf("必填")] =
+            "未选择标签";
+        }
         Dialog.alert({
           title: "出错",
           message: Object.values(error.response.data.errors).join("\n"),
