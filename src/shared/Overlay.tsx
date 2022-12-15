@@ -26,6 +26,7 @@ export const Overlay = defineComponent({
         message: "是否退出登录？",
       });
       localStorage.removeItem("jwt");
+      window.location.reload();
     };
     onMounted(async () => {
       const response = await meStore.mePromise;
