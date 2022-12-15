@@ -72,9 +72,12 @@ export const Chart = defineComponent({
         /**
          * 如果原数组有当日的记账数据，就将其弹出数组，并用对应的金额填补新数组
          * 如果当日没有记账数据，新数组对应的金额就填 0
+         * 注意这里统一使用北京时间，否则会有 bug
          */
         const amount =
-          item && new Date(item.happen_at).getTime() === time ? data1.value.shift()!.amount : 0;
+          item && new Date(item.happen_at + "T00:00:00.000+0800").getTime() === time
+            ? data1.value.shift()!.amount
+            : 0;
         return [new Date(time).toISOString(), amount];
       });
     });
