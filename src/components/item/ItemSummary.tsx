@@ -43,10 +43,10 @@ export const ItemSummary = defineComponent({
     return () =>
       !props.startDate || !props.endDate ? (
         <>
-          <Center class={s.icon_wrapper}>
+          <Center class={s.icon_wrapper} direction="|">
             <Icon name="clock" class={s.icon} />
+            <p>请先选择时间范围</p>
           </Center>
-          <div class={s.customize_tips}>请先选择时间范围</div>
         </>
       ) : (
         <div class={s.wrapper}>
@@ -120,8 +120,9 @@ export const ItemSummary = defineComponent({
             </>
           ) : (
             <>
-              <Center class={s.icon_wrapper}>
+              <Center class={s.icon_wrapper} direction="|">
                 <Icon name="note" class={s.icon} />
+                <p>目前没有数据</p>
               </Center>
               <div class={s.button_wrapper}>
                 <RouterLink to="/items/create">
