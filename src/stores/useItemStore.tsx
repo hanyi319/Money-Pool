@@ -15,7 +15,7 @@ type Actions = {
 };
 
 // 注意这里直接将 id 写死为 items 会有 bug
-export const useItemStore = (id: string | string[]) =>
+export const useItemStore = (id: string | (string | undefined)[]) =>
   defineStore<string, State, {}, Actions>(typeof id === "string" ? id : id.join("-"), {
     state: () => ({
       // 明细列表，默认为空数组

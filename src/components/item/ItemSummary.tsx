@@ -22,16 +22,6 @@ export const ItemSummary = defineComponent({
     },
   },
   setup: (props) => {
-    if (!props.startDate || !props.endDate) {
-      return () => (
-        <>
-          <Center class={s.icon_wrapper}>
-            <Icon name="clock" class={s.icon} />
-          </Center>
-          <div class={s.customize_tips}>请先选择时间范围</div>
-        </>
-      );
-    }
     const itemStore = useItemStore(["items", props.startDate, props.endDate]);
 
     // 只有当用户登录时，才去加载对应时间段的记账数据
@@ -50,90 +40,100 @@ export const ItemSummary = defineComponent({
         itemStore.fetchItemsBalance(props.startDate, props.endDate);
       }
     );
-    return () => (
-      <div class={s.wrapper}>
-        {itemStore.items && itemStore.items.length > 0 ? (
-          <>
-            <ul class={s.total}>
-              <li>
-                <span class={s.expenses}>
-                  <Money value={itemStore.itemsBalance.expenses} />
-                </span>
-                <span>支出</span>
-              </li>
-              <li>
-                <span class={s.income}>
-                  <Money value={itemStore.itemsBalance.income} />
-                </span>
-                <span>收入</span>
-              </li>
-              <li>
-                <span
-                  class={
-                    itemStore.itemsBalance.expenses > itemStore.itemsBalance.income
-                      ? s.expensesBalance
-                      : s.incomeBalance
-                  }
-                >
-                  <Money value={itemStore.itemsBalance.balance} />
-                </span>
-                <span>结余</span>
-              </li>
-            </ul>
-            <div class={s.listWrapper}>
-              <div class={s.export}></div>
-              <ol class={s.list}>
-                {itemStore.items.map((item) => (
-                  <li>
-                    <div class={s.sign}>
-                      <span>{item.tags && item.tags.length > 0 ? item.tags[0].sign : "💰"}</span>
-                    </div>
-                    <div class={s.text}>
-                      <div class={s.tagAndAmount}>
-                        <span class={s.tag}>
-                          {item.tags && item.tags.length > 0 ? item.tags[0].name : "未分类"}
-                        </span>
-                        <span class={[s.amount, item.kind === "expenses" ? s.expenses : s.income]}>
-                          <Money value={item.amount} />
-                        </span>
+    return () =>
+      !props.startDate || !props.endDate ? (
+        <>
+          <Center class={s.icon_wrapper}>
+            <Icon name="clock" class={s.icon} />
+          </Center>
+          <div class={s.customize_tips}>请先选择时间范围</div>
+        </>
+      ) : (
+        <div class={s.wrapper}>
+          {itemStore.items && itemStore.items.length > 0 ? (
+            <>
+              <ul class={s.total}>
+                <li>
+                  <span class={s.expenses}>
+                    <Money value={itemStore.itemsBalance.expenses} />
+                  </span>
+                  <span>支出</span>
+                </li>
+                <li>
+                  <span class={s.income}>
+                    <Money value={itemStore.itemsBalance.income} />
+                  </span>
+                  <span>收入</span>
+                </li>
+                <li>
+                  <span
+                    class={
+                      itemStore.itemsBalance.expenses > itemStore.itemsBalance.income
+                        ? s.expensesBalance
+                        : s.incomeBalance
+                    }
+                  >
+                    <Money value={itemStore.itemsBalance.balance} />
+                  </span>
+                  <span>结余</span>
+                </li>
+              </ul>
+              <div class={s.listWrapper}>
+                <div class={s.export}></div>
+                <ol class={s.list}>
+                  {itemStore.items.map((item) => (
+                    <li>
+                      <div class={s.sign}>
+                        <span>{item.tags && item.tags.length > 0 ? item.tags[0].sign : "💰"}</span>
                       </div>
-                      <div class={s.time}>
-                        <Datetime value={item.happen_at} />
+                      <div class={s.text}>
+                        <div class={s.tagAndAmount}>
+                          <span class={s.tag}>
+                            {item.tags && item.tags.length > 0 ? item.tags[0].name : "未分类"}
+                          </span>
+                          <span
+                            class={[s.amount, item.kind === "expenses" ? s.expenses : s.income]}
+                          >
+                            <Money value={item.amount} />
+                          </span>
+                        </div>
+                        <div class={s.time}>
+                          <Datetime value={item.happen_at} />
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <div class={s.more}>
-              {itemStore.hasMore ? (
-                <Button
-                  onClick={() => itemStore.fetchNextPage(props.startDate, props.endDate)}
-                  class={s.loadMore}
-                >
-                  加载更多
-                </Button>
-              ) : (
-                <span class={s.noMore}>没有更多</span>
-              )}
-            </div>
-          </>
-        ) : (
-          <>
-            <Center class={s.icon_wrapper}>
-              <Icon name="note" class={s.icon} />
-            </Center>
-            <div class={s.button_wrapper}>
-              <RouterLink to="/items/create">
-                <Button class={s.button}>开始记账</Button>
-              </RouterLink>
-            </div>
-          </>
-        )}
-        <RouterLink to="/items/create">
-          <FloatButton iconName="add" />
-        </RouterLink>
-      </div>
-    );
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div class={s.more}>
+                {itemStore.hasMore ? (
+                  <Button
+                    onClick={() => itemStore.fetchNextPage(props.startDate, props.endDate)}
+                    class={s.loadMore}
+                  >
+                    加载更多
+                  </Button>
+                ) : (
+                  <span class={s.noMore}>没有更多</span>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+              <Center class={s.icon_wrapper}>
+                <Icon name="note" class={s.icon} />
+              </Center>
+              <div class={s.button_wrapper}>
+                <RouterLink to="/items/create">
+                  <Button class={s.button}>开始记账</Button>
+                </RouterLink>
+              </div>
+            </>
+          )}
+          <RouterLink to="/items/create">
+            <FloatButton iconName="add" />
+          </RouterLink>
+        </div>
+      );
   },
 });
