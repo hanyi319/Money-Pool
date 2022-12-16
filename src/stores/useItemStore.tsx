@@ -96,11 +96,11 @@ export const useItemStore = (id: string | (string | undefined)[]) =>
       },
       // 加载第一页明细
       async fetchFirstPage(startDate, endDate) {
-        this._fetch(false, startDate, endDate);
+        this._fetch(true, startDate, endDate);
       },
       // 加载下一页明细
       async fetchNextPage(startDate, endDate) {
-        this._fetch(true, startDate, endDate);
+        this._fetch(false, startDate, endDate);
       },
     },
   })();

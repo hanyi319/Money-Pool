@@ -25,19 +25,19 @@ export const ItemSummary = defineComponent({
     const itemStore = useItemStore(["items", props.startDate, props.endDate]);
 
     // 只有当用户登录时，才去加载对应时间段的记账数据
-    useAfterMe(() => itemStore.fetchFirstPage(props.startDate, props.endDate));
     useAfterMe(() => itemStore.fetchItemsBalance(props.startDate, props.endDate));
+    useAfterMe(() => itemStore.fetchFirstPage(props.startDate, props.endDate));
 
     /**
-     * 监听起止时间其中任意一个的变化
-     * 重新加载收支总览和明细
+     * 监听起止时间其中任意一个的变化（也就是切换 Tab 时）
+     * 重新加载收支总览和明细列表
      */
     watch(
       () => [props.startDate, props.endDate],
       () => {
         itemStore.$reset();
-        itemStore.fetchFirstPage(props.startDate, props.endDate);
         itemStore.fetchItemsBalance(props.startDate, props.endDate);
+        itemStore.fetchFirstPage(props.startDate, props.endDate);
       }
     );
     return () =>
