@@ -4,6 +4,7 @@
   border-radius: var(--button-radius);
   font-size: var(--button-font-size);
   color: var(--button-text);
+  transition: transform 0.2s cubic-bezier(0.68, 0.01, 0.62, 0.6), opacity 0.08s linear;
 
   &.normal {
     border: 1px solid var(--button-bg-normal);
@@ -24,4 +25,9 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
+}
+
+.button:active {
+  transform: scale(0.95);
+  opacity: 0.5;
 }

@@ -31,7 +31,12 @@
     &.selected {
       .sign {
         border: 2px solid var(--tag-selected-border);
-        background: var(--tag-selected-bg);
+        background-color: var(--tag-selected-bg);
+        transition: transform 0.2s cubic-bezier(0.68, 0.01, 0.62, 0.6);
+      }
+
+      .sign:active {
+        transform: scale(0.95);
       }
     }
   }
@@ -46,11 +51,17 @@
   border: 2px solid var(--tag-selected-border);
   border-radius: 50%;
   background: var(--theme-color-blue);
+  transition: transform 0.2s cubic-bezier(0.68, 0.01, 0.62, 0.6), opacity 0.08s linear;
 
   > .createTag {
     width: 32px;
     height: 32px;
   }
+}
+
+.icon_wrapper:active {
+  transform: scale(0.95);
+  opacity: 0.5;
 }
 
 .more {

@@ -35,6 +35,11 @@
 
   &.validationCodeButton {
     margin-left: 16px;
+    transition: transform 0.2s cubic-bezier(0.68, 0.01, 0.62, 0.6), opacity 0.08s linear;
+  }
+
+  &.validationCodeButton:active {
+    transform: scale(0.95);
   }
 
   &.select {

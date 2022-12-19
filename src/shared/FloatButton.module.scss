@@ -9,9 +9,15 @@
   height: 56px;
   border-radius: 50%;
   background: var(--float-button-bg);
+  transition: transform 0.2s cubic-bezier(0.68, 0.01, 0.62, 0.6), opacity 0.08s linear;
 
   > .icon {
     width: 40px;
     height: 40px;
   }
+}
+
+.floatButton:active {
+  transform: scale(0.95);
+  opacity: 0.5;
 }

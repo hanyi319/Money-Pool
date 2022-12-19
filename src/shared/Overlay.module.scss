@@ -61,12 +61,18 @@
       align-items: center;
       padding: 12px 16px;
       border-radius: var(--button-radius);
-      background: var(--bg-color-white);
+      background-color: var(--bg-color-white);
+      transition: transform 0.2s cubic-bezier(0.68, 0.01, 0.62, 0.6), background-color 0.08s linear;
 
       > span {
         font-size: 24px;
         color: var(--overlay-item-text);
       }
+    }
+
+    > .action:active {
+      transform: scale(0.95);
+      background-color: var(--button-active);
     }
   }
 }
