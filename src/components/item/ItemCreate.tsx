@@ -9,6 +9,7 @@ import { Dialog } from "vant";
 import { http } from "../../shared/Http";
 import { OverlayIcon } from "../../shared/Overlay";
 import { hasError, validate } from "../../shared/validate";
+import { usePreferenceStore } from "../../stores/usePreferenceStore";
 import s from "./ItemCreate.module.scss";
 
 export const ItemCreate = defineComponent({
@@ -19,8 +20,9 @@ export const ItemCreate = defineComponent({
   },
   setup: (props, context) => {
     const router = useRouter();
+    const PreferenceStore = usePreferenceStore(); // 用户偏好
     const formData = reactive<Partial<Item>>({
-      kind: "expenses", // 交易类别，默认为「支出」
+      kind: PreferenceStore.kind, // 交易类别，默认为「支出」
       tag_ids: [], // 交易标签，不设置默认值
       amount: 0, // 交易时间，默认为当前时间，并且需要做 ISO 8601 格式化
       happen_at: new Date().toISOString(), // 交易金额，默认为0
@@ -78,7 +80,7 @@ export const ItemCreate = defineComponent({
           default: () => (
             <>
               <div class={s.wrapper}>
-                <Tabs v-model:selected={formData.kind} class={s.tabs}>
+                <Tabs v-model:selected={PreferenceStore.kind} class={s.tabs}>
                   <Tab value="expenses" name="支出">
                     <Tags kind="expenses" v-model:selected={formData.tag_ids![0]} />
                   </Tab>
@@ -88,7 +90,7 @@ export const ItemCreate = defineComponent({
                 </Tabs>
                 <div class={s.inputPad_wrapper}>
                   <InputPad
-                    v-model:kind={formData.kind}
+                    v-model:kind={PreferenceStore.kind}
                     v-model:happenAt={formData.happen_at}
                     v-model:amount={formData.amount}
                     onSubmit={onSubmit}

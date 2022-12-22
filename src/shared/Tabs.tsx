@@ -1,4 +1,5 @@
 import { defineComponent, onMounted, PropType, ref, onUpdated } from "vue";
+import { usePreferenceStore } from "../stores/usePreferenceStore";
 import s from "./Tabs.module.scss";
 
 export const Tabs = defineComponent({
@@ -16,6 +17,9 @@ export const Tabs = defineComponent({
   },
   emits: ["update:selected"],
   setup: (props, context) => {
+    // 记录用户偏好
+    const PreferenceStore = usePreferenceStore();
+
     // 设置导航条
     const container = ref<HTMLDivElement>();
     const selectedItem = ref<HTMLDivElement>();
@@ -53,7 +57,10 @@ export const Tabs = defineComponent({
                     item.props?.value === props.selected ? [s.selected, cp + "_selected"] : "",
                     cp + "_tabs_nav_item",
                   ]}
-                  onClick={() => context.emit("update:selected", item.props?.value)}
+                  onClick={() => {
+                    PreferenceStore.updateKind();
+                    context.emit("update:selected", item.props?.value);
+                  }}
                   ref={item.props?.value === props.selected ? selectedItem : ""}
                 >
                   {item.props?.name}
