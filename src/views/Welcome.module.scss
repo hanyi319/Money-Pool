@@ -11,27 +11,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 48px 0 16px 0;
+    padding: 100px 0 16px 0;
     font-size: 24px;
 
-    > .icon {
+    .icon {
       width: 64px;
+      height: 64px;
     }
 
-    > .appName {
+    .appName {
       margin-top: 16px;
       font-size: 32px;
       font-weight: bold;
       color: var(--app-name-text);
     }
   }
+
   > main {
     position: relative;
+    margin: 16px 16px 32px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin: 16px 16px var(--welcome-nav-height);
   }
+
   > footer {
     flex-shrink: 0;
   }

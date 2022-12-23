@@ -1,6 +1,3 @@
-.wrapper {
-}
-
 .logo {
   display: flex;
   flex-direction: column;
@@ -8,11 +5,12 @@
   align-items: center;
   padding: 42px 0 16px;
 
-  > .icon {
+  .icon {
     width: 64px;
+    height: 64px;
   }
 
-  > .appName {
+  .appName {
     margin-top: 16px;
     font-size: 32px;
     font-weight: bold;

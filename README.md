@@ -1,4 +1,4 @@
-# 如何开发
+# 项目开发
 
 ## 克隆项目
 
@@ -36,7 +36,19 @@ pnpm run dev
 pnpm run dev --port=3001
 ```
 
-# 如何打包
+# 项目部署
+
+## 项目打包
+
+```
+pnpm run build
+```
+
+## 本地预览
+
+```
+pnpm run preview
+```
 
 # 编码规范
 

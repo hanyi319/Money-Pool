@@ -5,13 +5,13 @@
   justify-content: center;
   align-items: center;
   padding: 16px auto;
-  border-radius: 8px;
+  border-radius: var(--button-radius);
   background: var(--welcome-card-bg);
   font-size: 48px;
   font-weight: 900;
   line-height: 130%;
 
-  > .icon {
+  .icon {
     width: 128px;
     height: 128px;
   }
@@ -43,6 +43,7 @@
   align-items: center;
   height: var(--welcome-nav-height);
   padding: 0 16px;
+  margin-bottom: 16px;
   padding-bottom: var(--welcome-nav-gap);
   font-size: 24px;
   font-weight: bold;
