@@ -7,6 +7,7 @@ import { Form, FormItem } from "../shared/Form";
 import { Time } from "../shared/time";
 import { Button } from "../shared/Button";
 import s from "./TimeTabsLayout.module.scss";
+import { BottomNav } from "../shared/BottomNav";
 
 const demo = defineComponent({
   props: {
@@ -76,56 +77,59 @@ export const TimeTabsLayout = defineComponent({
           icon: () => <OverlayIcon />,
           default: () => (
             <>
-              <Tabs
-                classPrefix="customTabs"
-                v-model:selected={refSelected.value}
-                onUpdate:selected={onSelect}
-                reRenderOnSelect={props.reRenderOnSwitchTab}
-              >
-                <Tab value="本周" name="本周">
-                  <props.component
-                    startDate={timeList[0].start.format()}
-                    endDate={timeList[0].end.format()}
-                  />
-                </Tab>
-                <Tab value="本月" name="本月">
-                  <props.component
-                    startDate={timeList[1].start.format()}
-                    endDate={timeList[1].end.format()}
-                  />
-                </Tab>
-                <Tab value="上月" name="上月">
-                  <props.component
-                    startDate={timeList[2].start.format()}
-                    endDate={timeList[2].end.format()}
-                  />
-                </Tab>
-                <Tab value="自定义" name="自定义">
-                  <props.component startDate={customTime.start} endDate={customTime.end} />
-                </Tab>
-              </Tabs>
-              <Overlay show={refOverlayVisible.value} class={s.overlay}>
-                <div class={s.overlay_inner}>
-                  <Form onSubmit={onSubmitCustomTime}>
-                    <FormItem label="开始时间" v-model={tempTime.start} type="date" />
-                    <FormItem label="结束时间" v-model={tempTime.end} type="date" />
-                    <FormItem>
-                      <div class={s.actions}>
-                        <Button
-                          type="button"
-                          onClick={() => (refOverlayVisible.value = false)}
-                          class={s.actionCancel}
-                        >
-                          取消
-                        </Button>
-                        <Button type="submit" class={s.actionSubmit}>
-                          确认
-                        </Button>
-                      </div>
-                    </FormItem>
-                  </Form>
-                </div>
-              </Overlay>
+              <div class={s.wrapper}>
+                <Tabs
+                  classPrefix="customTabs"
+                  v-model:selected={refSelected.value}
+                  onUpdate:selected={onSelect}
+                  reRenderOnSelect={props.reRenderOnSwitchTab}
+                >
+                  <Tab value="本周" name="本周">
+                    <props.component
+                      startDate={timeList[0].start.format()}
+                      endDate={timeList[0].end.format()}
+                    />
+                  </Tab>
+                  <Tab value="本月" name="本月">
+                    <props.component
+                      startDate={timeList[1].start.format()}
+                      endDate={timeList[1].end.format()}
+                    />
+                  </Tab>
+                  <Tab value="上月" name="上月">
+                    <props.component
+                      startDate={timeList[2].start.format()}
+                      endDate={timeList[2].end.format()}
+                    />
+                  </Tab>
+                  <Tab value="自定义" name="自定义">
+                    <props.component startDate={customTime.start} endDate={customTime.end} />
+                  </Tab>
+                </Tabs>
+                <Overlay show={refOverlayVisible.value} class={s.overlay}>
+                  <div class={s.overlay_inner}>
+                    <Form onSubmit={onSubmitCustomTime}>
+                      <FormItem label="开始时间" v-model={tempTime.start} type="date" />
+                      <FormItem label="结束时间" v-model={tempTime.end} type="date" />
+                      <FormItem>
+                        <div class={s.actions}>
+                          <Button
+                            type="button"
+                            onClick={() => (refOverlayVisible.value = false)}
+                            class={s.actionCancel}
+                          >
+                            取消
+                          </Button>
+                          <Button type="submit" class={s.actionSubmit}>
+                            确认
+                          </Button>
+                        </div>
+                      </FormItem>
+                    </Form>
+                  </div>
+                </Overlay>
+              </div>
+              <BottomNav />
             </>
           ),
         }}

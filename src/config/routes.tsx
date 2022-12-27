@@ -9,7 +9,6 @@ import { ThirdActions } from "../components/welcome/ThirdActions";
 import { Fourth } from "../components/welcome/Fourth";
 import { FourthActions } from "../components/welcome/FourthActions";
 import { SignInPage } from "../views/SignInPage";
-import { ItemPage } from "../views/ItemPage";
 import { ItemList } from "../components/item/ItemList";
 import { ItemCreate } from "../components/item/ItemCreate";
 import { TagPage } from "../views/TagPage";
@@ -34,14 +33,8 @@ export const routes: RouteRecordRaw[] = [
     ],
   },
   { path: "/sign_in", component: SignInPage },
-  {
-    path: "/items",
-    component: ItemPage,
-    children: [
-      { path: "", component: ItemList },
-      { path: "create", component: ItemCreate },
-    ],
-  },
+  { path: "/notes", component: ItemCreate },
+  { path: "/items", component: ItemList },
   {
     path: "/tags",
     component: TagPage,

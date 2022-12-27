@@ -11,6 +11,7 @@ import { OverlayIcon } from "../../shared/Overlay";
 import { hasError, validate } from "../../shared/validate";
 import { usePreferenceStore } from "../../stores/usePreferenceStore";
 import s from "./ItemCreate.module.scss";
+import { BottomNav } from "../../shared/BottomNav";
 
 export const ItemCreate = defineComponent({
   props: {
@@ -97,6 +98,7 @@ export const ItemCreate = defineComponent({
                   />
                 </div>
               </div>
+              <BottomNav />
             </>
           ),
         }}

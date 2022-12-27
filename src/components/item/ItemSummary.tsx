@@ -125,13 +125,13 @@ export const ItemSummary = defineComponent({
                 <p>目前没有数据</p>
               </Center>
               <div class={s.button_wrapper}>
-                <RouterLink to="/items/create">
+                <RouterLink to="/notes">
                   <Button class={s.button}>开始记账</Button>
                 </RouterLink>
               </div>
             </>
           )}
-          <RouterLink to="/items/create">
+          <RouterLink to="/notes">
             <FloatButton iconName="add" />
           </RouterLink>
         </div>

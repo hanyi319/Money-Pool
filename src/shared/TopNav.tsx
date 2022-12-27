@@ -1,7 +1,7 @@
 import { defineComponent, PropType } from "vue";
-import s from "./Navbar.module.scss";
+import s from "./TopNav.module.scss";
 
-export const Navbar = defineComponent({
+export const TopNav = defineComponent({
   props: {
     name: {
       type: String as PropType<string>,

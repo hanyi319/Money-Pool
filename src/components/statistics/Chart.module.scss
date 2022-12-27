@@ -1,12 +1,16 @@
-.formWrapper {
-  padding: 16px;
-  margin-top: -16px;
-  margin-bottom: -48px;
-  background: var(--bg-color-white);
+.wrapper {
+  padding-bottom: var(--bottom-nav-height);
 
-  span {
-    line-height: 48px;
-    font-size: 20px;
-    font-weight: bold;
+  .formWrapper {
+    padding: 16px;
+    margin-top: -16px;
+    margin-bottom: -48px;
+    background: var(--bg-color-white);
+
+    span {
+      line-height: 48px;
+      font-size: 20px;
+      font-weight: bold;
+    }
   }
 }

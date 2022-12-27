@@ -1,19 +1,25 @@
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 88px);
+  height: calc(100vh - var(--bottom-nav-height));
 
   .tabs {
     width: 100vw;
     flex-grow: 1;
-    flex-shrink: 1;
+    // flex-shrink: 1;
     overflow: scroll;
+
     &::-webkit-scrollbar {
       display: none;
     }
   }
 
   .inputPad_wrapper {
+    position: sticky;
+    bottom: var(--bottom-nav-height);
+    left: 0;
+    width: 100%;
     flex-grow: 0;
     flex-shrink: 0;
   }

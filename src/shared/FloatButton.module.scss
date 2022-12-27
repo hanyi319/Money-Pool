@@ -1,7 +1,7 @@
 .floatButton {
   position: fixed;
   right: 32px;
-  bottom: 32px;
+  bottom: calc(var(--bottom-nav-height) + 16px);
   display: flex;
   justify-content: center;
   align-items: center;
