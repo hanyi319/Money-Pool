@@ -7,3 +7,5 @@ export const StatisticsPage = defineComponent({
     return () => <TimeTabsLayout component={Chart} reRenderOnSwitchTab={true} />;
   },
 });
+
+export default StatisticsPage;

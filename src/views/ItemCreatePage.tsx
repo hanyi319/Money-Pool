@@ -1,19 +1,19 @@
 import { defineComponent, PropType, reactive } from "vue";
-import { MainLayout } from "../../layouts/MainLayout";
-import { Tabs, Tab } from "../../shared/Tabs";
-import { Tags } from "./Tags";
-import { InputPad } from "./InputPad";
+import { MainLayout } from "../layouts/MainLayout";
+import { BottomNav } from "../shared/BottomNav";
+import { Tabs, Tab } from "../shared/Tabs";
+import { Tags } from "../components/item/Tags";
+import { InputPad } from "../components/item/InputPad";
 import { useRouter } from "vue-router";
 import { AxiosError } from "axios";
 import { Dialog } from "vant";
-import { http } from "../../shared/Http";
-import { OverlayIcon } from "../../shared/Overlay";
-import { hasError, validate } from "../../shared/validate";
-import { usePreferenceStore } from "../../stores/usePreferenceStore";
+import { http } from "../shared/Http";
+import { OverlayIcon } from "../shared/Overlay";
+import { hasError, validate } from "../shared/validate";
+import { usePreferenceStore } from "../stores/usePreferenceStore";
 import s from "./ItemCreate.module.scss";
-import { BottomNav } from "../../shared/BottomNav";
 
-export const ItemCreate = defineComponent({
+export const ItemCreatePage = defineComponent({
   props: {
     name: {
       type: String as PropType<string>,
@@ -106,3 +106,5 @@ export const ItemCreate = defineComponent({
     );
   },
 });
+
+export default ItemCreatePage;
