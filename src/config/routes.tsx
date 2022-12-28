@@ -41,4 +41,8 @@ export const routes: RouteRecordRaw[] = [
     path: "/statistics",
     component: () => import("../views/StatisticsPage"),
   },
+  {
+    path: "/comingsoon",
+    component: () => import("../shared/ComingSoon"),
+  },
 ];
