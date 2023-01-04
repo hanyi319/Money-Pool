@@ -1,0 +1,23 @@
+<svg
+  width="128px"
+  height="128px"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 40 40"
+>
+<path
+  d="M20 34c7.732 0 14-6.268 14-14S27.732 6 20 6 6 12.268 6 20s6.268 14 14 14z"
+  fill="none"
+  stroke="#0081fa"
+  stroke-width="3"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+></path>
+<path
+  d="M20 11.6V20l5.6 2.8"
+  fill="none"
+  stroke="#00d09c"
+  stroke-width="3"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+></path>
+</svg>

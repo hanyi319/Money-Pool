@@ -5,7 +5,7 @@ import s from "./welcome.module.scss";
 export const Second: FunctionalComponent = () => {
   return (
     <div class={s.card}>
-      <Icon name="chart" class={s.icon} />
+      <Icon name="ad2" class={s.icon} />
       <div>
         <span class={s.title_green}>一目</span>
         <span class={s.title_blue}>了然</span>

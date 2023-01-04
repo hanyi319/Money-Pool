@@ -16,8 +16,8 @@ export const SignInPage = defineComponent({
     const router = useRouter(); // 路由器
     const route = useRoute(); // 路由信息
     const formData = reactive({
-      email: "",
-      code: "",
+      email: "2387870957@qq.com",
+      code: "123456",
     });
     const errors = reactive({
       email: [],
@@ -91,7 +91,7 @@ export const SignInPage = defineComponent({
                   type="validationCode"
                   placeholder="输入验证码"
                   ref={refValidationCode}
-                  countFrom={60}
+                  countFrom={10}
                   disabled={refDisabled.value}
                   onClick={onClickSendValidationCode}
                   v-model={formData.code}

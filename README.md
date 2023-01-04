@@ -50,6 +50,13 @@ pnpm run build
 pnpm run preview
 ```
 
+## 部署到腾讯云 COS
+
+```bash
+pnpm run build --base /
+./coscli cp D:/Desktop/Projects/Money-Pool/dist/ cos://money-pool-1312430199 -r
+```
+
 # 编码规范
 
 ## ref 默认值

@@ -102,9 +102,9 @@ export const TimeTabsLayout = defineComponent({
                       endDate={timeList[2].end.format()}
                     />
                   </Tab>
-                  <Tab value="自定义" name="自定义">
+                  {/* <Tab value="自定义" name="自定义">
                     <props.component startDate={customTime.start} endDate={customTime.end} />
-                  </Tab>
+                  </Tab> */}
                 </Tabs>
                 <Overlay show={refOverlayVisible.value} class={s.overlay}>
                   <div class={s.overlay_inner}>

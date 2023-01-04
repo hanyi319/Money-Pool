@@ -3,18 +3,23 @@ import s from "./Icon.module.scss";
 
 export type IconName =
   | "logo"
+  | "ad1"
+  | "ad2"
+  | "ad3"
+  | "ad4"
+  | "menu"
+  | "back"
+  | "add"
+  | "date"
+  | "note"
+  | "item"
   | "trade"
   | "chart"
   | "cloud"
   | "clock"
-  | "date"
-  | "note"
-  | "item"
-  | "menu"
-  | "back"
-  | "add"
   | "delete"
-  | "ok";
+  | "ok"
+  | "noResult";
 
 export const Icon = defineComponent({
   props: {
@@ -27,7 +32,6 @@ export const Icon = defineComponent({
     },
   },
   setup: (props, context) => {
-    // return () => <img src={"/src/assets/icons/" + props.name + ".svg"} onClick={props.onClick} />;
     return () => (
       <svg class={s.icon} onClick={props.onClick}>
         <use xlinkHref={"#" + props.name}></use>

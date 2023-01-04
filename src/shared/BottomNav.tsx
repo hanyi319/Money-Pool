@@ -13,7 +13,7 @@ export const BottomNav = defineComponent({
     return () => (
       <nav class={s.bottomNav}>
         <RouterLink to="/notes" class={s.item} active-class={s.selected}>
-          <Icon name="note" class={s.icon} />
+          <Icon name="trade" class={s.icon} />
           记账
         </RouterLink>
         <RouterLink to="/items" class={s.item} active-class={s.selected}>
